@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find the Lie · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .fl-card{background:var(--card);border:1px solid var(--hair);border-radius:10px;
+    padding:16px;margin:14px 0;max-width:460px}
+  .fl-card canvas{width:100%;border:1px solid var(--hair);border-radius:6px;background:#FFF}
+  .fl-claim{font-size:15.5px;margin:10px 0 8px}
+  .fl-why{border-top:1px dashed var(--hair);margin-top:10px;padding-top:8px;font-size:14.5px}
+  .tr-grid{font-size:24px;letter-spacing:3px}
+  .tr-share{background:var(--star);color:#FFF;border:0;border-radius:8px;
+    padding:10px 18px;font-size:15px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / Find the Lie</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">The weekly eye exam · new charts every Monday · same for everyone</p>
+<h1>Find the Lie <span id="fl-num" style="color:var(--star)"></span></h1>
+<p class="lede">Five charts, five claims. Every number on every chart is true —
+but some of the charts are lying anyway. Call each one: fair, or foul.</p>
+
+<div id="fl-items"></div>
+
+<p class="tr-grid" id="fl-grid"></p>
+<p id="fl-verdict" style="max-width:60ch"></p>
+<p id="fl-sharebar" hidden>
+  <button class="tr-share" id="fl-share">Share your grid</button>
+  <button class="tr-share" id="fl-card" style="background:var(--navy)">Save the card</button>
+  <span style="font-size:13.5px;color:var(--ink2)" id="fl-copied"></span>
+</p>
+
+<div class="flatnote" style="margin-top:24px"><b>After today you'll see these
+everywhere</b> — news, ads, presentations. Making charts that tell the truth
+is week 3 of <a href="sprint-data.html">Data Science, from zero</a>. Four
+weeks, then the live lecture.</div>
+
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus
+program, built with Chicago First &middot; Find the Lie &middot; new every
+Monday.</div></footer>
+
+<script src="sharecard.js"></script>
+<script>
+(function(){
+  function isoWeek(d){
+    const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+    const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day);
+    const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));
+    return [t.getUTCFullYear(), Math.ceil((((t-y0)/864e5)+1)/7)];
+  }
+  const [yr,wk]=isoWeek(new Date());
+  const num=(yr-2026)*52+wk;
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;
+    let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;
+    return((t^t>>>14)>>>0)/4294967296}}
+  const rng=mulberry32(num*97531);
+
+  // 5 pairs; each week picks the fair or the foul twin of each pair
+  const PAIRS=[
+   [{bar:{labels:['Shop A','Shop B'],vals:[96,100],ymin:0,units:'items sold'},
+     claim:'"Shop B is slightly ahead of Shop A this month."',foul:false,
+     why:'Fair. Axis at zero, labeled units, and the claim matches the 4% gap.'},
+    {bar:{labels:['Shop A','Shop B'],vals:[96,100],ymin:90,units:'items sold'},
+     claim:'"Shop B is crushing Shop A."',foul:true,
+     why:'Foul — the chopped axis. Starting at 90 turns a 4% gap into a landslide. Same true numbers, lying picture.'}],
+   [{line:{vals:[62,58,55,51,49,47,44,42,40,41,43,44],units:'members'},
+     claim:'"The club shrank this year, with a small recovery late."',foul:false,
+     why:'Fair. The full year is shown and the claim matches the shape — down a third, small uptick at the end.'},
+    {line:{vals:[62,58,55,51,49,47,44,42,40,41,43,44],window:[9,12],units:'members'},
+     claim:'"The club is growing fast!"',foul:true,
+     why:'Foul — the cherry-picked window. Showing only the last three months hides a year that fell by a third.'}],
+   [{bar:{labels:['Big HS','Small HS'],vals:[1200,300],ymin:0,units:'library visits'},
+     claim:'"Big HS logged four times more total visits than Small HS."',foul:false,
+     why:'Fair — as a claim about TOTALS. Read the next twin carefully some week.'},
+    {bar:{labels:['Big HS','Small HS'],vals:[1200,300],ymin:0,units:'library visits'},
+     claim:'"Students at Big HS read four times more than Small HS students."',foul:true,
+     why:'Foul — totals dressed as per-student. Big HS has 2,000 students, Small HS 250: per student, Small HS reads MORE. The chart is honest; the claim is not.'}],
+   [{line:{vals:[16.1,16.3,16.2,16.5,16.7,16.8,17.0,17.2],units:'°C, July average'},
+     claim:'"July average temperature rose about one degree across these years."',foul:false,
+     why:'Fair. A zoomed axis is legitimate on a LINE chart when the units are labeled and the claim states the actual size.'},
+    {line:{vals:[16.1,16.3,16.2,16.5,16.7,16.8,17.0,17.2],noaxis:true},
+     claim:'"Temperatures are exploding."',foul:true,
+     why:'Foul — no axis, no units. The same gentle one-degree rise looks like a rocket when nothing tells you the scale.'}],
+   [{bar:{labels:['Byrek','Kafe','Akullore'],vals:[142,138,145],ymin:0,units:'sales'},
+     claim:'"The three products sell within a few percent of each other."',foul:false,
+     why:'Fair. Axis at zero shows what the numbers say: a near tie.'},
+    {bar:{labels:['Byrek','Kafe','Akullore'],vals:[142,138,145],ymin:135,units:'sales'},
+     claim:'"Akullore dominates the menu."',foul:true,
+     why:'Foul — chop the axis at 135 and a 5% spread becomes a monopoly. Bars must start at zero.'}],
+  ];
+  const ITEMS=PAIRS.map(function(p){return p[rng()<0.5?0:1]});
+
+  function drawChart(cv,spec){
+    const x=cv.getContext('2d');const Wc=cv.width,Hc=cv.height;
+    x.fillStyle='#FFF';x.fillRect(0,0,Wc,Hc);
+    const L=46,R=12,T=14,B=34,pw=Wc-L-R,ph=Hc-T-B;
+    x.strokeStyle='#999';x.lineWidth=1;
+    x.beginPath();x.moveTo(L,T);x.lineTo(L,T+ph);x.lineTo(L+pw,T+ph);x.stroke();
+    x.fillStyle='#444';x.font='11px sans-serif';
+    if(spec.bar){
+      const b=spec.bar,ymax=Math.max.apply(null,b.vals)*1.05,ymin=b.ymin;
+      b.vals.forEach(function(v,i){
+        const bw=pw/b.vals.length*0.6,
+              bx=L+pw/b.vals.length*(i+0.2),
+              bh=Math.max(2,(v-ymin)/(ymax-ymin)*ph);
+        x.fillStyle=i%2?'#7E1B14':'#D8291F';
+        x.fillRect(bx,T+ph-bh,bw,bh);
+        x.fillStyle='#444';x.textAlign='center';
+        x.fillText(b.labels[i],bx+bw/2,T+ph+14);});
+      x.textAlign='right';
+      x.fillText(String(ymin),L-4,T+ph+3);
+      x.fillText(String(Math.round(ymax)),L-4,T+9);
+      x.save();x.translate(11,T+ph/2);x.rotate(-Math.PI/2);
+      x.textAlign='center';x.fillText(b.units||'',0,0);x.restore();
+    }else{
+      const l=spec.line,vals=l.window?l.vals.slice(l.window[0],l.window[1]):l.vals;
+      const vmin=Math.min.apply(null,vals),vmax=Math.max.apply(null,vals),
+            pad=(vmax-vmin)*0.15||1;
+      x.strokeStyle='#7E1B14';x.lineWidth=2;x.beginPath();
+      vals.forEach(function(v,i){
+        const px=L+pw*i/(vals.length-1),
+              py=T+ph-(v-vmin+pad)/(vmax-vmin+2*pad)*ph;
+        i?x.lineTo(px,py):x.moveTo(px,py);});
+      x.stroke();
+      x.fillStyle='#444';x.textAlign='right';
+      if(!l.noaxis){
+        x.fillText(vmin.toFixed(1).replace(/\.0$/,''),L-4,T+ph+3);
+        x.fillText(vmax.toFixed(1).replace(/\.0$/,''),L-4,T+9);
+        x.save();x.translate(11,T+ph/2);x.rotate(-Math.PI/2);
+        x.textAlign='center';x.fillText(l.units||'',0,0);x.restore();
+        x.textAlign='center';
+        x.fillText(l.window?'recent months':'full year / period',L+pw/2,T+ph+14);
+      }
+    }
+  }
+
+  const KEY='alnow-lie-'+yr+'-'+wk;
+  let st={a:[]};
+  try{st=JSON.parse(localStorage.getItem(KEY))||st}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  function gc(ev){if(window.goatcounter&&window.goatcounter.count)
+    window.goatcounter.count({path:'find-the-lie/'+ev,event:true});}
+
+  document.getElementById('fl-num').textContent='#'+num;
+  const wrap=document.getElementById('fl-items'),grid=document.getElementById('fl-grid'),
+        verdict=document.getElementById('fl-verdict'),bar=document.getElementById('fl-sharebar');
+  function gridStr(){return st.a.map(function(x){return x?'\u{1F7E9}':'\u{1F7E5}'}).join('');}
+  function finish(){
+    grid.textContent=gridStr();
+    if(st.a.length===5){
+      const sc=st.a.filter(Boolean).length;
+      verdict.innerHTML='<b>'+sc+' of 5.</b> '+(sc===5?
+        'A clean eye. Every chart you meet this week is now a suspect.':
+        'The reveals above show the trick each time. New charts Monday.');
+      bar.hidden=false;}
+  }
+  ITEMS.forEach(function(it,i){
+    const card=document.createElement('div');card.className='fl-card';
+    const cv=document.createElement('canvas');cv.width=440;cv.height=240;
+    card.appendChild(cv);drawChart(cv,it);
+    const cl=document.createElement('div');cl.className='fl-claim';
+    cl.textContent='Claim '+(i+1)+' of 5: '+it.claim;card.appendChild(cl);
+    const answered=st.a.length>i;
+    ['Fair','Foul'].forEach(function(lbl,j){
+      const b=document.createElement('button');b.className='choice';b.textContent=lbl;
+      if(answered)b.disabled=true;
+      b.addEventListener('click',function(){
+        if(st.a.length!==i)return;             // answer in order
+        const saidFoul=j===1,ok=saidFoul===it.foul;
+        st.a.push(ok);save();
+        b.classList.add(ok?'right':'wrong');
+        [...card.querySelectorAll('.choice')].forEach(function(x){x.disabled=true});
+        const w=document.createElement('div');w.className='fl-why';
+        w.innerHTML=(ok?'<b>Called it.</b> ':'<b>Reveal:</b> ')+it.why;
+        card.appendChild(w);
+        if(st.a.length===5)gc('done-'+st.a.filter(Boolean).length);
+        finish();
+      });
+      card.appendChild(b);});
+    if(answered){
+      const w=document.createElement('div');w.className='fl-why';
+      w.innerHTML=(st.a[i]?'<b>Called it.</b> ':'<b>Reveal:</b> ')+it.why;
+      card.appendChild(w);}
+    wrap.appendChild(card);
+  });
+  if(!st.a.length)gc('play');
+  finish();
+
+  function shareText(){
+    return 'Find the Lie #'+num+' '+gridStr()+'\n'+
+      'True numbers, lying charts: https://santerre.ai/albania-now/findthelie.html?s=fl';}
+  document.getElementById('fl-share').addEventListener('click',function(){
+    gc('share');
+    if(navigator.share){navigator.share({text:shareText()}).catch(function(){});}
+    else{navigator.clipboard&&navigator.clipboard.writeText(shareText());
+      document.getElementById('fl-copied').textContent='copied — paste it anywhere';}
+  });
+  document.getElementById('fl-card').addEventListener('click',function(){
+    gc('card');
+    alnowShareCard({title:'Find the Lie',num:num,grid:gridStr()||'\u{1F440}',
+      line:st.a.filter(Boolean).length+'/5 lies caught',
+      url:'santerre.ai/albania-now'});
+  });
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

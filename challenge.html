@@ -35,6 +35,7 @@ What does it print? Three guesses. No timer, no streak, just the trace.</p>
   <p id="tr-verdict" style="max-width:56ch"></p>
   <p id="tr-sharebar" hidden>
     <button class="tr-share" id="tr-share">Share your grid</button>
+    <button class="tr-share" id="tr-cardbtn" style="background:var(--navy)">Save the card</button>
     <span class="tr-meta" id="tr-copied"></span>
   </p>
   <p class="tr-meta" id="tr-note">Puzzle changes every Monday. Everyone in
@@ -53,6 +54,7 @@ yours.</div>
 program, built with Chicago First &middot; Trace Race &middot; new every
 Monday.</div></footer>
 
+<script src="sharecard.js"></script>
 <script>
 (function(){
   // Weekly bank. Seed = ISO week, so the whole country sees one puzzle.
@@ -159,6 +161,12 @@ Monday.</div></footer>
   if(!st.g.length)gc('play');
   render();
 
+  document.getElementById('tr-cardbtn').addEventListener('click',()=>{
+    gc('card');
+    alnowShareCard({title:'Trace Race',num:num,grid:gridStr()||'\u{1F9E0}',
+      line:st.done?('traced in '+st.g.length):'the machine won this week',
+      url:'santerre.ai/albania-now'});
+  });
   document.getElementById('tr-share').addEventListener('click',()=>{
     const txt='Trace Race #'+num+' '+gridStr()+'\n'+
       'Can you read Python? https://santerre.ai/albania-now/challenge.html?s=tr';

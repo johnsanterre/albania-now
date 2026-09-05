@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crater Hunter · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  #ch-cv{width:100%;max-width:576px;border:1px solid var(--hair);border-radius:8px;
+         image-rendering:pixelated;background:#000}
+  .ch-ctl{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:12px 0}
+  .ch-grid{font-size:24px;letter-spacing:3px}
+  .tr-share{background:var(--star);color:#FFF;border:0;border-radius:8px;
+    padding:10px 18px;font-size:15px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / Crater Hunter</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">The weekly hunt · new terrain every Monday · same for everyone</p>
+<h1>Crater Hunter <span id="ch-num" style="color:var(--star)"></span></h1>
+<p class="lede">A fresh stretch of planetary terrain, straight from the orbiter.
+Six craters are hiding in it. Tune the detector — threshold and size filter —
+and scan. Three scans; count every crater without counting junk.</p>
+
+<div class="seg" style="max-width:none">
+  <canvas id="ch-cv" width="576" height="360"></canvas>
+  <div class="ch-ctl">
+    <label style="font-size:14px">Threshold: <b id="ch-tv">100</b>
+      <input type="range" id="ch-th" min="60" max="170" value="100" style="width:min(240px,50vw);vertical-align:middle"></label>
+    <label style="font-size:14px"><input type="checkbox" id="ch-sz" checked> size filter (&ge;12 px)</label>
+    <button class="tr-share" id="ch-scan">Scan</button>
+    <span style="font-size:14px;color:var(--ink2)" id="ch-left"></span>
+  </div>
+  <p class="ch-grid" id="ch-grid"></p>
+  <p id="ch-verdict" style="max-width:60ch"></p>
+  <p id="ch-sharebar" hidden>
+    <button class="tr-share" id="ch-share">Share your result</button>
+    <button class="tr-share" id="ch-card" style="background:var(--navy)">Save the card</button>
+    <span style="font-size:13.5px;color:var(--ink2)" id="ch-copied"></span>
+  </p>
+  <p style="font-size:13.5px;color:var(--ink2)">Red overlay = what your detector
+  calls a crater. Every scan shows hits, misses, and junk — tune and go again.</p>
+</div>
+
+<div class="flatnote" style="margin-top:24px"><b>This is a real technique.</b>
+Threshold, group, filter — it's how planetary scientists count craters to date
+surfaces, and it's week 2 of
+<a href="sprint-images.html">AI Image Analysis on Other Planets</a>. Complete
+the sprint and the closing lecture is Dr. Conor Nixon, NASA.</div>
+
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus
+program, built with Chicago First &middot; Crater Hunter &middot; new every
+Monday.</div></footer>
+
+<script src="sharecard.js"></script>
+<script src="crater-core.js"></script>
+<script>
+(function(){
+  const S=6;
+  function isoWeek(d){
+    const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+    const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day);
+    const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));
+    return [t.getUTCFullYear(), Math.ceil((((t-y0)/864e5)+1)/7)];
+  }
+  const [yr,wk]=isoWeek(new Date());
+  const num=(yr-2026)*52+wk;
+  const world=alnowCraterWorld(num);
+  const IMG=world.IMG,W=world.W,H=world.H,NCR=world.NCR,
+        blobs=world.blobs,score=world.score;
+
+  const cv=document.getElementById('ch-cv'),ctx=cv.getContext('2d'),
+        th=document.getElementById('ch-th'),tv=document.getElementById('ch-tv'),
+        sz=document.getElementById('ch-sz');
+  function draw(overlay){
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+      const v=IMG[y][x];ctx.fillStyle='rgb('+v+','+v+','+v+')';
+      ctx.fillRect(x*S,y*S,S,S);}
+    if(overlay)for(const b of overlay)for(const [x,y] of b){
+      ctx.fillStyle='rgba(216,41,31,.55)';ctx.fillRect(x*S,y*S,S,S);}}
+  th.addEventListener('input',()=>{tv.textContent=th.value;
+    draw(blobs(+th.value,sz.checked?12:1));});
+  sz.addEventListener('change',()=>draw(blobs(+th.value,sz.checked?12:1)));
+
+  const KEY='alnow-crater-'+yr+'-'+wk;
+  let st={scans:[],done:false};
+  try{st=JSON.parse(localStorage.getItem(KEY))||st}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  function gc(ev){if(window.goatcounter&&window.goatcounter.count)
+    window.goatcounter.count({path:'crater-hunter/'+ev,event:true});}
+
+  const grid=document.getElementById('ch-grid'),verdict=document.getElementById('ch-verdict'),
+        bar=document.getElementById('ch-sharebar'),left=document.getElementById('ch-left'),
+        scanBtn=document.getElementById('ch-scan');
+  function emoji(s){return s.hits===NCR&&s.fa===0?'\u{1F7E9}':
+    (s.hits>=4&&s.fa<=2?'\u{1F7E8}':'\u{1F7E5}');}
+  function gridStr(){return st.scans.map(emoji).join('');}
+  function best(){return st.scans.reduce((b,s)=>{
+    const q=s.hits*10-s.fa*3,bq=b?b.hits*10-b.fa*3:-1e9;return q>bq?s:b;},null);}
+  function render(){
+    grid.textContent=gridStr();
+    const over=st.done||st.scans.length>=3;
+    scanBtn.disabled=over;
+    left.textContent=over?'':(3-st.scans.length)+' scan'+(st.scans.length===2?'':'s')+' left';
+    if(over){
+      const b=best();
+      verdict.innerHTML=(st.done?'<b>Clean sweep — '+NCR+' of '+NCR+', zero junk.</b> ':
+        '<b>Best scan: '+b.hits+' of '+NCR+' craters, '+b.fa+' junk.</b> ')+
+        'The trade you just felt — misses versus false alarms — runs every detector '+
+        'on Earth and off it. New terrain Monday.';
+      bar.hidden=false;}
+    else if(st.scans.length){
+      const s=st.scans[st.scans.length-1];
+      verdict.innerHTML='<b>Scan '+st.scans.length+':</b> '+s.hits+' of '+NCR+
+        ' craters, '+s.misses+' missed, '+s.fa+' junk counted. '+
+        (s.misses?'Faint craters live just above your threshold. ':'')+
+        (s.fa?'Junk means the threshold is loose or the size filter is off. ':'')+
+        'Tune and scan again.';}
+  }
+  scanBtn.addEventListener('click',()=>{
+    if(st.done||st.scans.length>=3)return;
+    const dets=blobs(+th.value,sz.checked?12:1);
+    const s=score(dets);
+    st.scans.push(s);
+    if(s.hits===NCR&&s.fa===0)st.done=true;
+    save();gc(st.done?'solve-'+st.scans.length:(st.scans.length>=3?'fail':'scan'));
+    draw(dets);render();
+  });
+  if(!st.scans.length)gc('play');
+  draw(blobs(+th.value,sz.checked?12:1));render();
+
+  function shareText(){
+    const b=best()||{hits:0,fa:0};
+    return 'Crater Hunter #'+num+' '+gridStr()+' — '+b.hits+'/'+NCR+' craters, '+
+      b.fa+' junk\nHunt yours: https://santerre.ai/albania-now/crater.html?s=ch';}
+  document.getElementById('ch-share').addEventListener('click',()=>{
+    gc('share');
+    if(navigator.share){navigator.share({text:shareText()}).catch(()=>{});}
+    else{navigator.clipboard&&navigator.clipboard.writeText(shareText());
+      document.getElementById('ch-copied').textContent='copied — paste it anywhere';}
+  });
+  document.getElementById('ch-card').addEventListener('click',()=>{
+    const b=best()||{hits:0,fa:0};gc('card');
+    alnowShareCard({title:'Crater Hunter',num:num,grid:gridStr()||'\u{1F50E}',
+      line:b.hits+'/'+NCR+' craters found · '+b.fa+' junk',
+      url:'santerre.ai/albania-now'});
+  });
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
