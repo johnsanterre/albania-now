@@ -21,8 +21,12 @@ have soon after · **L** later.
 | **Scratch** | Community showcase, remixing, social identity | None | The community IS the product. **Borrow later: a place to show builds.** |
 | **Zooniverse** | Contribution to real science; "you matter" | None | Meaning as a carrot. Our planetary sprint can end in real citizen-science contribution (Planet Hunters) — already linked in go-deeper. |
 | **Kaggle / LeetCode** | Rankings, medals, competition | Public ranking pressure | **Refuse** — ranking teenagers against each other in an optional program kills the weakest students' participation first. |
+| **Wordle** | One daily puzzle, same for everyone; the emoji-grid share card — low-effort, intriguing, shows off without explaining | None | The canonical viral loop: a **share artifact** with a **shared daily context** and a minutes-long cycle. **Borrow all three — this is the growth model (§4).** |
+| **Chess.com / multiplayer games** | Playing requires a second person — growth is built into use | Rating anxiety | The multiplayer lesson without the ratings: **crews** (§4). A crew that needs a fourth member is a recruitment engine. |
 
 **The carrot stack we choose (in order of power):**
+0. *(acquisition layer)* **The challenge + share card** — five minutes of
+   cleverness, displayable. Not a reason to stay; the reason a friend arrives.
 1. **The lecture** — access to a real scientist, earned. Nobody else has this.
 2. **The certificate** — verifiable URL, signed by Free Focus, listable on a
    CV/university application. (Albania context: university admissions and
@@ -129,7 +133,70 @@ not a taste.)
 - **S** Content health: which check questions get failed most (bad question
   or bad teaching — either way, a signal the pacing map can't see).
 
-## 4. Human-factors requirements
+## 4. Growth-loop requirements
+
+**The honest premise (2026-09-05 assessment):** as first designed, the program
+was single-player with private rewards and a month-long cycle — K-factor zero
+by construction. It would grow like Khan Academy: institutionally, over
+years. These requirements add the game-shaped growth layer. The target is
+not global virality: the addressable population is ~130–150k Albanian
+high-schoolers, so "viral" means **K > 1 inside school social networks plus
+one national media moment** — that is saturation.
+
+**Guardrails first (these bind every G-requirement):** growth mechanics obey
+HF1's prohibitions — no guilt streaks, no daily-nag notifications, no public
+student rankings. Shares are always pull-based: the student chooses to
+share; nothing auto-posts. Share artifacts contain **no PII by default** (no
+names, no school unless the student adds them). We never request contact-list
+access, ever.
+
+- **G1 (M) The share card.** Every showable figure result — the transit
+  detection, the crater count, a trace-puzzle score — generates a one-tap
+  share image: result + visual + link (with attribution params). Built
+  mobile-first for Instagram stories, WhatsApp class groups, and TikTok —
+  where Albanian teens actually are. Web Share API + canvas render; server
+  OG-image renderer later. Metric: cards created → link visits → joins.
+- **G2 (M) The challenge — the five-minute front door.** A standing
+  challenge, **same instance for everyone** (date-seeded — shared context is
+  what makes the share intriguing): trace this code, spot the chart's lie,
+  read this spectrum, find the dip. Drawn from the existing figure engine;
+  complete-or-not today, **streak-free by design**. Completion offers the
+  share card and the funnel line: "this is five minutes of week 1 —
+  the sprint is the real thing." Cadence: weekly at launch, daily when the
+  instance bank is deep enough.
+- **G3 (M) Crews.** Students join as self-formed crews of 3–5. Crew
+  completion = every member completes the sprint; crew rewards are
+  crew-shaped: the crew sticker set, recognition at the lecture, the crew
+  photo moment with the speaker. The mechanic's real job: a crew that needs
+  a fourth member recruits one. Constraints: minimum size 3 (no 1-on-1
+  pressure), leaving a crew is one click and costs no personal progress,
+  crew-internal progress is visible to the crew only, and crews are never
+  ranked against each other publicly.
+- **G4 (S) Referral, both-sides, non-monetary.** Personal invite link; when
+  the invitee completes week 1, both sides earn — a priority question slot
+  at the lecture, a bonus sticker. Credit capped (~5 per student) so it
+  stays a friend mechanic, not a spam mechanic.
+- **G5 (M) The school-pride surface.** A public wall: **schools by completer
+  count** — schools compete, students never (consistent with the
+  no-student-ranking rule). Plus an opt-in completer wall per cohort (first
+  names + school only). Inter-school pride is real fuel in Albania; this is
+  the sanctioned outlet for competition.
+- **G6 (S) Public recordings as the FOMO engine.** Lecture recordings fully
+  public and promoted, with 60–90-second highlight clips cut for social.
+  The live room stays earned — outsiders see exactly what they missed and
+  exactly how to earn it.
+- **G7 (S) The media moment.** "NASA's Titan scientist lectures Albanian
+  teenagers who did the work" is a national news story in a 2.7M-person
+  country. Product-side requirement: the site must absorb a spike (static —
+  already true) and the join flow must capture it. Program-side: a launch
+  kit (Albanian + English press release, speaker quotes, photos) timed to
+  the first cohort's lecture — owner: Free Focus + the local partner.
+- **G8 (M) Growth instrumentation.** The funnel dashboard (§3.6) extends to
+  a K-factor proxy: share-card views → attributed visits → joins; referral
+  conversion; challenge participation. If we can't measure the loop, we
+  can't tune it.
+
+## 5. Human-factors requirements
 
 - **HF1 (M)** Motivation architecture is exactly the carrot stack in §1 —
   lecture, certificate, sticker, progress, community. The weekly rhythm is
@@ -160,7 +227,7 @@ not a taste.)
   details, the people (photos, real bios), partners, and the privacy policy
   in plain language, both languages.
 
-## 5. Technical architecture (proposed, not locked)
+## 6. Technical architecture (proposed, not locked)
 
 - **Content plane (exists):** static generated lessons, GitHub Pages,
   unchanged. The app never blocks content.
@@ -181,27 +248,35 @@ not a taste.)
   opaque salt they paste.
 - **Data model sketch:** `users`, `consents`, `schools`, `cohorts`,
   `enrollments`, `progress_events`, `submissions` (build uploads + review
-  state), `certificates`, `invites`.
+  state), `certificates`, `invites` — plus, for the growth layer: `crews`,
+  `referrals`, `challenge_results`, `share_events`.
 - **Cost envelope:** pilot ≈ $0/mo (free tiers); 10k students ≈ low tens of
   $/mo. The expensive resource stays speaker time, not compute.
 
-## 6. Phases
+## 7. Phases
 
-- **P0 — now (static):** Join page + call to action (email-based, ships
-  today) · completion events wired to GoatCounter for a pre-app funnel ·
-  About/trust page · Albanian parent letter. Unblocks: gaps 1 (partially),
-  5, and measurement.
+- **P0 — now (static):** Join page + call to action (shipped 2026-09-05) ·
+  completion events wired (shipped) · About/trust page · Albanian parent
+  letter · **challenge v0** (date-seeded, client-only, from the figure
+  engine) · **share-card v0** on the two most showable figures (transit
+  finder, trace puzzle) with attribution params. Unblocks: gaps 1
+  (partially), 5, measurement, and the first real test of the growth
+  thesis — all before any backend exists.
 - **P1 — app MVP:** Auth, profiles, consent flow, enrollments, server-side
   segment tracking, build uploads, one cohort run end-to-end with mentor
-  review. Exit criterion: one real cohort completes and gets its lecture
-  with zero volunteer grading.
+  review · **crews** (formation, crew view, crew rewards) · **referral
+  links** · **school-pride wall** (opt-in). Exit criterion: one real cohort
+  completes and gets its lecture with zero volunteer grading — and the
+  measured share→join funnel is nonzero.
 - **P2 — the engine:** completion codes in notebooks, certificates +
-  verification URLs, sticker workflow, speaker view, funnel dashboard,
-  Q&A pipeline.
+  verification URLs, sticker workflow, speaker view, Q&A pipeline · **growth
+  dashboard with K-proxy** · server OG-image share renderer · highlight-clip
+  pipeline for public recordings.
 - **P3 — scale:** school accounts, showcase, per-cohort Discord automation,
-  server-side autograding, more cohorts in parallel.
+  server-side autograding, more cohorts in parallel · daily challenge
+  cadence once the instance bank supports it.
 
-## 7. Open questions (John)
+## 8. Open questions (John)
 
 - **Q1** Parental-consent age threshold under Albanian law — needs a real
   answer before P1 ships (counsel, or the local partner will know).
@@ -213,3 +288,13 @@ not a taste.)
 - **Q6** Does "no teacher grading" also mean no school involvement at all,
   or do schools stay as distribution + sticker-ceremony partners? (This doc
   assumes the latter.)
+- **Q7** Crew rewards: what does a completing crew actually get, and what's
+  the budget? (The crew photo with the speaker costs nothing and might be
+  the strongest one.)
+- **Q8** Public-wall consent granularity: first name + school, or school
+  counts only? (This doc proposes both, opt-in per student.)
+- **Q9** Who owns the media/launch kit, and with which local partner's name
+  on it? (A Free Focus press release lands differently than one co-signed
+  by an Albanian institution.)
+- **Q10** Challenge cadence at launch: weekly (sustainable now) vs daily
+  (stronger habit, needs a deep instance bank). This doc says weekly first.
