@@ -237,7 +237,69 @@ access, ever.
     (crews submit strategies, weekly simulated battles, shareable replays —
     the multiplayer growth engine).
 
-## 5. Human-factors requirements
+## 5. Live operations — the playbook (added 2026-09-05)
+
+Viral platforms win as much by *operations* as by features: synchronized
+calendars, predictable rituals, event engineering, community ladders, and
+weekly telemetry discipline. These are operating commitments, not code.
+
+### 5.1 Seasons, not rolling cohorts *(source: games-as-service — Fortnite et al.)*
+Cohorts across all sprints align to one named **season** ("Autumn 2026")
+with a shared finale week — every sprint's lecture lands in the same few
+days, so the whole community peaks together and the press moment has mass.
+Season-unique sticker designs that never return (scarcity drives
+cross-season collection); certificates numbered within season ("completer
+#47, Founding Season" — founding status is a permanent good we can only
+mint once). Lapsed students re-enter at any season boundary with progress
+carried.
+
+### 5.2 The weekly ritual *(source: patch-day culture, Wordle's daily sync)*
+Predictability builds habit without streak-guilt: **Monday** the challenge
+drops (same instance for everyone), **Wednesday** a community moment in
+Discord (mentor office hour, mini-AMA), **Friday** the recap post (best
+share cards, school wall movement, next week's tease). Students learn the
+rhythm; nothing nags them.
+
+### 5.3 Events as the growth engine *(source: live-event spikes)*
+The lecture is operated as an event with a runway, not a calendar entry:
+T-7 days question submissions open; T-1 reminder with the completer count;
+schools encouraged to host **watch parties** (the projector in the lab —
+a completer's plus-ones can watch, only completers ask questions); within
+24h the highlight clips ship to social. Occasional limited-time specials
+between seasons ("Planet Hunt Weekend") reuse existing material as events.
+
+### 5.4 The people ladder *(source: Roblox/Reddit/fCC community ladders; the indie-dev-replies effect)*
+Completers become the operation: **crew captain** (self-appointed at crew
+formation) → **school ambassador** (named role, role sticker, early access
+to new sprints) → **volunteer mentor** (post-completion, helps in Discord,
+feeds the capstone-review queue under Free Focus supervision). Albanian-
+speaking moderation from day one comes from this ladder, not from hiring.
+And the highest-leverage 15 minutes in the whole operation: each sprint's
+speaker drops one short async reply-round in Discord mid-sprint — "the
+scientist answered me" is the single most shareable moment we can
+manufacture, and it costs a coffee break.
+
+### 5.5 Onboarding as an operational metric *(source: D1-retention discipline)*
+Standing rule: every landing path reaches an interactive moment in **under
+60 seconds** — the challenge lives on the homepage, not behind navigation.
+Day-1 and week-1 return are measured and reviewed. And the **seeded-room
+rule**: no public launch until 10–20 founding students are already active
+in Discord — nobody joins an empty server. Pilot school = closed beta;
+public launch timed to the first finale, not the first upload.
+
+### 5.6 The telemetry ritual *(source: weekly live-ops reviews)*
+A 30-minute weekly ops review, non-negotiable: K-proxy, funnel stages,
+challenge participation, D1/W1, school wall movement. The report is
+auto-generated (the funnel dashboard's job); the meeting decides one thing
+per week — what to boost, what to kill. Each season ends with a retro that
+feeds the next season's content priorities alongside the pacing map.
+
+### 5.7 Re-engagement, respectfully *(source: what good win-back looks like)*
+One email per season boundary to lapsed students: what's new, progress
+carried, next season's date. No guilt mechanics, no "we miss you" drip —
+the season calendar itself is the re-entry point.
+
+## 6. Human-factors requirements
 
 - **HF1 (M)** Motivation architecture is exactly the carrot stack in §1 —
   lecture, certificate, sticker, progress, community. The weekly rhythm is
@@ -268,7 +330,7 @@ access, ever.
   details, the people (photos, real bios), partners, and the privacy policy
   in plain language, both languages.
 
-## 6. Technical architecture (proposed, not locked)
+## 7. Technical architecture (proposed, not locked)
 
 - **Content plane (exists):** static generated lessons, GitHub Pages,
   unchanged. The app never blocks content.
@@ -309,7 +371,7 @@ access, ever.
     separately. The scarce resources remain speaker hours and moderation —
     which is where volunteers and LLMs are aimed, not where money is.
 
-## 7. Phases
+## 8. Phases
 
 - **P0 — now (static):** Join page + call to action (shipped 2026-09-05) ·
   completion events wired (shipped) · About/trust page · Albanian parent
@@ -332,7 +394,7 @@ access, ever.
   server-side autograding, more cohorts in parallel · daily challenge
   cadence once the instance bank supports it.
 
-## 8. Open questions (John)
+## 9. Open questions (John)
 
 - **Q1** Parental-consent age threshold under Albanian law — needs a real
   answer before P1 ships (counsel, or the local partner will know).
