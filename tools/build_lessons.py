@@ -260,6 +260,29 @@ LESSONS.append(dict(sprint=DS, n=1, nb='ds1-first-steps',
     <p class="fignote" id="q1sum"></p>
   </div>
 
+  <h3 style="margin-top:26px">How to work in a notebook — the habit that compounds</h3>
+  <p>Before more mechanics, the working method. The single habit that separates
+  people who learn programming fast from people who stall is
+  <b>predict&nbsp;&rarr;&nbsp;run&nbsp;&rarr;&nbsp;compare</b>. Before you press
+  play on any cell — yours or the notebook's — say out loud what you expect to
+  happen. Then run it. Then compare. When the output matches your prediction,
+  you have confirmed a piece of your mental model. When it doesn't, you have
+  found the most valuable thing in the room: a place where your model of the
+  machine is wrong, small enough to fix in one minute. Students who skip the
+  prediction step run twice as many cells and learn half as much, because
+  nothing surprising can ever reach them — they had no expectation to violate.</p>
+  <p>The same discipline applies to errors, as a protocol. When red text
+  appears: read the <b>last line first</b> (it names the kind of problem and
+  usually the fix), then the <b>line number</b> (where it happened), then fix
+  exactly one thing and rerun. Never change three things at once — if the error
+  goes away you will not know which change mattered, and next week you will
+  meet it again as a stranger.</p>
+  <p>And keep tiny experiments cheap. A notebook cell costs nothing to add and
+  nothing to delete. Wondering whether <span style="font-family:ui-monospace,Menlo,monospace">"7"&nbsp;+&nbsp;7</span>
+  works? Don't wonder — open a scratch cell and ask the machine. It answers in
+  one second and it never judges. Professional programmers do this dozens of
+  times a day; the notebook makes the experiment loop shorter than the doubt.</p>
+
   <h3 style="margin-top:26px">Variables — the notebook's memory</h3>
   <p>A variable is a name with a value stored under it. Three rules govern all
   of them, and all three fit in one small program:</p>
@@ -278,6 +301,16 @@ print(emri, x)</pre>
   up the name and shows <i>Ana</i>;
   <span style="font-family:ui-monospace,Menlo,monospace">print("emri")</span>
   shows the word <i>emri</i>, because quotes mean "this is the text itself."</p>
+  <p>Two more things about names. First, <b>a copy is a copy of the value, not
+  a connection</b>: after <span style="font-family:ui-monospace,Menlo,monospace">a = 2</span>
+  and <span style="font-family:ui-monospace,Menlo,monospace">b = a</span>,
+  changing a later does not reach back and change b — b took a snapshot of the
+  2 and kept it. Second, <b>names are yours</b>. Python does not care whether
+  you write <span style="font-family:ui-monospace,Menlo,monospace">city</span>
+  or <span style="font-family:ui-monospace,Menlo,monospace">qyteti</span> — a
+  good name tells the next reader (usually you, next week) what the value
+  means. One-letter names are for scratch work; real work deserves real
+  words, in whichever language you think in.</p>
   <p>Trace it yourself:</p>
 
   <div class="fig" id="fig2">
@@ -287,6 +320,37 @@ print(emri, x)</pre>
     three questions. Predict before you click.</p>
     <div id="q2"></div>
     <p class="fignote" id="q2sum"></p>
+  </div>
+
+  <h3 style="margin-top:26px">The invisible whiteboard — run order and state</h3>
+  <p>Here is the mental model that makes "haunted" notebooks boring instead of
+  spooky. Behind your notebook, the session machine keeps an <b>invisible
+  whiteboard</b> of every variable that exists right now and what it holds.
+  Every cell you run reads from that whiteboard and writes to it. The page
+  order of the cells is just typography — <b>the whiteboard only knows the
+  order you actually pressed play</b>. Run a cell twice and it writes twice:
+  if the cell says <span style="font-family:ui-monospace,Menlo,monospace">x = x * 2</span>,
+  a second accidental run doubles x again, silently. That is not a bug in
+  Python; it is the whiteboard doing exactly what it was told, twice.</p>
+  <p><i>Runtime &rarr; Restart and run all</i> is the exorcism because it does
+  two honest things: wipes the whiteboard clean, then replays every cell top
+  to bottom — so the page order and the run order finally agree. When anything
+  confuses you this month, reach for it first. Now haunt a notebook on
+  purpose:</p>
+
+  <div class="fig" id="fig4">
+    <div class="figlabel">Interactive · Figure 4</div>
+    <h3>The haunted notebook</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Three cells, a whiteboard, and
+    you. Click cells in ANY order — including twice — and watch the state.
+    Can you produce 10, 20, 40, and a NameError?</p>
+    <div id="cells4" style="display:flex;flex-direction:column;gap:6px;max-width:420px"></div>
+    <div style="display:flex;gap:16px;align-items:center;margin-top:10px;flex-wrap:wrap">
+      <button class="exbtn" id="restart4">Runtime &rarr; Restart</button>
+      <span style="font-size:14px">whiteboard: <b id="wb4">empty</b></span>
+    </div>
+    <pre class="code" id="log4" style="min-height:60px;margin-top:8px">console…</pre>
+    <p class="fignote" id="sum4"></p>
   </div>
 
   <h3 style="margin-top:26px">Number, text, and the third thing</h3>
@@ -301,7 +365,19 @@ print(emri, x)</pre>
   decimal (<span style="font-family:ui-monospace,Menlo,monospace">10 / 4</span>
   is 2.5, not 2), and multiplying text repeats it —
   <span style="font-family:ui-monospace,Menlo,monospace">"Va" * 3</span> is
-  <i>VaVaVa</i>. Sort all eight:</p>
+  <i>VaVaVa</i>. Why do types exist at all? Because the machine has to know
+  which operations make sense: dividing two numbers means something; dividing
+  two sentences does not. Types are how Python keeps you from asking
+  meaningless questions — and the error report is it telling you, precisely,
+  which question went meaningless where.</p>
+  <p>By the end of this lesson you will have met the whole week-one error
+  family: <b>NameError</b> (a name that doesn't exist), <b>TypeError</b> (an
+  operation between types that don't mix), <b>SyntaxError</b> (the sentence
+  itself is malformed — Python couldn't even start), and, in the practice set,
+  <b>ValueError</b> (right type, impossible value —
+  <span style="font-family:ui-monospace,Menlo,monospace">int("sixteen")</span>).
+  Four reports, four one-line diagnoses. Collect them like a field guide.
+  Sort all eight:</p>
 
   <div class="fig" id="fig3">
     <div class="figlabel">Interactive · Figure 3</div>
@@ -311,6 +387,21 @@ print(emri, x)</pre>
     <div id="q3"></div>
     <p class="fignote" id="q3sum"></p>
   </div>
+
+  <h3 style="margin-top:26px">What programming actually is — week-one edition</h3>
+  <p>Strip away the folklore and this week's programming was three moves:
+  <b>store</b> a value under a name, <b>look it up</b> later, and <b>read the
+  report</b> when the machine refuses. Everything else — the loops in your
+  build, the tables next week, the machine learning in the other sprints — is
+  those three moves arranged in longer chains. Nobody memorizes commands;
+  programmers memorize the model and look up the spelling.</p>
+  <p>One standing rule for the build, and for every build this month: when you
+  ask an AI assistant for code — and you should — <b>you own every word you
+  keep</b>. Run it, read it, and change something small to prove you can
+  steer it. Code you can't explain is a loan, not a possession, and the
+  interest comes due at the worst time. Next week the values stop being single
+  numbers and become tables of thousands of rows — and the three moves come
+  with you unchanged.</p>
 ''',
  watch2=('Worked example: a first session, errors included', 'alnow-ds-1b-watch.mp4'),
  practice=dict(
@@ -434,6 +525,18 @@ print(emri, x)</pre>
     ('spaces are not allowed before numbers', 0)]),
   ('What does print(10 / 4) show?',
    [('2', 0), ('2.5 — division gives decimals', 1), ('2 remainder 2', 0)]),
+  ('a = 2, then b = a, then a = 5. What does print(b) show?',
+   [('5 — b follows a', 0),
+    ('2 — the copy took a snapshot of the value, not a connection', 1),
+    ('NameError', 0)]),
+  ('You accidentally run the cell x = x * 2 a second time. Now…',
+   [('nothing — Python ignores repeat runs', 0),
+    ('x has doubled again — the whiteboard was written twice', 1),
+    ('the notebook shows an error', 0)]),
+  ('int("sixteen") raises which report?',
+   [('TypeError', 0),
+    ('ValueError — right type in, impossible value to convert', 1),
+    ('SyntaxError', 0)]),
  ],
  build_h2='The three-part build',
  build_html='''
@@ -558,6 +661,46 @@ print(emri, x)</pre>
       });
       card.appendChild(b);});
     wrap.appendChild(card);});
+})();
+
+/* ---- Figure 4: the haunted notebook ---- */
+(function(){
+  const CELLS=[
+   ['c1','x = 10'],
+   ['c2','x = x * 2'],
+   ['c3','print(x)']];
+  let state={},log=[],got={};
+  const wrap=document.getElementById('cells4'),wb=document.getElementById('wb4'),
+        lg=document.getElementById('log4'),sum=document.getElementById('sum4');
+  function refresh(){
+    wb.textContent=Object.keys(state).length?
+      Object.entries(state).map(([k,v])=>k+' = '+v).join(', '):'empty';
+    lg.textContent=log.length?log.join('\\n'):'console…';
+    const want=['10','20','40','NameError'];
+    const have=want.filter(w=>got[w]);
+    sum.innerHTML=have.length===4?
+      '<b>All four produced.</b> Same three cells every time — only the RUN ORDER changed. That is the whole haunting, and Restart is the exorcism.':
+      have.length?'Produced so far: <b>'+have.join(', ')+'</b>. Still hunting: '+want.filter(w=>!got[w]).join(', ')+'.':
+      'Click cells in any order. Page order is just typography.';}
+  function run(id,src){
+    if(id==='c1'){state.x=10;log.push('&#9654; '+src);}
+    else if(id==='c2'){
+      if('x' in state){state.x=state.x*2;log.push('&#9654; '+src);}
+      else{log.push('&#9654; '+src);log.push('NameError: name \\'x\\' is not defined');got['NameError']=1;}}
+    else{
+      if('x' in state){log.push('&#9654; '+src);log.push(String(state.x));got[String(state.x)]=1;}
+      else{log.push('&#9654; '+src);log.push('NameError: name \\'x\\' is not defined');got['NameError']=1;}}
+    log=log.slice(-8);
+    refresh();}
+  CELLS.forEach(([id,src])=>{
+    const b=document.createElement('button');b.className='choice';
+    b.style.cssText='font-family:ui-monospace,Menlo,monospace;text-align:left';
+    b.textContent='\\u25b6  '+src;
+    b.addEventListener('click',()=>run(id,src));
+    wrap.appendChild(b);});
+  document.getElementById('restart4').addEventListener('click',()=>{
+    state={};log=['-- whiteboard wiped --'];refresh();});
+  refresh();
 })();
 '''))
 

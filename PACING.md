@@ -7,12 +7,12 @@ Spec: **20 hours per sprint-month** = ~300 min (5h) per weekly lesson; band 240�
 
 | wk | total | flag | watch | listen | read+figs | practice | notebook | check | build | words | figs | ex | quiz | nb t/s/c | vids |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **176m** | UNDER | 5 | 1 | 12 | 42 | 66 | 5 | 45 | 632 | 3 | 21 | 9 | 23/7/6 | 2 |
+| 1 | **185m** | thin | 5 | 1 | 19 | 42 | 66 | 7 | 45 | 1487 | 4 | 21 | 12 | 23/7/6 | 2 |
 | 2 | **46m** | UNDER | 1 | 1 | 5 | 0 | 23 | 2 | 15 | 310 | 1 | 0 | 3 | 7/3/0 | 1 |
 | 3 | **33m** | UNDER | 1 | 1 | 5 | 0 | 10 | 2 | 15 | 352 | 1 | 0 | 3 | 4/1/0 | 1 |
 | 4 | **31m** | UNDER | 1 | 1 | 4 | 0 | 9 | 2 | 15 | 263 | 1 | 0 | 3 | 3/1/0 | 1 |
 
-**Sprint total: 287m of 1200m target (24%)**
+**Sprint total: 296m of 1200m target (25%)**
 
 ## Planetary Exploration (`space`)
 
@@ -58,6 +58,6 @@ Spec: **20 hours per sprint-month** = ~300 min (5h) per weekly lesson; band 240�
 
 **Sprint total: 94m of 1200m target (8%)**
 
-**Catalog: 20 lessons measured · median 31m · min 23m · max 176m**
+**Catalog: 20 lessons measured · median 31m · min 23m · max 185m**
 
 Legend: flag UNDER < 180m · thin < 240m · ok · OVER > 360m. nb t/s/c = notebook teaching / scaffold (your-turn) / check cells.
