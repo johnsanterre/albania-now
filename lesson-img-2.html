@@ -23,17 +23,18 @@
 </div>
 
 <section class="seg" data-seg="watch">
-  <div class="stype">1 · Watch</div>
+  <div class="stype">Watch</div>
   <h2>Threshold, blobs, and the size filter</h2>
   <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
     src="video/alnow-img-2-watch.mp4"></video>
   <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Below the line is shadow; touching shadows are one blob; tiny blobs are noise.
   <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+
   <button class="mark" data-for="watch">Mark complete</button>
 </section>
 
 <section class="seg" data-seg="listen">
-  <div class="stype">2 · Listen</div>
+  <div class="stype">Listen</div>
   <h2>Listen: two minutes before you go on</h2>
   <p>The three-step recipe — threshold, group, filter — that turns a grid of numbers into a crater count.</p>
   <audio controls preload="none" style="width:100%" src="audio/alnow-img-2-listen.m4a"></audio>
@@ -41,7 +42,7 @@
 </section>
 
 <section class="seg" data-seg="read">
-  <div class="stype">3 · Read &amp; play</div>
+  <div class="stype">Read &amp; play</div>
   <h2>Threshold, group, filter</h2>
 
 
@@ -85,7 +86,7 @@
 </section>
 
 <section class="seg" data-seg="code">
-  <div class="stype">4 · Code</div>
+  <div class="stype">Code</div>
   <h2>Build the detector</h2>
   <p>The notebook generates a cratered plain, walks threshold → flood-fill grouping → size filter, and prints the count at each stage so you see what every step removed.</p>
   <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
@@ -105,7 +106,7 @@
 </section>
 
 <section class="seg" data-seg="deeper">
-  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
   <h2>More detection, if you want it</h2>
 
   <div class="gd"><b>Real Mars images, real citizens.</b>
@@ -124,7 +125,7 @@
 </section>
 
 <section class="seg" data-seg="check">
-  <div class="stype">6 · Quick check</div>
+  <div class="stype">Quick check</div>
   <h2>Check yourself</h2>
   <p><b>1. Where should the threshold value come from?</b></p>
   <div data-q="1">
@@ -150,7 +151,7 @@
 </section>
 
 <section class="seg" data-seg="build">
-  <div class="stype">7 · Build</div>
+  <div class="stype">Build</div>
   <h2>Count a field, defend the count</h2>
   <div class="buildtask">
 
@@ -167,7 +168,7 @@
 </section>
 
 <section class="seg" data-seg="done">
-  <div class="stype">8 · Done</div>
+  <div class="stype">Done</div>
   <h2 id="doneHead">Finish week 2</h2>
   <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
   <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
@@ -187,6 +188,12 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
 (function(){
   const KEY='alnow-img-2';
   const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  document.querySelectorAll('.seg .stype').forEach((el,i)=>{
+    el.insertBefore(document.createTextNode((i+1)+' \u00b7 '),el.firstChild)});
+  document.querySelectorAll('.ex').forEach((ex,i)=>{
+    const b=ex.querySelector('.exbtn'),a=ex.querySelector('.exans');
+    if(b&&a){a.hidden=true;b.addEventListener('click',()=>{
+      a.hidden=!a.hidden;b.textContent=a.hidden?'Show the answer':'Hide the answer'})}});
   let state={};
   try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}

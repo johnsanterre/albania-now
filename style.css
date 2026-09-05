@@ -205,3 +205,14 @@ select.wsel{font-family:var(--sans);font-size:16px;padding:.4em .6em;border:1px 
 .hero .eng{display:inline-block;background:#1A1414;color:#FFF;border-radius:6px;
   padding:.35em .8em;font-size:14px;font-weight:700;letter-spacing:.06em;margin-top:12px}
 .wingmark{display:inline-block;vertical-align:-4px;margin-right:10px}
+/* ==== practice exercises (4x expansion) ==== */
+.ex{background:var(--card);border:1px solid var(--hair);border-radius:8px;
+    padding:13px 16px;margin:10px 0}
+.ex .exq{margin:0 0 8px}
+.ex pre{background:#F4F2EC;border-radius:6px;padding:8px 12px;font-size:14px;
+        overflow-x:auto;font-family:ui-monospace,Menlo,monospace}
+.ex .exans{border-top:1px dashed var(--hair);padding-top:8px;margin-top:8px;font-size:15px}
+.ex .exans b{color:var(--navy)}
+.exbtn{background:var(--pale,#F2D7D5);color:var(--deep,#7E1B14);border:1px solid var(--hair);
+       border-radius:6px;padding:5px 12px;font-size:13.5px;cursor:pointer;font-weight:600}
+.exnum{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--star)}

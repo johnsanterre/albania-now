@@ -19,21 +19,25 @@
 
 <div class="progresswrap">
   <div class="progressbar"><div id="pbar"></div></div>
-  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+  <div class="plabel"><span id="pdone">0</span> of 9 segments complete</div>
 </div>
 
 <section class="seg" data-seg="watch">
-  <div class="stype">1 · Watch</div>
+  <div class="stype">Watch</div>
   <h2>What Colab is, in three minutes</h2>
   <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
     src="video/alnow-ds-1-watch.mp4"></video>
   <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">A notebook, a play button, and a computer far away.
   <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <p style="margin:16px 0 4px;font-weight:600">Worked example: a first session, errors included</p>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-ds-1b-watch.mp4"></video>
+
   <button class="mark" data-for="watch">Mark complete</button>
 </section>
 
 <section class="seg" data-seg="listen">
-  <div class="stype">2 · Listen</div>
+  <div class="stype">Listen</div>
   <h2>Listen: two minutes before you go on</h2>
   <p>What actually happens when you press play — and why nothing you do this month can break anything.</p>
   <audio controls preload="none" style="width:100%" src="audio/alnow-ds-1-listen.m4a"></audio>
@@ -41,7 +45,7 @@
 </section>
 
 <section class="seg" data-seg="read">
-  <div class="stype">3 · Read &amp; play</div>
+  <div class="stype">Read &amp; play</div>
   <h2>Cells, the play button, and reports</h2>
 
 
@@ -83,11 +87,117 @@
     <p class="fignote" id="q1sum"></p>
   </div>
 
+  <h3 style="margin-top:26px">Variables — the notebook's memory</h3>
+  <p>A variable is a name with a value stored under it. Three rules govern all
+  of them, and all three fit in one small program:</p>
+  <pre class="code">x = 4
+x = x + 3
+emri = "Ana"
+print(emri, x)</pre>
+  <p><b>Rule 1: <span style="font-family:ui-monospace,Menlo,monospace">=</span>
+  means store, not equals.</b> <span style="font-family:ui-monospace,Menlo,monospace">x
+  = x + 3</span> is not an equation (it would be a false one) — it is an order:
+  take what x holds, add 3, store the result back under the name x.</p>
+  <p><b>Rule 2: the last store wins.</b> A variable holds exactly one value —
+  whatever was stored most recently, in the order the cells actually ran.</p>
+  <p><b>Rule 3: quotes decide whether a word is a name or text.</b>
+  <span style="font-family:ui-monospace,Menlo,monospace">print(emri)</span> looks
+  up the name and shows <i>Ana</i>;
+  <span style="font-family:ui-monospace,Menlo,monospace">print("emri")</span>
+  shows the word <i>emri</i>, because quotes mean "this is the text itself."</p>
+  <p>Trace it yourself:</p>
+
+  <div class="fig" id="fig2">
+    <div class="figlabel">Interactive · Figure 2</div>
+    <h3>Trace the program</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">The four-line program above,
+    three questions. Predict before you click.</p>
+    <div id="q2"></div>
+    <p class="fignote" id="q2sum"></p>
+  </div>
+
+  <h3 style="margin-top:26px">Number, text, and the third thing</h3>
+  <p>Every expression you write lands in one of three bins: it makes a
+  <b>number</b>, it makes <b>text</b>, or it makes an <b>error report</b>. The
+  glue operator <span style="font-family:ui-monospace,Menlo,monospace">+</span>
+  joins two texts or adds two numbers, but refuses to mix them —
+  <span style="font-family:ui-monospace,Menlo,monospace">str(16)</span> converts
+  a number into text when you need the mix, and
+  <span style="font-family:ui-monospace,Menlo,monospace">int("16")</span> goes
+  the other way. Two surprises worth meeting now: division always gives a
+  decimal (<span style="font-family:ui-monospace,Menlo,monospace">10 / 4</span>
+  is 2.5, not 2), and multiplying text repeats it —
+  <span style="font-family:ui-monospace,Menlo,monospace">"Va" * 3</span> is
+  <i>VaVaVa</i>. Sort all eight:</p>
+
+  <div class="fig" id="fig3">
+    <div class="figlabel">Interactive · Figure 3</div>
+    <h3>Number, text, or error?</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Eight expressions. Call each
+    one before the computer does.</p>
+    <div id="q3"></div>
+    <p class="fignote" id="q3sum"></p>
+  </div>
+
   <button class="mark" data-for="read">Mark complete</button>
 </section>
 
+<section class="seg" data-seg="practice">
+  <div class="stype">Practice</div>
+  <h2>Ten predictions before the notebook</h2>
+  <p>Paper-and-brain work: for each exercise, commit to an answer — say it out loud or write it down — then reveal. These are exactly the moves the notebook will ask your fingers to make.</p>
+  <div class="ex"><div class="exnum">EXERCISE 1</div>
+  <div class="exq">What does <pre>print(3 * 7)</pre> show?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>21.</b> Both sides are numbers, so * is arithmetic.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 2</div>
+  <div class="exq">What does <pre>print("3" + "7")</pre> show?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>37</b> — as text. Quotes make them text, and + glues text end to end.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 3</div>
+  <div class="exq">This cell fails: <pre>pritn("tungjatjeta")</pre> What will the report say, roughly — and what is the fix?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>NameError: name ’pritn’ is not defined — did you mean print?</b> The fix is the spelling. The report even guesses it for you.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 4</div>
+  <div class="exq">What does this show? <pre>x = 5
+x = x + 2
+print(x)</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>7.</b> Line 2 is an order, not an equation: take 5, add 2, store back under x.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 5</div>
+  <div class="exq">This cell fails: <pre>print("years: " + 12)</pre> Why — and name TWO different fixes.</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>TypeError</b> — text and a number cannot be glued. Fix 1: <span style="font-family:ui-monospace,Menlo,monospace">str(12)</span>. Fix 2: a comma — <span style="font-family:ui-monospace,Menlo,monospace">print("years:", 12)</span>.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 6</div>
+  <div class="exq">Cell A says <pre>print(qyteti)</pre> and cell B says <pre>qyteti = "Vlorë"</pre> You run A first, then B. What happens, and what is the one-move cure?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>A fails with NameError</b> — qyteti did not exist yet when A ran. Cells run in the order YOU run them. Cure: <b>Runtime → Restart and run all</b>.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 7</div>
+  <div class="exq">Write one line that prints your name 3 times in a row. (Hint: the * surprise from the reading.)</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><pre>print("Drita " * 3)</pre> Multiplying text repeats it. A loop works too — that is the build.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 8</div>
+  <div class="exq">What does this show? <pre>emri = "Drita"
+print("emri")</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>emri</b> — the word itself. The quotes in line 2 mean "this text, literally," so the variable is never looked up.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 9</div>
+  <div class="exq">What does <pre>print(10 / 4)</pre> show?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>2.5.</b> Division always produces a decimal in Python — even 8 / 4 shows 2.0.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 10</div>
+  <div class="exq">This fails: <pre>mosha = "16"
+print(mosha + 1)</pre> Why — and the fix?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>TypeError</b> — "16" in quotes is text, and text + number refuses. Fix: <span style="font-family:ui-monospace,Menlo,monospace">int(mosha) + 1</span> converts the text into a number first.</div></div>
+  <p style="font-size:13.5px;color:var(--ink2)">Attempt each one before revealing —
+  the struggle is the mechanism, not a malfunction. When you have worked through
+  them all, mark the segment complete.</p>
+  <button class="mark" data-for="practice">Mark complete</button>
+</section>
+
 <section class="seg" data-seg="code">
-  <div class="stype">4 · Code</div>
+  <div class="stype">Code</div>
   <h2>Open your first notebook</h2>
   <p>The notebook walks everything above with your-turn cells: print, variables, text vs numbers, one deliberate error to read, and the build at the end.</p>
   <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
@@ -107,7 +217,7 @@
 </section>
 
 <section class="seg" data-seg="deeper">
-  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
   <h2>More road, if you want it</h2>
 
   <div class="gd"><b>Colab's own welcome tour.</b> Open
@@ -126,7 +236,7 @@
 </section>
 
 <section class="seg" data-seg="check">
-  <div class="stype">6 · Quick check</div>
+  <div class="stype">Quick check</div>
   <h2>Check yourself</h2>
   <p><b>1. Where does your code actually run when you press play in Colab?</b></p>
   <div data-q="1">
@@ -149,27 +259,75 @@
     <button class="choice" data-ok="0">"7" is more precise</button>
   </div>
   <p class="feedback" id="fb3"></p>
+  <p style="margin-top:1.2em"><b>4. A variable is best described as…</b></p>
+  <div data-q="4">
+    <button class="choice" data-ok="1">a name with a value stored under it</button>
+    <button class="choice" data-ok="0">a special kind of number</button>
+    <button class="choice" data-ok="0">a cell that runs automatically</button>
+  </div>
+  <p class="feedback" id="fb4"></p>
+  <p style="margin-top:1.2em"><b>5. x = 4 runs, then x = 9 runs, then print(x). What shows?</b></p>
+  <div data-q="5">
+    <button class="choice" data-ok="0">4 — the first value is protected</button>
+    <button class="choice" data-ok="1">9 — the last store wins</button>
+    <button class="choice" data-ok="0">49</button>
+  </div>
+  <p class="feedback" id="fb5"></p>
+  <p style="margin-top:1.2em"><b>6. Which line prints the literal word emri instead of looking up a variable?</b></p>
+  <div data-q="6">
+    <button class="choice" data-ok="0">print(emri)</button>
+    <button class="choice" data-ok="1">print("emri")</button>
+    <button class="choice" data-ok="0">print(str(emri))</button>
+  </div>
+  <p class="feedback" id="fb6"></p>
+  <p style="margin-top:1.2em"><b>7. You run cell 3, then cell 1, then cell 2. Python’s memory now reflects…</b></p>
+  <div data-q="7">
+    <button class="choice" data-ok="0">the order they sit on the page</button>
+    <button class="choice" data-ok="1">the order you actually ran them: 3, 1, 2</button>
+    <button class="choice" data-ok="0">only the last cell</button>
+  </div>
+  <p class="feedback" id="fb7"></p>
+  <p style="margin-top:1.2em"><b>8. print("Age " + str(16)) works, while print("Age " + 16) fails, because…</b></p>
+  <div data-q="8">
+    <button class="choice" data-ok="1">str converts the number into text, so + can glue two texts</button>
+    <button class="choice" data-ok="0">16 is too large to print</button>
+    <button class="choice" data-ok="0">spaces are not allowed before numbers</button>
+  </div>
+  <p class="feedback" id="fb8"></p>
+  <p style="margin-top:1.2em"><b>9. What does print(10 / 4) show?</b></p>
+  <div data-q="9">
+    <button class="choice" data-ok="0">2</button>
+    <button class="choice" data-ok="1">2.5 — division gives decimals</button>
+    <button class="choice" data-ok="0">2 remainder 2</button>
+  </div>
+  <p class="feedback" id="fb9"></p>
 </section>
 
 <section class="seg" data-seg="build">
-  <div class="stype">7 · Build</div>
-  <h2>Make the computer do something 500 times</h2>
+  <div class="stype">Build</div>
+  <h2>The three-part build</h2>
   <div class="buildtask">
 
 
-  <p>In the notebook, make a new cell that prints a sentence about your town 500
-  times. You have not been taught how — that is on purpose. Ask an AI assistant or
-  search for it, run what you get, and make sure you understand every word of the
-  code before you keep it. Then change it to print the numbers 1 to 500 instead.</p>
-  <p><b>Turn-in:</b> a screenshot of your cell and part of its output, to your
-  teacher.</p>
+  <p><b>Part A — scale.</b> Make a cell that prints a sentence about your town
+  500 times. You have not been taught how — that is on purpose. Ask an AI
+  assistant or search, run what you get, and make sure you understand every word
+  before keeping it. Then change it to print the numbers 1 to 500.</p>
+  <p><b>Part B — the mad-lib.</b> Three variables — emri, mosha, qyteti (name,
+  age, town) — and one print that weaves them into a sentence. Change the
+  values, rerun, watch the sentence follow the variables.</p>
+  <p><b>Part C — the error safari.</b> Cause three DIFFERENT errors on purpose:
+  a NameError, a TypeError, and a SyntaxError. For each, write one sentence
+  reading the report — what stopped the code and where.</p>
+  <p><b>Turn-in:</b> screenshots of all three parts (part C includes your three
+  one-sentence readings), to your teacher.</p>
 
   </div>
   <button class="mark" data-for="build">Mark complete</button>
 </section>
 
 <section class="seg" data-seg="done">
-  <div class="stype">8 · Done</div>
+  <div class="stype">Done</div>
   <h2 id="doneHead">Finish week 1</h2>
   <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
   <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
@@ -188,7 +346,13 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
 <script>
 (function(){
   const KEY='alnow-ds-1';
-  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  const SEGS=['watch','listen','read','practice','code','deeper','check','build','done'];
+  document.querySelectorAll('.seg .stype').forEach((el,i)=>{
+    el.insertBefore(document.createTextNode((i+1)+' \u00b7 '),el.firstChild)});
+  document.querySelectorAll('.ex').forEach((ex,i)=>{
+    const b=ex.querySelector('.exbtn'),a=ex.querySelector('.exans');
+    if(b&&a){a.hidden=true;b.addEventListener('click',()=>{
+      a.hidden=!a.hidden;b.textContent=a.hidden?'Show the answer':'Hide the answer'})}});
   let state={};
   try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
@@ -273,6 +437,76 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
         card.appendChild(fb);
         if(done===QS.length)document.getElementById('q1sum').innerHTML=
           '<b>'+score+' of '+QS.length+'.</b> Errors read, not feared — that is the whole skill.';
+      });
+      card.appendChild(b);});
+    wrap.appendChild(card);});
+})();
+
+/* ---- Figure 2: trace the program ---- */
+(function(){
+  const QS=[
+ {q:'After line 2 runs, what does x hold?',a:1,opts:['4','7','x + 3'],
+  why:'Line 2 is an order: take what x holds (4), add 3, store 7 back under x. The last store wins.'},
+ {q:'What does line 4 print?',a:0,opts:['Ana 7','emri x','"Ana" "7"'],
+  why:'Both names are looked up: emri holds Ana, x holds 7. No quotes around them, so they are lookups, not text.'},
+ {q:'Swap lines 1 and 2 (so x = x + 3 runs FIRST). What happens?',a:2,
+  opts:['x becomes 3','x becomes 7 anyway','NameError — x is used before it exists'],
+  why:'x = x + 3 must look up x before storing — and nothing is stored under x yet. Order of execution is everything.'}];
+  const wrap=document.getElementById('q2');let done=0,score=0;
+  QS.forEach(q=>{
+    const card=document.createElement('div');card.className='qcard';
+    card.innerHTML='<div class="qq"></div>';
+    card.querySelector('.qq').textContent=q.q;
+    q.opts.forEach((opt,j)=>{
+      const b=document.createElement('button');b.className='choice';b.textContent=opt;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done)return;card.dataset.done=1;
+        const ok=j===q.a;if(ok)score++;done++;
+        card.classList.add(ok?'good':'bad');
+        [...card.querySelectorAll('.choice')].forEach((x,k)=>{
+          x.disabled=true;if(k===q.a)x.classList.add('right');
+          else if(x===b&&!ok)x.classList.add('wrong');});
+        const fb=document.createElement('div');fb.className='qfb';
+        fb.innerHTML=(ok?'<b>Traced it.</b> ':'<b>Reveal:</b> ')+q.why;
+        card.appendChild(fb);
+        if(done===QS.length)document.getElementById('q2sum').innerHTML=
+          '<b>'+score+' of '+QS.length+'.</b> Tracing by hand is how programmers debug in their heads.';
+      });
+      card.appendChild(b);});
+    wrap.appendChild(card);});
+})();
+
+/* ---- Figure 3: number, text, or error ---- */
+(function(){
+  const ES=[
+ ['5 + 5',0,'10 — two numbers, arithmetic.'],
+ ['"5" + "5"',1,'"55" — two texts, glued end to end.'],
+ ['"5" + 5',2,'TypeError — text refuses to glue to a number. str() or int() bridges them.'],
+ ['2026 - 16',0,'2010 — plain arithmetic.'],
+ ['"Va" * 3',1,'"VaVaVa" — multiplying text repeats it. Genuinely useful, genuinely surprising.'],
+ ['vitet',2,'NameError — no quotes, so Python looks up a variable named vitet, and none exists.'],
+ ['str(7) + "!"',1,'"7!" — str turned the number into text, and text + text glues.'],
+ ['10 / 4',0,'2.5 — division always gives a decimal.']];
+  const LAB=['Number','Text','Error'];
+  const wrap=document.getElementById('q3');let done=0,score=0;
+  ES.forEach(e=>{
+    const card=document.createElement('div');card.className='qcard';
+    card.innerHTML='<div class="qq" style="font-family:ui-monospace,Menlo,monospace;font-size:15px"></div>';
+    card.querySelector('.qq').textContent=e[0];
+    LAB.forEach((lbl,j)=>{
+      const b=document.createElement('button');b.className='choice';b.textContent=lbl;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done)return;card.dataset.done=1;
+        const ok=j===e[1];if(ok)score++;done++;
+        card.classList.add(ok?'good':'bad');
+        [...card.querySelectorAll('.choice')].forEach((x,k)=>{
+          x.disabled=true;if(k===e[1])x.classList.add('right');
+          else if(x===b&&!ok)x.classList.add('wrong');});
+        const fb=document.createElement('div');fb.className='qfb';
+        fb.innerHTML=(ok?'<b>Called it.</b> ':'<b>Reveal:</b> ')+e[2];
+        card.appendChild(fb);
+        if(done===ES.length)document.getElementById('q3sum').innerHTML=
+          '<b>'+score+' of '+ES.length+'.</b> Three bins cover everything you will ever type.';
       });
       card.appendChild(b);});
     wrap.appendChild(card);});

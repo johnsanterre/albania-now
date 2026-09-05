@@ -35,29 +35,87 @@ HDR = ("*Albania Now — a Free Focus program, built with Chicago First. "
 # ---------------------------------------------------------------- ds1
 nb('ds1-first-steps', [
  md("# Week 1 — Code in your browser\n" + HDR),
+ md("**How this notebook works:** teaching cells you run, **YOUR TURN** cells "
+    "you write, and **CHECK** cells that grade your work on the spot — if a "
+    "CHECK cell prints PASSED, you got it; if it shows red, read the report "
+    "and fix your cell above. Expect about an hour if you do everything."),
  md("## 1. Press play\nClick the cell below, then the play button (or Shift+Enter)."),
  code('print("Hello from a Google computer")'),
- md("The code ran in a data center, not on your machine. Only the text came back."),
+ md("The code ran in a data center, not on your machine. Only the text came "
+    "back. Nothing you do in here can break your computer — the worst case is "
+    "red text, and red text is a report."),
  md("## 2. Python is a calculator that reads"),
  code("2026 - 2010   # the last line of a cell shows its value"),
  code('print("If you were born in 2010 you are", 2026 - 2010, "years old")'),
- md("## 3. Variables — names for values"),
- code('city = "Tirana"\npeople = 560000\nprint(city, "has about", people, "people")'),
- md("**Your turn:** make variables for YOUR town and something you know about it, "
-    "and print a sentence using them."),
+ code("print(10 / 4)    # division ALWAYS gives a decimal — even 8 / 4 gives 2.0"),
+ md("**YOUR TURN:** in one cell, compute how many days old you roughly are "
+    "(years × 365) and print it in a sentence."),
  code("# your turn\n"),
- md("## 4. Text vs numbers\n`7` is a number. `\"7\"` is text. Watch both behave:"),
+ md("## 3. Variables — the notebook's memory\n`=` means *store*, not equals. "
+    "The last store wins. Quotes decide name-lookup vs literal text."),
+ code('city = "Tirana"\npeople = 560000\nprint(city, "has about", people, "people")'),
+ code('x = 4\nx = x + 3     # take what x holds, add 3, store it back\nprint(x)'),
+ code('emri = "Ana"\nprint(emri)      # looks up the name\nprint("emri")    # quotes = the text itself'),
+ md("**YOUR TURN:** fill in the three variables, then run the CHECK cell."),
+ code('emri = ""      # your name, in the quotes\nmosha = 0      # your age, no quotes\n'
+      'qyteti = ""    # your town, in the quotes\n\n'
+      'print(emri, "is", mosha, "and lives in", qyteti)'),
+ code('# CHECK — run me after filling in the cell above\n'
+      'assert emri != "", "emri is still empty — put your name in the quotes"\n'
+      'assert not isinstance(mosha, str), "mosha is in quotes — that makes it text, not a number"\n'
+      'assert mosha > 0, "mosha is still 0 — set your age (no quotes: it is a number)"\n'
+      'assert qyteti != "", "qyteti is still empty"\n'
+      'print("PASSED — three variables live in memory, and one is a real number")'),
+ md("## 4. Text vs numbers — and the bridges\n`7` is a number, `\"7\"` is text. "
+    "`+` adds two numbers or glues two texts, and refuses to mix. `str()` and "
+    "`int()` are the bridges."),
  code('print(7 + 7)        # math\nprint("7" + "7")    # gluing text'),
- md("## 5. Read one report on purpose\nRun this broken cell. Do not fix it yet — "
-    "READ the red text first: what stopped it, which line, what does it suggest?"),
- code('print("age: " + 16)   # run it, read the report, THEN fix it'),
- md("Fix: turn the number into text with `str(16)`, or use a comma instead of `+`."),
- md("## 6. The build — 500 times\nMake the computer print a sentence about your town "
-    "500 times. You have not been taught how — ask an AI assistant or search, run "
-    "what you get, and make sure you understand **every word** before keeping it. "
-    "Then change it to print the numbers 1 to 500.\n\n"
-    "**Turn-in:** screenshot of your cell and part of its output."),
- code("# the build\n"),
+ code('print("Age " + str(16))   # str() turns a number into text — now + can glue'),
+ code('mosha_text = "16"\nprint(int(mosha_text) + 1)   # int() goes the other way'),
+ code('print("Va" * 3)     # multiplying text repeats it — real, and really useful'),
+ md("**YOUR TURN:** make one line that prints `====================` (20 equals "
+    "signs) WITHOUT typing 20 of them, then run the CHECK."),
+ code('line = ""   # your one expression here, e.g. something * something\nprint(line)'),
+ code('# CHECK\nassert line == "=" * 20, "line should be exactly 20 = signs — use text multiplication"\n'
+      'print("PASSED — you just wrote your first shortcut")'),
+ md("## 5. The error safari — read three reports on purpose\nRun each broken "
+    "cell. **Do not fix it until you have read the red text**: what stopped it, "
+    "which line, what does it suggest? Then fix it and rerun. *(Runtime → Run "
+    "all will stop at the first broken cell — that is expected; run this "
+    "section cell by cell.)*"),
+ code('print(vitet)          # broken on purpose: what KIND of error is this?'),
+ code('print("age: " + 16)   # broken on purpose: a different kind — read, then fix two ways'),
+ code('print(5 +              # broken on purpose: a third kind — the line ends mid-thought'),
+ md("Three reports, three kinds: **NameError** (a name Python has never seen), "
+    "**TypeError** (text glued to a number), **SyntaxError** (the sentence "
+    "itself is malformed). You will meet all three for the rest of your life — "
+    "on first-name terms is better."),
+ md("## 6. Cells run in the order YOU run them\nRun the SECOND cell below "
+    "first, watch it fail, then run the first, then the second again. Haunted "
+    "notebooks are cured by **Runtime → Restart and run all**."),
+ code('kryeqyteti = "Tirana"'),
+ code('print(kryeqyteti)   # NameError if the cell above has not run yet'),
+ md("## 7. The build — three parts (this is the turn-in)\n**Part A — scale.** "
+    "Print a sentence about your town 500 times, then the numbers 1 to 500. "
+    "Not taught yet, on purpose: ask an AI assistant or search, and understand "
+    "**every word** before keeping it."),
+ code("# Part A\n"),
+ md("**Part B — the mad-lib.** Your three variables from section 3, one print "
+    "that weaves them into a sentence. Change the values, rerun, watch the "
+    "sentence follow."),
+ code("# Part B\n"),
+ md("**Part C — the error safari, yours.** Cause a NameError, a TypeError, and "
+    "a SyntaxError on purpose (three cells). Under each, a text cell with one "
+    "sentence reading the report."),
+ code("# Part C — error 1\n"),
+ code("# Part C — error 2\n"),
+ code("# Part C — error 3\n"),
+ md("**Turn-in:** screenshots of all three parts to your teacher.\n\n"
+    "**Stretch (optional):** print a countdown from 10 to 1, each on its own "
+    "line, ending with the word `Fest!` — the hint is that `range` can count "
+    "backwards; ask your AI partner how, and make it explain until you could "
+    "teach it."),
+ code("# stretch\n"),
 ])
 
 # ---------------------------------------------------------------- ds2
