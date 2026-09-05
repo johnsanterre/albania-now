@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Eagle’s Flight · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  #eg-wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+  #eg-board{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;
+    width:min(94vw,430px);background:#20303F;border-radius:10px;padding:8px}
+  .eg-cell{aspect-ratio:1;background:#2C4257;border-radius:4px;position:relative}
+  .eg-star{position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;color:#F2C14E;font-size:clamp(14px,3.4vw,22px)}
+  .eg-star.got{opacity:.18}
+  #eg-bird{position:absolute;width:70%;height:70%;left:15%;top:15%;
+    transition:transform .18s}
+  .eg-panel{flex:1;min-width:290px;max-width:460px}
+  .eg-tabs{display:flex;gap:6px;margin-bottom:6px}
+  .eg-tabs button{padding:6px 14px}
+  .eg-tabs .on{background:var(--star);color:#FFF}
+  .eg-row{min-height:44px;background:var(--card);border:1px solid var(--hair);
+    border-radius:8px;padding:6px;display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+  .eg-chip{background:#F2D7D5;color:#7E1B14;border:0;border-radius:6px;
+    padding:7px 10px;font:600 13.5px -apple-system,'Segoe UI',sans-serif;cursor:pointer}
+  .eg-chip.call{background:#20303F;color:#FFF}
+  .eg-pal{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+  .eg-pal button{padding:10px 14px;font-size:14.5px}
+  .tr-share{background:var(--star);color:#FFF;border:0;border-radius:8px;
+    padding:10px 18px;font-size:15px;font-weight:700;cursor:pointer}
+  #eg-levels{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+  #eg-levels button{padding:7px 10px;font-size:13px}
+  #eg-levels .done3{background:#1B7A45;color:#FFF}
+  #eg-levels .locked{opacity:.35;pointer-events:none}
+  #eg-msg{min-height:44px}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / The Eagle’s Flight</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">16 levels · write the flight plan · fewer commands, more stars</p>
+<h1>The Eagle’s Flight</h1>
+<p class="lede">The eagle flies exactly the program you write — no more, no
+less. Collect every star. From level 5, you can teach it <b>one word of your
+own</b> (F1) — and the shortest flight plans all use it.</p>
+
+<div id="eg-levels"></div>
+<p style="font-weight:700;margin:4px 0" id="eg-title"></p>
+<p style="font-size:14px;color:var(--ink2);margin:0 0 12px" id="eg-hint"></p>
+
+<div id="eg-wrap">
+  <div id="eg-board"></div>
+  <div class="eg-panel">
+    <div class="eg-tabs">
+      <button class="choice on" id="eg-tab-main">Main <span id="eg-cm"></span></button>
+      <button class="choice" id="eg-tab-f1" hidden>F1 <span id="eg-cf"></span></button>
+    </div>
+    <div class="eg-row" id="eg-prog"></div>
+    <div class="eg-pal">
+      <button class="choice" data-op="F">fluturo &uarr;</button>
+      <button class="choice" data-op="L">majtas &#8634;</button>
+      <button class="choice" data-op="R">djathtas &#8635;</button>
+      <button class="choice" data-op="1" id="eg-callbtn" hidden>F1</button>
+      <button class="choice" data-op="⌫">&#9003;</button>
+    </div>
+    <p>
+      <button class="tr-share" id="eg-run">Fly</button>
+      <button class="choice" id="eg-reset">Clear</button>
+    </p>
+    <p id="eg-msg"></p>
+    <p id="eg-sharebar" hidden>
+      <button class="tr-share" id="eg-share">Share your flight</button>
+      <button class="tr-share" id="eg-card" style="background:var(--navy)">Save the card</button>
+      <span style="font-size:13.5px;color:var(--ink2)" id="eg-copied"></span>
+    </p>
+  </div>
+</div>
+
+<div class="flatnote" style="margin-top:26px"><b>You just wrote programs.</b>
+Sequences, and from level 5, a function you defined yourself — the two ideas
+every programming language is built on. The real thing is four weeks away:
+<a href="sprint-data.html">Data Science, from zero</a> writes Python in your
+browser, and ends with a live lecture.</div>
+
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus
+program, built with Chicago First &middot; The Eagle’s Flight &middot; 16
+levels, every par machine-verified.</div></footer>
+
+<script src="sharecard.js"></script>
+<script src="eagle-core.js"></script>
+<script>
+(function(){
+  const NAMES={F:'fluturo',L:'majtas',R:'djathtas','1':'F1'};
+  const CAP_MAIN=12,CAP_F1=8;
+  const KEY='alnow-eagle';
+  let sv={best:{}};
+  try{sv=JSON.parse(localStorage.getItem(KEY))||sv}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(sv))}catch(e){}}
+  function gc(ev){if(window.goatcounter&&window.goatcounter.count)
+    window.goatcounter.count({path:'eagle/'+ev,event:true});}
+
+  let cur=0,main=[],f1=[],tab='main',stars=[],got=null,anim=null;
+  function furthest(){let f=0;while(sv.best[f]!==undefined&&f<EAGLE_LEVELS.length)f++;return f;}
+  function level(){return EAGLE_LEVELS[cur];}
+
+  const board=document.getElementById('eg-board');
+  function buildBoard(){
+    board.innerHTML='';
+    for(let y=0;y<EAGLE_H;y++)for(let x=0;x<EAGLE_W;x++){
+      const c=document.createElement('div');c.className='eg-cell';
+      c.id='c'+x+'_'+y;board.appendChild(c);}
+    stars=eagleStars(level());got={};
+    stars.forEach(([x,y],i)=>{
+      const s=document.createElement('div');s.className='eg-star';
+      s.id='s'+i;s.textContent='✦';
+      document.getElementById('c'+x+'_'+y).appendChild(s);});
+    const b=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    b.setAttribute('viewBox','0 0 26 26');b.id='eg-bird';
+    b.innerHTML='<polygon points="13,4 2,13 7,13 10,17 13,12 16,17 19,13 24,13 13,4" fill="#F2D7D5"/><polygon points="13,12 11,21 13,18 15,21 13,12" fill="#F2D7D5"/>';
+    document.getElementById('c'+level().start[0]+'_'+level().start[1]).appendChild(b);
+    placeBird(level().start[0],level().start[1],level().start[2]);
+  }
+  function placeBird(x,y,d){
+    const b=document.getElementById('eg-bird');
+    if(!b)return;
+    document.getElementById('c'+x+'_'+y).appendChild(b);
+    b.style.transform='rotate('+((d+1)%4*90)+'deg)';
+  }
+  function renderProg(){
+    const row=document.getElementById('eg-prog');row.innerHTML='';
+    const arr=tab==='main'?main:f1;
+    arr.forEach(op=>{
+      const ch=document.createElement('span');
+      ch.className='eg-chip'+(op==='1'?' call':'');
+      ch.textContent=NAMES[op];row.appendChild(ch);});
+    if(!arr.length){const e=document.createElement('span');
+      e.style.cssText='color:var(--ink2);font-size:13px;padding:6px';
+      e.textContent=tab==='main'?'tap commands to build the flight plan':'define F1 — then call it from Main';
+      row.appendChild(e);}
+    document.getElementById('eg-cm').textContent=main.length+'/'+CAP_MAIN;
+    document.getElementById('eg-cf').textContent=f1.length+'/'+CAP_F1;
+  }
+  function setLevel(i){
+    if(anim)clearInterval(anim);
+    cur=i;main=[];f1=[];tab='main';
+    document.getElementById('eg-tab-main').classList.add('on');
+    document.getElementById('eg-tab-f1').classList.remove('on');
+    const hasF1=i>=4;
+    document.getElementById('eg-tab-f1').hidden=!hasF1;
+    document.getElementById('eg-callbtn').hidden=!hasF1;
+    document.getElementById('eg-title').textContent='Level '+(i+1)+' — '+level().name+
+      (sv.best[i]?'  ('+'★'.repeat(sv.best[i])+')':'');
+    document.getElementById('eg-hint').textContent=level().hint+
+      '  Shortest known flight: '+(level().sol.main.length+level().sol.f1.length)+' commands.';
+    document.getElementById('eg-msg').textContent='';
+    document.getElementById('eg-sharebar').hidden=true;
+    buildBoard();renderProg();renderLevels();
+  }
+  function renderLevels(){
+    const w=document.getElementById('eg-levels');w.innerHTML='';
+    const f=furthest();
+    EAGLE_LEVELS.forEach((lv,i)=>{
+      const b=document.createElement('button');b.className='choice';
+      b.textContent=(i+1)+(sv.best[i]?' '+'★'.repeat(sv.best[i]):'');
+      if(sv.best[i]===3)b.classList.add('done3');
+      if(i>f)b.classList.add('locked');
+      if(i===cur)b.classList.add('right');
+      b.addEventListener('click',()=>setLevel(i));
+      w.appendChild(b);});
+  }
+
+  document.getElementById('eg-tab-main').addEventListener('click',()=>{
+    tab='main';document.getElementById('eg-tab-main').classList.add('on');
+    document.getElementById('eg-tab-f1').classList.remove('on');renderProg();});
+  document.getElementById('eg-tab-f1').addEventListener('click',()=>{
+    tab='f1';document.getElementById('eg-tab-f1').classList.add('on');
+    document.getElementById('eg-tab-main').classList.remove('on');renderProg();});
+  document.querySelectorAll('.eg-pal button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const op=b.dataset.op,arr=tab==='main'?main:f1;
+      if(op==='⌦'||op==='⌫'||b.textContent.trim()==='⌫'){arr.pop();renderProg();return;}
+      if(op==='1'&&tab==='f1')return;             // F1 cannot call itself
+      if(arr.length>=(tab==='main'?CAP_MAIN:CAP_F1))return;
+      arr.push(op);renderProg();});
+  });
+  document.getElementById('eg-reset').addEventListener('click',()=>{
+    (tab==='main'?main:f1).length=0;renderProg();});
+
+  document.getElementById('eg-run').addEventListener('click',()=>{
+    if(anim)clearInterval(anim);
+    buildBoard();
+    const j=eagleJudge(level(),main.join(''),f1.join(''));
+    const msg=document.getElementById('eg-msg');
+    gc('fly');
+    let k=0;
+    anim=setInterval(()=>{
+      k++;
+      if(k>=j.run.steps.length){
+        clearInterval(anim);anim=null;
+        if(j.crashed){msg.innerHTML='<b>Off the map.</b> The eagle flies exactly what you wrote — trace it with a finger and find the extra fluturo.';return;}
+        if(!j.ok){msg.innerHTML='<b>'+j.collected+' of '+j.total+' stars.</b> The flight worked — the route missed some. Rework the plan.';return;}
+        sv.best[cur]=Math.max(sv.best[cur]||0,j.stars);save();
+        gc('clear-'+(cur+1));
+        msg.innerHTML='<b>'+'★'.repeat(j.stars)+(j.stars===3?
+          ' Flawless — '+j.used+' commands, matching the shortest known flight.':
+          ' Cleared in '+j.used+' commands (shortest known: '+j.par+'). Fewer commands, more stars.')+'</b>'+
+          (cur<EAGLE_LEVELS.length-1?' Next level unlocked.':' That was the last level — for now.');
+        document.getElementById('eg-sharebar').hidden=false;
+        renderLevels();
+        return;
+      }
+      const s=j.run.steps[k];
+      placeBird(s.x,s.y,s.dir);
+      stars.forEach(([sx,sy],i)=>{
+        if(sx===s.x&&sy===s.y)document.getElementById('s'+i).classList.add('got');});
+    },200);
+  });
+
+  function totals(){
+    let lv=0,st=0;
+    for(const k in sv.best){lv++;st+=sv.best[k];}
+    return {lv:lv,st:st};
+  }
+  function shareText(){
+    const t=totals();
+    return 'The Eagle’s Flight — '+t.lv+'/16 levels, '+t.st+'★\n'+
+      'Write the flight plan: https://santerre.ai/albania-now/eagle.html?s=eg';}
+  document.getElementById('eg-share').addEventListener('click',()=>{
+    gc('share');
+    if(navigator.share){navigator.share({text:shareText()}).catch(()=>{});}
+    else{navigator.clipboard&&navigator.clipboard.writeText(shareText());
+      document.getElementById('eg-copied').textContent='copied — paste it anywhere';}
+  });
+  document.getElementById('eg-card').addEventListener('click',()=>{
+    const t=totals();gc('card');
+    alnowShareCard({title:'The Eagle’s Flight',num:0,
+      grid:t.lv+'/16 · '+t.st+'★',
+      line:'programs written, stars earned',
+      url:'santerre.ai/albania-now'});
+  });
+
+  gc('play');
+  setLevel(Math.min(furthest(),EAGLE_LEVELS.length-1));
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
