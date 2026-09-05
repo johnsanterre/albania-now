@@ -71,6 +71,28 @@ SOLUTIONS = {
  'img3-classifier': {},
  'img4-capstone': {},
  'tiny2-bigram-machine': {},
+ 'read1-trace-drills': {
+  '# predict 1 ': 'pred_1 = 15', '# predict 2 ': 'pred_2 = 8',
+  '# predict 3 ': 'pred_3 = "Blerta 6"', '# predict 4 ': 'pred_4 = "555"',
+  '# predict 5 ': 'pred_5 = 16', '# predict 6 ': 'pred_6 = "VaVa!"',
+  '# predict 7 ': 'pred_7 = 3', '# predict 8 ': 'pred_8 = 10',
+  '# predict 9 ': 'pred_9 = 17', '# predict 10 ': 'pred_10 = "33"',
+ },
+ 'read2-shape-drills': {
+  '# predict 1 ': 'pred_1 = 13', '# predict 2 ': 'pred_2 = 3',
+  '# predict 3 ': 'pred_3 = "jo ende"', '# predict 4 ': 'pred_4 = 18',
+  '# predict 5 ': 'pred_5 = "sa mire "', '# predict 6 ': 'pred_6 = 30',
+  '# predict 7 ': 'pred_7 = 19', '# predict 8 ': 'pred_8 = 12',
+ },
+ 'read3-three-programs': {
+  '# predict — what number': 'pred_1 = 850.5',
+  '# predict — the fahrenheit': 'pred_2 = 77.0',
+  '# predict — the number it prints': 'pred_3 = 3',
+ },
+ 'read4-traceback-review': {
+  '# predict — which line number': 'pred_1 = 2',
+  '# predict — the kind of error': 'pred_2 = "ZeroDivisionError"',
+ },
 }
 
 SKIP_PREFIXES = ('# your turn', '# the build', '# part', '# question',

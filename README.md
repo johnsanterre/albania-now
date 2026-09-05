@@ -24,6 +24,8 @@ by mail. Each sprint has a Discord channel.
 | 03 | Intro to Large Language Models | Dr. John Santerre, UC Berkeley |
 | 04 | AI Image Analysis on Other Planets | Dr. Conor Nixon, NASA Goddard |
 | 05 | Leveraging AI in Your Own Education | Dr. Nedelina Teneva |
+| 06 | Learning to Read Python | To be announced |
+| 07 | Learning to Learn from External Resources | To be announced |
 
 Live site: **https://santerre.ai/albania-now/**
 

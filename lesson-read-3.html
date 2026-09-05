@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Read code you didn’t write · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-reading.html">Learning to Read Python</a> / Week 3</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Learning to Read Python · Week 3 of 4 · about 2–4 hours</p>
+<h1>Read code you didn’t write</h1>
+<p class="lede">Other people’s code — including an AI’s — comes without your memory of writing it. This week: the top-down skim, the load-bearing line, and the smells that say "read me twice."</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">Watch</div>
+  <h2>The top-down skim</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-read-3-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Names first, structure second, details last — and one line usually carries the weight.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">Listen</div>
+  <h2>Before you read</h2>
+  <p>How to open thirty unfamiliar lines without drowning: read the names, find the load-bearing line, suspect the smells.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-read-3-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">Read &amp; play</div>
+  <h2>Names, weight, and smells</h2>
+
+
+  <p>Code you didn't write is a foreign city. The mistake is walking every
+  street in order; the skill is reading the map first. <b>Skim top-down:</b>
+  read the variable and function names before any logic —
+  <span style="font-family:ui-monospace,Menlo,monospace">total_lek</span>,
+  <span style="font-family:ui-monospace,Menlo,monospace">clean_name</span>,
+  <span style="font-family:ui-monospace,Menlo,monospace">count_words</span> —
+  good names are the author telling you the plot. Then find the <b>load-bearing
+  line</b>: in most short programs, one line does the real work and the rest is
+  setup and delivery. Find it, and you know what to trace carefully; everything
+  else you trace lightly.</p>
+  <p>Then the <b>smells</b> — patterns that don't prove a bug but earn a second
+  read. <b>The magic number:</b> a bare 0.18 in the middle of a formula — why
+  18 percent? A number with no name has no explanation. <b>The lying name:</b>
+  a variable called <span style="font-family:ui-monospace,Menlo,monospace">average</span>
+  that actually holds a sum — the name says one thing, the code does another,
+  and every future reader inherits the lie. <b>The unused variable:</b>
+  something computed and never used again — often a leftover, sometimes a bug
+  (the author MEANT to use it).</p>
+  <p>All of this applies double to AI-written code. It arrives fluent,
+  confident, and unread by anyone — you are its first reader, and the smells
+  are where to aim your suspicion. The verification habit you built in other
+  sprints has a home address now: names, weight, smells.</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Find the load-bearing line</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Three short programs. Click
+    the ONE line that does the real work.</p>
+    <div id="q1"></div>
+    <p class="fignote" id="q1sum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">Code</div>
+  <h2>Three programs you didn’t write</h2>
+  <p>A receipt totaler, a temperature converter, and a word counter — written by someone else, one hiding a real bug. Read FIRST (the notebook asks your answers via pred variables), run second.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/read3-three-programs.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/read3-three-programs.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More reading, if you want it</h2>
+
+  <div class="gd"><b>Real code, gently.</b> Any Colab notebook shared publicly
+  is practice material — search "colab notebook beginner python" and read one
+  cold: names, load-bearing lines, smells. You do not need to run it to read
+  it.</div>
+  <div class="gd"><b>Stretch.</b> Ask an AI assistant for a 15-line program
+  that does something you choose. Before running: skim names, mark the
+  load-bearing line, list any smells. Then run and check your read. This is
+  the workflow, complete.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Opening 30 unfamiliar lines, you read FIRST…</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">every line, in order</button>
+    <button class="choice" data-ok="1">the names — the author telling you the plot</button>
+    <button class="choice" data-ok="0">the last line only</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. A bare 0.18 sitting in a formula is a smell because…</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">decimals are slower</button>
+    <button class="choice" data-ok="1">a number with no name carries no explanation for the next reader</button>
+    <button class="choice" data-ok="0">Python prefers whole numbers</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 2: before tracing an unfamiliar loop, you name its…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">author</button>
+    <button class="choice" data-ok="1">shape and purpose</button>
+    <button class="choice" data-ok="0">line count</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">Build</div>
+  <h2>The bug report</h2>
+  <div class="buildtask">
+
+
+  <p>One of the notebook's three programs contains a real bug. Your build is a
+  proper bug report, the kind a professional files: what the program CLAIMS to
+  do, what it ACTUALLY does (with the input that proves it), the load-bearing
+  line where the bug lives, and the one-line fix. Write it before fixing;
+  verify the fix after.</p>
+  <p><b>Turn-in:</b> the report + a screenshot of the fixed program running
+  correctly.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">Done</div>
+  <h2 id="doneHead">Finish week 3</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 3</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-read-2.html">&larr; Week 2</a> <a href="lesson-read-4.html">Week 4 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Learning to Read Python, week 3 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-read-3';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  document.querySelectorAll('.seg .stype').forEach((el,i)=>{
+    el.insertBefore(document.createTextNode((i+1)+' \u00b7 '),el.firstChild)});
+  document.querySelectorAll('.ex').forEach((ex,i)=>{
+    const b=ex.querySelector('.exbtn'),a=ex.querySelector('.exans');
+    if(b&&a){a.hidden=true;b.addEventListener('click',()=>{
+      a.hidden=!a.hidden;b.textContent=a.hidden?'Show the answer':'Hide the answer'})}});
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 3 complete — undo';
+      document.getElementById('doneHead').textContent='Week 3 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 3';
+      document.getElementById('doneHead').textContent='Finish week 3';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const PS=[
+ {code:['emrat = ["Ana", "Blerim", "Drita"]','pershendetjet = []','for emri in emrat:',
+        '    pershendetjet.append("Tungjatjeta, " + emri)','print(pershendetjet)'],a:3,
+  why:'Line 4 builds each greeting — the append inside the loop IS the program. The rest is setup and delivery.'},
+ {code:['cmimi = 2500','zbritja = cmimi * 0.30','cmimi_ri = cmimi - zbritja','print(cmimi_ri)'],a:1,
+  why:'Line 2 computes the discount — and carries a magic number (why 30%?). Load-bearing AND smelly.'},
+ {code:['fjalia = "sa mire dita sot"','fjalet = fjalia.split()','numri = len(fjalet)','print(numri)'],a:1,
+  why:'split() turns the sentence into a list of words — everything after just counts and shows. The split is the work.'}];
+  const wrap=document.getElementById('q1');let done=0,score=0;
+  PS.forEach(p=>{
+    const card=document.createElement('div');card.className='qcard';
+    p.code.forEach((ln,j)=>{
+      const b=document.createElement('button');b.className='choice';
+      b.style.cssText='display:block;width:100%;text-align:left;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;margin:2px 0';
+      b.textContent=ln;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done)return;card.dataset.done=1;
+        const ok=j===p.a;if(ok)score++;done++;
+        card.classList.add(ok?'good':'bad');
+        [...card.querySelectorAll('.choice')].forEach((x,k)=>{
+          x.disabled=true;if(k===p.a)x.classList.add('right');
+          else if(x===b&&!ok)x.classList.add('wrong');});
+        const fb=document.createElement('div');fb.className='qfb';
+        fb.innerHTML=(ok?'<b>That\u2019s the one.</b> ':'<b>Reveal:</b> ')+p.why;
+        card.appendChild(fb);
+        if(done===PS.length)document.getElementById('q1sum').innerHTML=
+          '<b>'+score+' of '+PS.length+'.</b> Find the weight, then trace carefully there and lightly everywhere else.';
+      });
+      card.appendChild(b);});
+    wrap.appendChild(card);});
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

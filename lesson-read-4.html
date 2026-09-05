@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Read the traceback, write the review · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-reading.html">Learning to Read Python</a> / Week 4</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Learning to Read Python · Week 4 of 4 · about 2–4 hours</p>
+<h1>Read the traceback, write the review</h1>
+<p class="lede">The capstone. Full tracebacks — the multi-line reports real programs produce — and your first complete code review, in writing, of a program you’ve never seen.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">Watch</div>
+  <h2>The traceback, bottom-up</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-read-4-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Last line first: the kind of problem. Then up the stack to YOUR line.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">Listen</div>
+  <h2>Before you read</h2>
+  <p>Why professionals read tracebacks bottom-up, and what a written code review actually contains.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-read-4-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">Read &amp; play</div>
+  <h2>The full report, and the review</h2>
+
+
+  <p>So far your errors were one report deep. Real programs fail in chains: a
+  line calls a helper, the helper fails, and Python prints the whole chain — a
+  <b>traceback</b>. It looks like a wall of text and reads like a hallway if
+  you know the direction: <b>bottom-up</b>. The last line names the kind of
+  problem and the message. The lines above walk the chain — and your move is
+  to climb until you reach a line YOU wrote or can change. That line is where
+  the fixing starts, even when the failure happened deeper.</p>
+  <p>And the capstone skill: the <b>written code review</b>. When a
+  professional reviews code, the artifact is prose, and it has a fixed shape.
+  <b>What it does</b> — two sentences, from the top-down skim.
+  <b>What's solid</b> — name something genuinely good; reviews that only
+  attack teach nothing and get ignored.
+  <b>What's wrong or smelly</b> — each item with the line it lives on and WHY
+  it matters, magic numbers and lying names included.
+  <b>What I'd change first</b> — one concrete edit, not a rewrite.
+  That shape works on a classmate's program, an AI's thirty lines, and — in a
+  few years — a colleague's pull request. It is the reading sprint's whole
+  skill, made visible on paper.</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Climb the traceback</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">A real-shaped traceback.
+    Click the line where the FIXING should start.</p>
+    <div id="q1"></div>
+    <p class="fignote" id="q1sum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">Code</div>
+  <h2>The review target</h2>
+  <p>Traceback drills first — three failing chains, pred variables for the kind and the fixing line. Then the review target: a 25-line program that mostly works. Read it cold; the notebook collects your review section by section.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/read4-traceback-review.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/read4-traceback-review.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Where reviews live in the wild, if you want it</h2>
+
+  <div class="gd"><b>Public code review, live.</b> Every open-source project on
+  GitHub reviews changes in public — open any popular Python project, click
+  "Pull requests", and read one review thread. Notice the shape: what it does,
+  what's good, what to change.</div>
+  <div class="gd"><b>Stretch.</b> Trade builds with a classmate from any
+  sprint and review each other's capstone code with the four-part shape. The
+  review you RECEIVE is the stretch.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. You read a traceback starting from…</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">the top — first things first</button>
+    <button class="choice" data-ok="1">the bottom — the kind of problem, then climb to your line</button>
+    <button class="choice" data-ok="0">the middle</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. A written review names something genuinely good because…</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">politeness rules require it</button>
+    <button class="choice" data-ok="1">reviews that only attack teach nothing and get ignored</button>
+    <button class="choice" data-ok="0">bugs are rare</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 3: "average = a + b + c" is a lying name because…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">averages need at least four numbers</button>
+    <button class="choice" data-ok="1">the name promises an average; the code stores a sum — every future reader inherits it</button>
+    <button class="choice" data-ok="0">variable names cannot be English words</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">Build</div>
+  <h2>The capstone: your first code review</h2>
+  <div class="buildtask">
+
+
+  <p>Write the full four-part review of the notebook’s target program:
+  what it does, what’s solid, what’s wrong or smelly (with line
+  numbers and reasons — there are at least three findings to make), and the one
+  change you’d make first. Then make that change and show it running.</p>
+  <p><b>Turn-in:</b> the review + before/after screenshots. <b>This completes
+  the sprint</b> — your teacher confirms all four weeks, and you are on the
+  lecture list.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">Done</div>
+  <h2 id="doneHead">Finish week 4</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 4</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-read-3.html">&larr; Week 3</a> <a href="sprint-reading.html">Back to the sprint &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Learning to Read Python, week 4 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-read-4';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  document.querySelectorAll('.seg .stype').forEach((el,i)=>{
+    el.insertBefore(document.createTextNode((i+1)+' \u00b7 '),el.firstChild)});
+  document.querySelectorAll('.ex').forEach((ex,i)=>{
+    const b=ex.querySelector('.exbtn'),a=ex.querySelector('.exans');
+    if(b&&a){a.hidden=true;b.addEventListener('click',()=>{
+      a.hidden=!a.hidden;b.textContent=a.hidden?'Show the answer':'Hide the answer'})}});
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 4 complete — undo';
+      document.getElementById('doneHead').textContent='Week 4 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 4';
+      document.getElementById('doneHead').textContent='Finish week 4';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const LINES=[
+ ['Traceback (most recent call last):',0],
+ ['  File "receipt.py", line 12, in <module>',0],
+ ['    print(total_line(cmimet))',0],
+ ['  File "receipt.py", line 7, in total_line',1],
+ ['    return "Total: " + sum(cmimet)',0],
+ ['TypeError: can only concatenate str (not "int") to str',0]];
+  const wrap=document.getElementById('q1'),sum=document.getElementById('q1sum');
+  const card=document.createElement('div');card.className='qcard';
+  LINES.forEach(([ln,ok],j)=>{
+    const b=document.createElement('button');b.className='choice';
+    b.style.cssText='display:block;width:100%;text-align:left;font-family:ui-monospace,Menlo,monospace;font-size:13px;margin:2px 0;white-space:pre-wrap';
+    b.textContent=ln;
+    b.addEventListener('click',()=>{
+      if(card.dataset.done)return;card.dataset.done=1;
+      const right=ok===1;
+      card.classList.add(right?'good':'bad');
+      [...card.querySelectorAll('.choice')].forEach((x,k)=>{
+        x.disabled=true;if(LINES[k][1]===1)x.classList.add('right');
+        else if(x===b&&!right)x.classList.add('wrong');});
+      sum.innerHTML=(right?'<b>Climbed it.</b> ':'<b>Reveal:</b> ')+
+        'Bottom line names the kind: TypeError, text glued to a number. Climb: the failure is on line 7, inside total_line, where sum() (a number) meets "Total: " (text). str(sum(cmimet)) fixes it. Line 12 just made the call.';
+    });
+    card.appendChild(b);});
+  wrap.appendChild(card);
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

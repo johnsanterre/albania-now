@@ -1597,8 +1597,9 @@ def fill(l):
            ('<a href="lesson-%s-%d.html">&larr; Week %d</a>' % (key, n - 1, n - 1))
     nxt = ('<a href="lesson-%s-%d.html">Week %d &rarr;</a>' % (key, n + 1, n + 1)) if n < 4 else \
           ('<a href="%s">Back to the sprint &rarr;</a>' % page)
+    codeseg = 'try' if 'try_html' in l else 'code'
     segs = ['watch', 'listen', 'read'] + (['practice'] if 'practice' in l else []) + \
-           ['code', 'deeper', 'check', 'build', 'done']
+           [codeseg, 'deeper', 'check', 'build', 'done']
     watch2 = ''
     if 'watch2' in l:
         w2h, w2src = l['watch2']
@@ -1606,6 +1607,17 @@ def fill(l):
                   '  <video controls preload="metadata" style="width:100%%;border-radius:8px;background:#000"\n'
                   '    src="video/%s"></video>\n' % (w2h, w2src))
     h = TPL
+    if 'try_html' in l:
+        start = h.index('<section class="seg" data-seg="code">')
+        end = h.index('</section>', start) + len('</section>')
+        tryhtml = ('<section class="seg" data-seg="try">\n'
+                   '  <div class="stype">Try it</div>\n'
+                   '  <h2>@@CODE_H2@@</h2>\n'
+                   '  <p>@@CODE_INTRO@@</p>\n'
+                   '%s'
+                   '  <button class="mark" data-for="try">Mark complete</button>\n'
+                   '</section>') % l['try_html']
+        h = h[:start] + tryhtml + h[end:]
     h = h.replace('@@NSEG@@', str(len(segs)))
     h = h.replace('@@SEGS_JS@@', repr(segs).replace(' ', ''))
     h = h.replace('@@PRACTICE@@', practice_html(l['practice']) if 'practice' in l else '')
@@ -1616,7 +1628,7 @@ def fill(l):
         ('@@WATCH_H2@@', l['watch_h2']), ('@@WATCH_NOTE@@', l['watch_note']),
         ('@@LISTEN_LINE@@', l['listen_line']), ('@@READ_H2@@', l['read_h2']),
         ('@@READ_HTML@@', l['read_html']), ('@@CODE_H2@@', l['code_h2']),
-        ('@@CODE_INTRO@@', l['code_intro']), ('@@NB@@', l['nb']),
+        ('@@CODE_INTRO@@', l['code_intro']), ('@@NB@@', l.get('nb', '')),
         ('@@DEEPER_H2@@', l['deeper_h2']), ('@@DEEPER_HTML@@', l['deeper_html']),
         ('@@QUIZ_HTML@@', quiz(l['quiz'])), ('@@BUILD_H2@@', l['build_h2']),
         ('@@BUILD_HTML@@', l['build_html']), ('@@FIG_JS@@', l['fig_js']),

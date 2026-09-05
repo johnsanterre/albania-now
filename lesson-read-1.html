@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trace like the machine · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-reading.html">Learning to Read Python</a> / Week 1</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Learning to Read Python · Week 1 of 4 · about 2–4 hours</p>
+<h1>Trace like the machine</h1>
+<p class="lede">Programmers read far more code than they write — and reading code means running it in your head. This week you build the tracing habit on small programs, and prove your predictions against the machine.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">Watch</div>
+  <h2>Reading is executing, slowly</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-read-1-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">A program is a story the machine acts out — tracing is reading it the way the machine will.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">Listen</div>
+  <h2>Before you read</h2>
+  <p>Why the best code readers move their finger down the lines like a first-grader — and why that is the advanced technique.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-read-1-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">Read &amp; play</div>
+  <h2>The finger on the line</h2>
+
+
+  <p>Here is a professional secret: programmers spend most of their time
+  <b>reading</b> code — their own from last month, their teammates', and, more
+  every year, code an AI wrote in seconds. The AI era did not shrink that; it
+  multiplied it. When an assistant hands you thirty lines, your job is no
+  longer typing — it is <b>judging</b>, and you cannot judge what you cannot
+  read.</p>
+  <p>Reading code is not like reading prose. Prose you skim; code you
+  <b>trace</b> — you become the machine and act the story out, line by line,
+  keeping the whiteboard of variables in your head (or better, on paper). The
+  technique looks childish and is not: put a finger on line one, say what it
+  does to the whiteboard, move down. Every professional debugging session is
+  this exact motion, done fast.</p>
+  <p>Three tracing rules from day one. <b>One line at a time</b> — the eye
+  wants to jump to the interesting line; the bug is usually in a boring one.
+  <b>Track every store</b> — when a variable is reassigned, the old value is
+  gone; your paper whiteboard should show the crossing-out. <b>Predict before
+  the last line</b> — commit to what the program prints before you reach the
+  print. A prediction you didn't commit to teaches nothing, because it
+  quietly becomes "what I meant."</p>
+  <p>Trace these with your finger, then check yourself:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Finger on the line</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Three programs. Trace each on
+    paper, commit, then answer.</p>
+    <div id="q1"></div>
+    <p class="fignote" id="q1sum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">Code</div>
+  <h2>The prediction notebook</h2>
+  <p>Ten small programs. For each: a cell where you STORE your prediction in a variable, then the program runs, then a CHECK compares your prediction to reality. The score is honest because you committed first.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/read1-trace-drills.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/read1-trace-drills.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More tracing, if you want it</h2>
+
+  <div class="gd"><b>Python Tutor.</b>
+  <a href="https://pythontutor.com" target="_blank" rel="noopener">pythontutor.com</a>
+  — paste any small program and it draws the whiteboard for you, step by step.
+  Use it to CHECK your hand traces, never to replace them.</div>
+  <div class="gd"><b>Stretch.</b> Take a program from this week's notebook,
+  trace it on paper including the whiteboard at every line, photograph the
+  paper, and compare against Python Tutor's diagram. Where did your whiteboard
+  diverge?</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Why do professionals trace with a finger (or cursor) on the line?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">Habit from childhood</button>
+    <button class="choice" data-ok="1">The eye jumps to interesting lines; the bug is usually in a boring one</button>
+    <button class="choice" data-ok="0">It makes reading look busy</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. A prediction only teaches you something if…</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">it turns out correct</button>
+    <button class="choice" data-ok="1">you committed to it BEFORE running — otherwise it becomes "what I meant"</button>
+    <button class="choice" data-ok="0">you share it with the class</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. In the AI era, reading code matters MORE because…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="1">AIs write code you must judge before trusting</button>
+    <button class="choice" data-ok="0">typing speed no longer matters at all</button>
+    <button class="choice" data-ok="0">code has gotten shorter</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">Build</div>
+  <h2>The traced program</h2>
+  <div class="buildtask">
+
+
+  <p>Pick the longest program in this week's notebook. Trace it on paper: every
+  line, the whiteboard after each store, the final output — BEFORE running it.
+  Then run it. Your turn-in is the photograph of your paper trace next to a
+  screenshot of the actual output, plus one sentence: where (if anywhere) your
+  trace went wrong, and why.</p>
+  <p><b>Turn-in:</b> photo + screenshot + the sentence.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">Done</div>
+  <h2 id="doneHead">Finish week 1</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 1</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="sprint-reading.html">&larr; Sprint page</a> <a href="lesson-read-2.html">Week 2 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Learning to Read Python, week 1 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-read-1';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  document.querySelectorAll('.seg .stype').forEach((el,i)=>{
+    el.insertBefore(document.createTextNode((i+1)+' \u00b7 '),el.firstChild)});
+  document.querySelectorAll('.ex').forEach((ex,i)=>{
+    const b=ex.querySelector('.exbtn'),a=ex.querySelector('.exans');
+    if(b&&a){a.hidden=true;b.addEventListener('click',()=>{
+      a.hidden=!a.hidden;b.textContent=a.hidden?'Show the answer':'Hide the answer'})}});
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 1 complete — undo';
+      document.getElementById('doneHead').textContent='Week 1 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 1';
+      document.getElementById('doneHead').textContent='Finish week 1';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const QS=[
+ {q:'a = 3\nb = a + 2\na = 10\nprint(a + b)',a:1,opts:['8','15','20'],
+  why:'b took a snapshot: 5. Reassigning a later does not touch b. 10 + 5 = 15.'},
+ {q:'x = 1\nx = x + x\nx = x + x\nprint(x)',a:2,opts:['2','3','4'],
+  why:'1 doubles to 2, doubles to 4. Trace every store — the second line changes what the third line reads.'},
+ {q:'emri = "Blerta"\ngjatesia = len(emri)\nprint(emri + " " + str(gjatesia))',a:0,
+  opts:['Blerta 6','Blerta gjatesia','an error'],
+  why:'len counts the letters of the text: 6. str bridges the number, and the glue works. Blerta 6.'}];
+  const wrap=document.getElementById('q1');let done=0,score=0;
+  QS.forEach(q=>{
+    const card=document.createElement('div');card.className='qcard';
+    card.innerHTML='<div class="qq" style="font-family:ui-monospace,Menlo,monospace;font-size:14px;white-space:pre-wrap"></div>';
+    card.querySelector('.qq').textContent=q.q;
+    q.opts.forEach((opt,j)=>{
+      const b=document.createElement('button');b.className='choice';b.textContent=opt;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done)return;card.dataset.done=1;
+        const ok=j===q.a;if(ok)score++;done++;
+        card.classList.add(ok?'good':'bad');
+        [...card.querySelectorAll('.choice')].forEach((x,k)=>{
+          x.disabled=true;if(k===q.a)x.classList.add('right');
+          else if(x===b&&!ok)x.classList.add('wrong');});
+        const fb=document.createElement('div');fb.className='qfb';
+        fb.innerHTML=(ok?'<b>Traced it.</b> ':'<b>Reveal:</b> ')+q.why;
+        card.appendChild(fb);
+        if(done===QS.length)document.getElementById('q1sum').innerHTML=
+          '<b>'+score+' of '+QS.length+'.</b> The finger is the debugger you always carry.';
+      });card.appendChild(b);});
+    wrap.appendChild(card);});
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
