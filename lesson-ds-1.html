@@ -190,6 +190,60 @@ print("emri")</pre></div>
 print(mosha + 1)</pre> Why — and the fix?</div>
   <button class="exbtn">Show the answer</button>
   <div class="exans"><b>TypeError</b> — "16" in quotes is text, and text + number refuses. Fix: <span style="font-family:ui-monospace,Menlo,monospace">int(mosha) + 1</span> converts the text into a number first.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 11</div>
+  <div class="exq">Trace it: <pre>a = 2
+b = a
+a = 5
+print(b)</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>2.</b> Line 2 copied the VALUE a held at that moment. Changing a later does not reach back into b — variables hold values, not connections.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 12</div>
+  <div class="exq">What does <pre>print("Ha" * 2 + "!")</pre> show?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>HaHa!</b> Repetition first, then the glue. Operations run in order on whatever values are there.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 13</div>
+  <div class="exq">This fails: <pre>emri = Drita</pre> Why?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>NameError.</b> No quotes, so Python treats Drita as a variable to look up — and none exists. Quotes make it text: emri = "Drita".</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 14</div>
+  <div class="exq">Write it: x holds "left", y holds "right". Swap them, so x prints right and y prints left. (You will want a third variable.)</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><pre>temp = x
+x = y
+y = temp</pre> The temp holds x’s value while x is overwritten. The classic three-step swap — you will use it for years.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 15</div>
+  <div class="exq">What does <pre>print(str(2) + str(0) + str(26))</pre> show?</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>2026</b> — as text. Each str() makes text; + glues them in order.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 16</div>
+  <div class="exq">What happens: <pre>int("sixteen")</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>ValueError</b> — a fourth report type for your collection: the TYPE is right (text in), but the VALUE cannot be converted. int("16") works; int("sixteen") cannot.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 17</div>
+  <div class="exq">Careful: <pre>x = "5"
+print(x * 3)</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>555</b> — as text. x is "5" in quotes, and multiplying text repeats it. If you wanted 15, you needed int(x) * 3.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 18</div>
+  <div class="exq">Write it: print a line of exactly 30 dashes, then your name on the NEXT line — using only one print. (Hint: "\n" inside text means new-line.)</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><pre>print("-" * 30 + "\n" + "Drita")</pre> Repetition builds the line; \n breaks it. Two prints also work — but now you know \n.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 19</div>
+  <div class="exq">Trace it: <pre>mosha = 16
+mosha = mosha * 2
+mosha = mosha - 16
+print(mosha)</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>16.</b> 16 &rarr; 32 &rarr; 16. Each line stores over the last. Trace with a finger, line by line — that is real debugging.</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 20</div>
+  <div class="exq">This fails: <pre>print("result: " + 7 * 3)</pre> Why — trace the order.</div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>TypeError.</b> Python computes 7 * 3 = 21 first (a number), THEN tries to glue text to 21 — and refuses. Fix: str(7 * 3).</div></div>
+  <div class="ex"><div class="exnum">EXERCISE 21</div>
+  <div class="exq">Predict both: <pre>print(7 / 2)
+print(7 // 2)</pre></div>
+  <button class="exbtn">Show the answer</button>
+  <div class="exans"><b>3.5, then 3.</b> Single slash always gives a decimal; the double slash is floor division — it drops the fraction. Both exist because both are useful.</div></div>
   <p style="font-size:13.5px;color:var(--ink2)">Attempt each one before revealing —
   the struggle is the mechanism, not a malfunction. When you have worked through
   them all, mark the segment complete.</p>

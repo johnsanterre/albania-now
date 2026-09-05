@@ -25,6 +25,13 @@ SOLUTIONS = {
   'emri = ""': 'emri = "Test"\nmosha = 16\nqyteti = "Tirana"\n'
                'print(emri, "is", mosha, "and lives in", qyteti)',
   'line = ""': 'line = "=" * 20\nprint(line)',
+  '# lab b': 'artikull1, cmim1 = "byrek", 120\nartikull2, cmim2 = "kafe", 150\n'
+             'total = cmim1 + cmim2\nprint("=" * 24)\n'
+             'print(artikull1, cmim1, "lek")\nprint(artikull2, cmim2, "lek")\n'
+             'print("TOTAL", total, "lek")',
+  '# fix me 1': 'pershendetje = "Mirëdita"\nprint(pershendetje)',
+  '# fix me 2': 'total_lek = int("100") + 50\nprint(total_lek)',
+  '# fix me 3': 'qytet = "Berat"\nprint(qytet)',
   '# part a': 'for i in range(1, 501):\n    print("Tirana is home", i)',
   '# part b': 'emri, mosha, qyteti = "Test", 16, "Tirana"\n'
               'print(emri + ", " + str(mosha) + ", nga " + qyteti)',

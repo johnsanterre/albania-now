@@ -347,6 +347,42 @@ print(emri, x)</pre>
     '<b>TypeError</b> — "16" in quotes is text, and text + number refuses. Fix: '
     '<span style="font-family:ui-monospace,Menlo,monospace">int(mosha) + 1</span> '
     'converts the text into a number first.'),
+   ('Trace it: <pre>a = 2\nb = a\na = 5\nprint(b)</pre>',
+    '<b>2.</b> Line 2 copied the VALUE a held at that moment. Changing a later '
+    'does not reach back into b — variables hold values, not connections.'),
+   ('What does <pre>print("Ha" * 2 + "!")</pre> show?',
+    '<b>HaHa!</b> Repetition first, then the glue. Operations run in order on '
+    'whatever values are there.'),
+   ('This fails: <pre>emri = Drita</pre> Why?',
+    '<b>NameError.</b> No quotes, so Python treats Drita as a variable to look '
+    'up — and none exists. Quotes make it text: emri = "Drita".'),
+   ('Write it: x holds "left", y holds "right". Swap them, so x prints right '
+    'and y prints left. (You will want a third variable.)',
+    '<pre>temp = x\nx = y\ny = temp</pre> The temp holds x’s value while x is '
+    'overwritten. The classic three-step swap — you will use it for years.'),
+   ('What does <pre>print(str(2) + str(0) + str(26))</pre> show?',
+    '<b>2026</b> — as text. Each str() makes text; + glues them in order.'),
+   ('What happens: <pre>int("sixteen")</pre>',
+    '<b>ValueError</b> — a fourth report type for your collection: the TYPE is '
+    'right (text in), but the VALUE cannot be converted. int("16") works; '
+    'int("sixteen") cannot.'),
+   ('Careful: <pre>x = "5"\nprint(x * 3)</pre>',
+    '<b>555</b> — as text. x is "5" in quotes, and multiplying text repeats it. '
+    'If you wanted 15, you needed int(x) * 3.'),
+   ('Write it: print a line of exactly 30 dashes, then your name on the NEXT '
+    'line — using only one print. (Hint: "\\n" inside text means new-line.)',
+    '<pre>print("-" * 30 + "\\n" + "Drita")</pre> Repetition builds the line; '
+    '\\n breaks it. Two prints also work — but now you know \\n.'),
+   ('Trace it: <pre>mosha = 16\nmosha = mosha * 2\nmosha = mosha - 16\nprint(mosha)</pre>',
+    '<b>16.</b> 16 &rarr; 32 &rarr; 16. Each line stores over the last. Trace with a '
+    'finger, line by line — that is real debugging.'),
+   ('This fails: <pre>print("result: " + 7 * 3)</pre> Why — trace the order.',
+    '<b>TypeError.</b> Python computes 7 * 3 = 21 first (a number), THEN tries '
+    'to glue text to 21 — and refuses. Fix: str(7 * 3).'),
+   ('Predict both: <pre>print(7 / 2)\nprint(7 // 2)</pre>',
+    '<b>3.5, then 3.</b> Single slash always gives a decimal; the double slash '
+    'is floor division — it drops the fraction. Both exist because both are '
+    'useful.'),
   ]),
  code_h2='Open your first notebook',
  code_intro='The notebook walks everything above with your-turn cells: print, '

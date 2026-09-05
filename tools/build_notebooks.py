@@ -95,7 +95,36 @@ nb('ds1-first-steps', [
     "notebooks are cured by **Runtime → Restart and run all**."),
  code('kryeqyteti = "Tirana"'),
  code('print(kryeqyteti)   # NameError if the cell above has not run yet'),
- md("## 7. The build — three parts (this is the turn-in)\n**Part A — scale.** "
+ md("## 7. Lab B — the receipt printer\nEverything this week in one artifact: "
+    "variables, str(), text repetition, and print. First the teaching example:"),
+ code('artikull = "byrek"\ncmim = 120\n\nprint("=" * 24)\nprint("PRANVERA MARKET")\n'
+      'print("=" * 24)\nprint(artikull + "  " + str(cmim) + " lek")'),
+ md("**YOUR TURN — Lab B:** two items with prices, divider lines, and a total "
+    "line. The rule: the total must be *computed* from the price variables, "
+    "never typed as a number. Then run the CHECK."),
+ code('# Lab B — your receipt\nartikull1 = ""\ncmim1 = 0\nartikull2 = ""\ncmim2 = 0\n'
+      'total = 0    # compute it from the two prices\n\n'
+      '# build your receipt with print lines here\n'),
+ code('# CHECK — Lab B\nassert artikull1 != "" and artikull2 != "", "name both items"\n'
+      'assert cmim1 > 0 and cmim2 > 0, "give both prices (numbers, no quotes)"\n'
+      'assert total == cmim1 + cmim2, "total must be COMPUTED from the two prices"\n'
+      'print("PASSED — receipt math checks out")'),
+ md("## 8. Lab C — the fix-me clinic\nThree cells, each hiding one bug. The "
+    "protocol, every time: **run it, read the report out loud, then repair "
+    "it** — and prove the repair with the CHECK underneath."),
+ code('# FIX ME 1 — run it, read the report, repair it\n'
+      'pershendetje = "Mirëdita\nprint(pershendetje)'),
+ code('# CHECK — fix 1\nassert pershendetje == "Mirëdita"\n'
+      'print("PASSED — the quote is closed")'),
+ code('# FIX ME 2 — run, read, repair (the total should be the number 150)\n'
+      'total_lek = "100" + 50\nprint(total_lek)'),
+ code('# CHECK — fix 2\nassert total_lek == 150, "total_lek should be the NUMBER 150"\n'
+      'print("PASSED — bridged with int()")'),
+ code('# FIX ME 3 — nothing is misspelled; the problem is ORDER. Repair it.\n'
+      'print(qytet)\nqytet = "Berat"'),
+ code('# CHECK — fix 3\nassert qytet == "Berat"\n'
+      'print("PASSED — defined before used")'),
+ md("## 9. The build — three parts (this is the turn-in)\n**Part A — scale.** "
     "Print a sentence about your town 500 times, then the numbers 1 to 500. "
     "Not taught yet, on purpose: ask an AI assistant or search, and understand "
     "**every word** before keeping it."),
