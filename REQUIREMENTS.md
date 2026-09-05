@@ -195,6 +195,32 @@ access, ever.
   a K-factor proxy: share-card views → attributed visits → joins; referral
   conversion; challenge participation. If we can't measure the loop, we
   can't tune it.
+- **G9 Playables — standalone programming games.** (Added 2026-09-05 from
+  the CodeCombat-genre survey.) Lessons taken: CodeCombat's
+  code-with-visible-consequence (not its asset-heavy fantasy), Human
+  Resource Machine's instruction-set-as-movement, Zachtronics' honest
+  compare (histogram of your solution vs the world, shown only AFTER
+  solving — leaderboard energy without ranking children), SQL Murder
+  Mystery's narrative wrapper (the cheapest proven viral format in the
+  genre), Untrusted's read-code-to-escape. Two binding design rules:
+  **solve first, optimize second** (struggle private, mastery shareable),
+  and **every game ends in the funnel line** ("this was five minutes of
+  sprint X, week N") — or it's decoration.
+  - **Tier 1 (M — client-only, existing figure engine):** *Trace Race* —
+    daily Wordle-of-code-reading, emoji-grid trace share (the G2 flagship);
+    *Crater Hunter* — daily seeded terrain, 3 tries, found-minus-junk score;
+    *Find the Lie* — swipe honest/lying charts, phone-native.
+  - **Tier 2 (S):** *The Eagle's Flight* — Lightbot-shaped: Python-ish
+    commands steer the eagle over a map of Albania; instruction-count
+    compare as the share; the national symbol writing its own flight plan —
+    highest kid-appeal ceiling; *Bigram Band* — the existing browser tiny-LM
+    as a toy: train on your own words, share the funniest generated
+    sentence.
+  - **Tier 3 (L — Pyodide or backend):** *The Byrek Mystery* (SQL Murder
+    Mystery, pandas edition, on our Tirana shop data); *Escape the
+    Notebook* (rooms opened by fixing buggy code); *Crew Code Battles*
+    (crews submit strategies, weekly simulated battles, shareable replays —
+    the multiplayer growth engine).
 
 ## 5. Human-factors requirements
 
