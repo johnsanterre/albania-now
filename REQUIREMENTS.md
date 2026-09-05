@@ -24,12 +24,28 @@ have soon after · **L** later.
 | **Wordle** | One daily puzzle, same for everyone; the emoji-grid share card — low-effort, intriguing, shows off without explaining | None | The canonical viral loop: a **share artifact** with a **shared daily context** and a minutes-long cycle. **Borrow all three — this is the growth model (§4).** |
 | **Chess.com / multiplayer games** | Playing requires a second person — growth is built into use | Rating anxiety | The multiplayer lesson without the ratings: **crews** (§4). A crew that needs a fourth member is a recruitment engine. |
 
+**The engine under the stack — implied authority (John, 2026-09-05).** The
+program's deepest asset is the authority of its experts: NASA Goddard, UC
+Berkeley, a career researcher. The lecture is powerful not because it is a
+video call but because a person of that standing *attends to the student's
+work* — validation teenagers cannot buy anywhere. The certificate inherits
+the same authority when the speaker's name is on it. CS50 is the proof case:
+its mechanics are ordinary; Harvard's authority is the product. Design
+consequence: the experts' names, institutions, and faces belong on every
+surface the student earns — sprint pages, lecture invitations, certificates,
+the wall. Guardrail, absolute: **implied authority must stay literally
+true** — titles exact, commitments real, no name used beyond what its owner
+agreed to. Overclaimed authority is the one asset that cannot be rebuilt
+after it breaks.
+
 **The carrot stack we choose (in order of power):**
 0. *(acquisition layer)* **The challenge + share card** — five minutes of
    cleverness, displayable. Not a reason to stay; the reason a friend arrives.
-1. **The lecture** — access to a real scientist, earned. Nobody else has this.
-2. **The certificate** — verifiable URL, signed by Free Focus, listable on a
-   CV/university application. (Albania context: university admissions and
+1. **The lecture** — a real scientist's attention, earned. The authority is
+   the value; nobody else has this.
+2. **The certificate** — verifiable URL, carrying the program's authority:
+   signed by Free Focus and, where agreed, the sprint's speaker. Listable on
+   a CV/university application. (Albania context: university admissions and
    first-job CVs are where students need artifacts.)
 3. **The sticker** — physical, mailed, collectible. Digital platforms cannot
    mail you anything; we can.
@@ -76,6 +92,11 @@ Features get judged by which door they widen.
 - **P6 — Content stays static.** Lessons remain generated HTML (the
   build_lessons machinery). The app is a thin shell around them — auth,
   progress, cohorts — so content velocity never waits on app engineering.
+- **P7 — Authority is the asset; keep it true.** The experts' standing is
+  what students earn access to — thread their names, institutions, and
+  presence through every earned surface. And never spend authority that
+  wasn't given: titles exact, commitments real, usage per agreement. (See
+  §1, the engine under the stack.)
 
 ## 3. Functional requirements
 
@@ -400,7 +421,10 @@ the season calendar itself is the re-entry point.
   answer before P1 ships (counsel, or the local partner will know).
 - **Q2** Discord vs in-app community for minors — Discord is where students
   are, but its minimum age is 13 and moderation is on us either way.
-- **Q3** Who signs the certificates (Free Focus + the sprint's speaker?).
+- **Q3** Who signs the certificates — P7 says the answer matters more than
+  it looks: a certificate co-signed by the sprint's speaker (NASA, Berkeley)
+  is a categorically stronger artifact than a Free Focus-only one. Needs
+  each speaker's explicit agreement.
 - **Q4** Firebase vs PhotoApp-style Cloud Run/SQL — comfort vs ops weight.
 - **Q5** Pilot cohort: which sprint first, and target start date?
 - **Q6** Does "no teacher grading" also mean no school involvement at all,
