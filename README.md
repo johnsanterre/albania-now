@@ -25,7 +25,7 @@ by mail. Each sprint has a Discord channel.
 | 04 | AI Image Analysis on Other Planets | Dr. Conor Nixon, NASA Goddard |
 | 05 | Leveraging AI in Your Own Education | Dr. Nedelina Teneva |
 
-Live site: **https://johnsanterre.github.io/albania-now/**
+Live site: **https://santerre.ai/albania-now/**
 
 ## What runs it
 
