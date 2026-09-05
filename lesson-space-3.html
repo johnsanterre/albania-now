@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Titan — the world with weather · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-space.html">Planetary Exploration</a> / Week 3</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Planetary Exploration · Week 3 of 4 · about 2–4 hours</p>
+<h1>Titan — the world with weather</h1>
+<p class="lede">Saturn’s largest moon has thick air, orange haze, methane rain, and seas you could sail. This is Dr. Nixon’s world — meet it properly.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>The moon that behaves like a planet</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-space-3-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Thick atmosphere, rain, rivers, lakes — with methane playing the role of water.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>A world where it rains at minus 179 degrees, and why chemists look at Titan and see the early Earth.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-space-3-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Weather, with the water swapped out</h2>
+
+
+  <p>Titan is the only moon in the solar system with a substantial atmosphere —
+  mostly nitrogen, like Earth's, and thick: surface pressure is about one and a
+  half times ours. Stand on Titan and the air presses on you a little harder than
+  at sea level here. Everything else is stranger.</p>
+  <p>It is cold in a way that rearranges chemistry: about <b>&minus;179&nbsp;&deg;C
+  (94 kelvin)</b>. At that temperature water is not a liquid, a cloud, or a rain —
+  it is rock. Titan's mountains and sands are built on water ice frozen harder
+  than granite. And with water locked up, another substance takes over its job:
+  <b>methane</b>. On Titan, methane forms clouds, falls as rain, carves rivers,
+  and pools into lakes and seas — the largest, Kraken Mare, is bigger than the
+  Caspian Sea. Titan runs a full weather cycle, with seasons, exactly like
+  Earth's water cycle with the molecule swapped.</p>
+  <p>The orange color is haze: sunlight breaks methane apart high in the
+  atmosphere and the fragments reassemble into heavier carbon molecules — organic
+  chemistry running planet-wide, all the time. That is why chemists care so much:
+  Titan is a natural laboratory for the kind of carbon chemistry that preceded
+  life on the early Earth, kept in a freezer for four billion years.</p>
+  <p>Reading a world through opaque haze took the instruments from last week:
+  radar mapped the seas, and the infrared spectrometer <b>CIRS</b> — Dr. Nixon
+  was its deputy principal investigator — read temperatures and chemistry
+  through the murk for the length of the Cassini mission. Huygens landed in 2005
+  and photographed rounded pebbles of water ice by a dry riverbed. Next:
+  <b>Dragonfly</b>, a NASA rotorcraft now in development, will fly from site to
+  site in that thick air — a drone on a moon of Saturn, with its cameras aimed
+  at exactly this chemistry.</p>
+  <p>Hold the two worlds side by side:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Earth vs Titan</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Pick a property; compare the pair.</p>
+    <div id="props" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"></div>
+    <div id="pair" style="display:grid;grid-template-columns:1fr 1fr;gap:12px"></div>
+    <p class="fignote" id="psum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>Titan, by the numbers</h2>
+  <p>The notebook does honest arithmetic on Titan: your weight in its gravity, how much harder the air presses, how long Cassini’s radio took to report a Titan flyby, and a temperature plot that shows why methane can rain there and water cannot.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/space3-titan.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/space3-titan.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Deeper into the haze, if you want it</h2>
+
+  <div class="gd"><b>NASA's Titan page.</b>
+  <a href="https://science.nasa.gov/saturn/moons/titan/" target="_blank" rel="noopener">science.nasa.gov/saturn/moons/titan</a>
+  — the current state of knowledge, with imagery from Cassini and Huygens.</div>
+  <div class="gd"><b>Dragonfly.</b>
+  <a href="https://dragonfly.jhuapl.edu" target="_blank" rel="noopener">dragonfly.jhuapl.edu</a>
+  — the rotorcraft mission in development. Look at where it will land and what it
+  will carry.</div>
+  <div class="gd"><b>Huygens' pictures.</b> Search the ESA Cassini-Huygens pages
+  from last week for the surface images — rounded ice pebbles by a dry channel,
+  photographed 1.2 billion kilometers from home.</div>
+  <div class="gd"><b>Stretch.</b> Make a two-column table: the water cycle on
+  Earth vs the methane cycle on Titan — evaporation, clouds, rain, rivers, seas.
+  Which row is missing on Titan? (Hint: think about what life does to Earth's
+  cycle.)</div>
+
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. What plays the role of water in Titan’s weather?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">Liquid nitrogen</button>
+    <button class="choice" data-ok="1">Methane</button>
+    <button class="choice" data-ok="0">Ammonia</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. At Titan’s &minus;179 &deg;C, water is…</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">vapor in the clouds</button>
+    <button class="choice" data-ok="1">rock-hard ice — the mountains are built of it</button>
+    <button class="choice" data-ok="0">a salty ocean on the surface</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 2: how did Cassini see Titan’s seas through the haze?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">A more powerful camera</button>
+    <button class="choice" data-ok="1">Radar echoes</button>
+    <button class="choice" data-ok="0">It waited for clear weather</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>A postcard from Titan</h2>
+  <div class="buildtask">
+
+
+  <p>Write a postcard home from a research station on Titan — six to ten
+  sentences describing a day there. The rule that makes it science and not
+  fiction: <b>every claim must trace to a number or fact from this lesson</b>
+  (the pressure, the temperature, the gravity from the notebook, what the rain
+  is, what the ground is). Voice is yours; facts are Titan's.</p>
+  <p><b>Turn-in:</b> the postcard, to your teacher.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 3</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 3</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-space-2.html">&larr; Week 2</a> <a href="lesson-space-4.html">Week 4 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Planetary Exploration, week 3 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-space-3';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 3 complete — undo';
+      document.getElementById('doneHead').textContent='Week 3 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 3';
+      document.getElementById('doneHead').textContent='Finish week 3';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const P={
+   'Air':['Nitrogen-oxygen, 1 atmosphere of pressure','Mostly nitrogen, ~1.5&times; Earth\u2019s surface pressure \u2014 thicker air than home'],
+   'Temperature':['Global average about +15 &deg;C','About &minus;179 &deg;C (94 K) \u2014 cold enough that water is a rock'],
+   'Rain':['Water, from water clouds','Methane, from methane clouds \u2014 a full weather cycle with the molecule swapped'],
+   'Lakes &amp; seas':['Water; largest is the Pacific','Liquid methane/ethane; Kraken Mare outsizes the Caspian Sea'],
+   'The ground':['Rock and soil','Water ice frozen granite-hard, with dark organic sands'],
+   'Sky color':['Blue \u2014 scattered sunlight','Orange \u2014 a global haze of carbon molecules made from broken methane']};
+  const props=document.getElementById('props'),pair=document.getElementById('pair'),
+        sum=document.getElementById('psum');
+  function show(k){
+    pair.innerHTML='<div class="gd"><b>Earth</b><br>'+P[k][0]+'</div>'+
+                   '<div class="gd" style="border-left:3px solid var(--star)"><b>Titan</b><br>'+P[k][1]+'</div>';
+    sum.innerHTML='Same physics, different ingredients \u2014 that is why Titan teaches us about worlds in general.';}
+  Object.keys(P).forEach((k,i)=>{const b=document.createElement('button');
+    b.className='choice';b.innerHTML=k;
+    b.addEventListener('click',()=>{[...props.children].forEach(x=>x.classList.remove('right'));
+      b.classList.add('right');show(k)});
+    props.appendChild(b);if(i===0){b.classList.add('right');show(k)}});
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

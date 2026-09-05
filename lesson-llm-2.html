@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tokens — how AI reads · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-llm.html">Intro to Large Language Models</a> / Week 2</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Intro to Large Language Models · Week 2 of 4 · about 2–4 hours</p>
+<h1>Tokens — how AI reads</h1>
+<p class="lede">The model never sees letters, and its memory is a desk with edges. Once you know both, its weirdest failures start making sense.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>Why it can't count the R's in strawberry</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-llm-2-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Planned: ~4 minutes. Screencast: chopping sentences into tokens, then watching a letter-counting fail live.
+  <span style="color:var(--ink2)">(Generated slide video with narration; a recorded
+  version can replace it later.)</span></p>
+  <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Video script (for a future recording session)</summary>
+    <p style="font-size:14px;color:var(--ink2);line-height:1.6">OPEN on the word &quot;strawberry&quot; full screen.<br>
+Ask an AI how many R&#x27;s are in this word. Sometimes it says two. A machine that writes<br>
+poetry, wrong about counting to three. Today: why.<br>
+SCREENCAST: a tokenizer view, sentence chopping into colored chunks.<br>
+Before your message reaches the model, it&#x27;s split into tokens — chunks. Short common<br>
+words are one chunk. &quot;Strawberry&quot; might be &quot;straw&quot; + &quot;berry&quot;. The model receives chunk<br>
+IDs — numbers. It never sees the letters inside.<br>
+VISUAL: photo-of-a-shirt metaphor — asking it to count letters is asking someone to<br>
+count threads in a shirt they see in a photograph.<br>
+SECOND IDEA — the desk: every model has a context window, a maximum number of tokens<br>
+it can hold at once. Your whole conversation must fit on that desk. Long chat →<br>
+earliest pages slide off the edge → the AI &quot;forgets&quot; what you said an hour ago.<br>
+DEMO: letter-count fail, live, plus a fix — &quot;spell it out one letter per line, then<br>
+count&quot; — forcing the letters into tokens it CAN see.<br>
+CLOSE: when the AI fails at something weirdly simple, ask: is this below the token<br>
+level? Knowing where the machine is blind is half of using it well.</p>
+  </details>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Tokens, the context window, and the shirt-in-a-photograph problem — where the machine is blind and why. <span style="color:var(--ink2)">(Generated narration; produced audio comes later.)</span></p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-llm-2-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Chunks, not letters; a desk, not a memory</h2>
+
+  <p>Before the model sees your message, a pre-processor chops it into <b>tokens</b> —
+  chunks of text. Common short words are usually one token each. Longer or rarer words
+  get split: <i>strawberry</i> might be <i>straw</i>+<i>berry</i>. The model receives
+  numbered IDs for those chunks. <b>It never sees the letters inside them.</b></p>
+
+  <p>Feed it something and watch the chopping happen:</p>
+
+  <!-- ============ FIGURE 1: The token chopper ============ -->
+  <div class="fig" id="figtok">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>The token chopper</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Type anything. The top row is how the
+    text gets chopped; the bottom row is what the model actually receives.</p>
+    <div class="guessrow">
+      <input type="text" id="tkin" maxlength="60" value="The strawberry problem"
+             aria-label="Text to chop into tokens" autocomplete="off">
+      <button class="wbtn" id="tkgo">Chop</button>
+    </div>
+    <div class="tokstream" id="tkout" aria-live="polite"></div>
+    <p style="font-size:14px;margin:.7em 0 .2em;color:var(--ink2)"><b>WHAT THE MODEL SEES:</b></p>
+    <div class="tokstream" id="tkids" style="min-height:2.4em"></div>
+    <p class="fignote">Try: <i>Mississippi</i> · <i>bookkeeper</i> · your own name ·
+    <i>brontofraggle</i>. Notice the bottom row every time — where did the letters go?</p>
+  </div>
+
+  <p>That's why letter-level tasks trip it: counting letters, reversing words, precise
+  acrostics. You're asking about detail that exists below its vision. There's a
+  workaround — make it spell the word letter by letter first (each letter becomes its
+  own token, now visible) — and the workaround proves the diagnosis.</p>
+  <p>Tokens also set the model's memory. Every model has a <b>context window</b>: the
+  maximum tokens it can consider at once — its desk size. Your conversation, your
+  pasted documents, its own replies — all of it must fit on the desk. When a chat gets
+  long, the earliest material slides off the edge and is simply gone. The model isn't
+  ignoring you; it literally no longer has the beginning.</p>
+
+  <p>Here is that desk, small enough to watch:</p>
+
+  <!-- ============ FIGURE 2: The desk ============ -->
+  <div class="fig" id="figdesk">
+    <div class="figlabel">Interactive · Figure 2</div>
+    <h3>The desk</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">This model's desk holds <b>26 tokens</b> —
+    that is its entire memory. Send the conversation one message at a time and watch the
+    edge.</p>
+    <div class="guessrow">
+      <button class="wbtn" id="dsend">Send the first message</button>
+      <button class="wbtn alt" id="dreset">Reset</button>
+    </div>
+    <p style="font-size:13px;color:var(--ink2);margin:10px 0 4px;font-weight:700">ON THE DESK
+    (<span id="dcount">0</span> / 26 tokens):</p>
+    <div class="tokstream" id="ddesk"></div>
+    <p style="font-size:13px;color:var(--ink2);margin:10px 0 4px;font-weight:700" id="dgonehead" hidden>FALLEN OFF THE EDGE (gone — not stored anywhere):</p>
+    <div class="tokstream" id="dgone" hidden style="opacity:.8;min-height:2.4em"></div>
+    <div id="dans" hidden style="background:var(--card);border:1px solid var(--hair);border-left:4px solid var(--star);border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:15px"></div>
+    <p class="fignote" id="dnote">The first message contains something that will matter later.</p>
+  </div>
+
+  <p>Two practical habits fall out of this. <b>Restate what matters:</b> in a long
+  session, re-paste the key facts instead of trusting the desk. <b>Diagnose weird
+  failures at the right level:</b> if the task lives in letters, expect trouble and
+  force the spelling trick.</p>
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="try">
+  <div class="stype">4 · Try it</div>
+  <h2>Find its blind spots</h2>
+
+  <p><b>1. The count.</b> Ask it to count letters in five words — try <i>strawberry,
+  Mississippi, bookkeeper</i>, and two of your own. Score it.</p>
+  <p><b>2. The fix.</b> For any miss, say: <i>"Spell the word one letter per line, then
+  count."</i> Watch the accuracy change, and explain to yourself why.</p>
+  <p><b>3. The reversal.</b> Ask it to spell a long word backwards, fast. Then ask
+  the same with the one-letter-per-line trick.</p>
+  <p><b>If it gets everything right:</b> newer models have been specifically trained
+  around these famous failures — that's not vision, it's memorized workarounds. Push
+  harder: invent a word it has never seen (<i>brontofraggle</i>), ask it to count
+  letters across a whole sentence at once, or ask which is alphabetically first among
+  five made-up words. The blindness is still there; the workarounds only cover the
+  famous cases.</p>
+  <button class="mark" data-for="try">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More on tokens and training, if you want it</h2>
+
+  <div class="gd"><b>Chop your own text.</b> OpenAI's tokenizer playground
+  (platform.openai.com/tokenizer) shows exactly how any sentence you type gets
+  split into pieces. Paste English, then paste Albanian — watch the difference.</div>
+  <div class="gd"><b>Stretch.</b> Find three Albanian words the tokenizer splits
+  into many small pieces. What does that predict about how well models handle
+  smaller languages — and what would fix it?</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">5 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Why does an AI sometimes fail to count the letters in a word?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="1">It sees the word as chunks (tokens), never the letters inside</button>
+    <button class="choice" data-ok="0">Words like 'strawberry' were left out of its training data</button>
+    <button class="choice" data-ok="0">Counting requires a separate calculator tool</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. A very long chat 'forgets' its beginning. What happened?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="1">The conversation exceeded the context window, so the earliest tokens no longer fit</button>
+    <button class="choice" data-ok="0">The AI summarizes and discards old messages to save money</button>
+    <button class="choice" data-ok="0">Chats are automatically trimmed after one hour</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From lesson 1 — when the model answers a question, where does the answer come from?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">A database of answers built during training</button>
+    <button class="choice" data-ok="1">It is generated as a plausible continuation, piece by piece</button>
+    <button class="choice" data-ok="0">A live search of the internet</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">6 · Build</div>
+  <h2>The blind-spot report</h2>
+  <div class="buildtask">
+
+  <p>Collect three failures you caused on purpose and can explain: at least one
+  letter-level task, plus any others you discover. For each, write two sentences —
+  what failed, and <i>why</i>, using the words token or context window correctly.</p>
+  <p><b>Turn-in:</b> screenshots of the three failures plus your explanations.</p>
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">7 · Done</div>
+  <h2 id="doneHead">Finish week 2</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint in a month. Turn in all four builds and you are on the list for the closing lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 2</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-llm-1.html">&larr; Week 1</a> <a href="lesson-llm-3.html">Week 3 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program, built with Chicago First &middot; Intro to Large Language Models, week 2 of 4 &middot; complete the sprint, join the lecture.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-llm-2';
+  const SEGS=['watch','listen','read','try','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'✓ Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='✓ Week 2 complete — undo';
+      document.getElementById('doneHead').textContent='Week 2 complete';
+      document.getElementById('doneMsg').textContent='Nice work. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 2';
+      document.getElementById('doneHead').textContent='Finish week 2';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+
+/* ---- Lesson 2 figures ---- */
+(function(){
+  const $=id=>document.getElementById(id);
+
+  /* Figure 1: token chopper */
+  const COMMON=new Set(("the a an in on is are of and to it you i my we for at was be not this that "+
+    "with have do what how why can name problem school essay help time day good best thing about "+
+    "was were will would my your our his her they them so if or but as up out no yes one two").split(" "));
+  const CHUNKS=("straw berry miss iss ippi book keep bront frag gle tion sion ing ness ment er ed es ly "+
+    "un re pre dict ex am ple chic ago prob lem con text win dow tok en chunk ter ver anti dis "+
+    "ation ity able ful est ance ence").split(" ").sort((a,b)=>b.length-a.length);
+  function hashId(s){let h=7;for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))%96491}return 1009+h}
+  function chopWord(w){
+    if(COMMON.has(w.toLowerCase()))return [w];
+    const parts=[];let i=0;const lw=w.toLowerCase();
+    while(i<lw.length){
+      let hit=null;
+      for(const c of CHUNKS){if(lw.startsWith(c,i)&&c.length>1){hit=c;break}}
+      if(hit){parts.push(w.slice(i,i+hit.length));i+=hit.length}
+      else{const take=Math.min(3,lw.length-i);parts.push(w.slice(i,i+take));i+=take}
+    }
+    return parts;
+  }
+  function chop(){
+    const text=$('tkin').value.trim()||'The strawberry problem';
+    const words=text.match(/[A-Za-z']+|[^A-Za-z\s]/g)||[];
+    const toks=[];
+    words.forEach(w=>{ (/[A-Za-z]/.test(w)?chopWord(w):[w]).forEach(p=>toks.push(p)) });
+    $('tkout').innerHTML=toks.map((t,i)=>'<span class="tok'+(i%2?' t2':'')+'">'+
+      t.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>').join(' ');
+    $('tkids').innerHTML=toks.map((t,i)=>'<span class="tok'+(i%2?' t2':'')+'">'+
+      hashId(t.toLowerCase())+'</span>').join(' ');
+  }
+  $('tkgo').addEventListener('click',chop);
+  $('tkin').addEventListener('keydown',e=>{if(e.key==='Enter')chop()});
+  chop();
+
+  /* Figure 2: the desk */
+  const CAP=26;
+  const MSGS=[
+    ["My","name","is","Amara","and","I","need","help","with","my","essay","."],
+    ["Can","you","make","the","intro","shorter","?"],
+    ["Now","check","my","topic","sentences","."],
+    ["Make","the","ending","stronger","please","."],
+    ["Also","fix","the","commas","."],
+    ["What","is","my","name","?"]
+  ];
+  const LABELS=["Send the first message",
+    'Send: "Can you make the intro shorter?"',
+    'Send: "Now check my topic sentences."',
+    'Send: "Make the ending stronger."',
+    'Send: "Also fix the commas."',
+    'Ask it: "What is my name?"'];
+  let all=[],step=0;
+  function render(){
+    const desk=all.slice(-CAP),gone=all.slice(0,Math.max(0,all.length-CAP));
+    $('ddesk').innerHTML=desk.map(t=>'<span class="tok'+(t==='Amara'?' hot':'')+'">'+t+'</span>').join(' ');
+    $('dcount').textContent=desk.length;
+    const gh=$('dgonehead'),gd=$('dgone');
+    gh.hidden=gd.hidden=gone.length===0;
+    gd.innerHTML=gone.map(t=>'<span class="tok gone">'+t+'</span>').join(' ');
+    const amaraGone=gone.includes('Amara');
+    if(step===0)$('dnote').textContent='The first message contains something that will matter later.';
+    else if(!gone.length)$('dnote').textContent='Everything still fits. The model can see the whole conversation — including the name.';
+    else if(amaraGone&&step<6)$('dnote').innerHTML='<b>Watch the fallen row: "Amara" just slid off the desk.</b> The model no longer has the name — it is not stored anywhere else. Nothing was "forgotten"; it simply is not on the desk.';
+    else $('dnote').textContent='Over capacity — the oldest tokens fall off the left edge, one for one.';
+    if(step<MSGS.length){$('dsend').textContent=LABELS[step];$('dsend').disabled=false}
+    else $('dsend').disabled=true;
+  }
+  $('dsend').addEventListener('click',()=>{
+    if(step>=MSGS.length)return;
+    all=all.concat(MSGS[step]);step++;
+    if(step===MSGS.length){
+      const gone=all.slice(0,Math.max(0,all.length-CAP));
+      const ans=$('dans');ans.hidden=false;
+      ans.innerHTML='<b>You:</b> "What is my name?"<br><b>Model:</b> "'+
+        (gone.includes('Amara')?
+         'You haven’t told me your name in this conversation."<br><span style="color:var(--ink2);font-size:14px">It is not being difficult. Amara fell off the desk three messages ago — look at the fallen row.</span>':
+         'Your name is Amara." (Everything still fit — try a longer conversation.)');
+    }
+    render();
+  });
+  $('dreset').addEventListener('click',()=>{all=[];step=0;$('dans').hidden=true;render()});
+  render();
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Write with it — honestly · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-learning.html">Leveraging AI in Your Own Education</a> / Week 3</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Leveraging AI in Your Own Education · Week 3 of 4 · about 2–4 hours</p>
+<h1>Write with it — honestly</h1>
+<p class="lede">There are two ways to point an AI at your writing. One makes you a better writer. The other makes you replaceable, and usually gets caught anyway.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>Ghostwriter vs. coach</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-learn-3-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">The same rough paragraph goes down both paths. One comes back polished and hollow. One comes back still yours — and better.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded version can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Critique mode, keeping your voice, and the one-sentence disclosure that keeps everything above board.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-learn-3-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Keep the pen</h2>
+
+
+  <p>Path one: <b>the ghostwriter.</b> "Rewrite this paragraph and make it good."
+  Back comes something smooth, correct — and hollow. It doesn't sound like you,
+  because it isn't you. It sounds like the average of everything, because that's
+  literally what the model is. Teachers read thirty essays a week; the AI-flavored
+  ones announce themselves. And even when they don't: the work isn't yours, the
+  grade isn't earned, and you didn't get better at the one skill the assignment
+  existed to build.</p>
+  <p>Path two: <b>the coach.</b> The pen stays in your hand and the AI attacks your
+  draft:</p>
+  <p>"Point at my three weakest sentences and say why each is weak."<br>
+  "Argue against my thesis as hard as you can."<br>
+  "Where does my logic skip a step?"<br>
+  "Which paragraph should go first, and why?"</p>
+  <p>Then <b>you</b> rewrite. Every word of the revision is yours; the AI just showed
+  you where to dig. That's the same thing a great editor does, and no one calls a
+  human editor cheating.</p>
+  <p><b>Voice</b> is the tell. Your writing has fingerprints — the way you overuse
+  dashes, your slightly-too-casual transitions, the joke you couldn't resist. A
+  ghostwritten paragraph has no fingerprints. Guard yours; it's the only thing in
+  the essay that can't be generated.</p>
+  <p><b>The line, in one test:</b> could you defend every sentence as yours, out
+  loud, to the teacher who assigned it? If yes, you used a coach. If no, you used a
+  ghostwriter.</p>
+  <p><b>Disclosure:</b> know your school's actual policy — they differ. And when a
+  teacher allows AI help, one honest sentence covers you: <i>"I drafted this myself;
+  I used AI to critique the draft and revised it based on that feedback."</i> If
+  writing that sentence would feel like a confession, that's your answer about
+  what you did.</p>
+
+  <!-- ============ FIGURE 1: Two paths ============ -->
+  <div class="fig" id="figpaths">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>One paragraph, two paths</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">A real draft paragraph. Send it down
+    each path.</p>
+    <div class="prefix" style="line-height:1.6">My draft: "Lake Michigan is basicly a
+    huge part of why Chicago even exists. The city grew because boats could bring
+    stuff here. Even today the lake does a lot for the city, like drinking water and
+    beaches and cooling. People forget how much they depend on it."</div>
+    <div class="figtabs" style="margin-top:10px">
+      <button class="wbtn alt pbtn" data-p="0">“Rewrite this — make it good”</button>
+      <button class="wbtn alt pbtn" data-p="1">“Critique it — don't rewrite”</button>
+    </div>
+    <div id="pout" style="margin-top:10px"></div>
+    <p class="fignote" id="pnote">Run both. The difference you can feel at the end is
+    the difference between losing your voice and finding it.</p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="try">
+  <div class="stype">4 · Try it</div>
+  <h2>Both paths, your paragraph</h2>
+
+
+  <p>Take a paragraph you actually wrote recently. Run the ghostwriter path in one
+  chat and the coach path in another. Then write your own revision using only the
+  critique.</p>
+  <p>Read all three out loud: original, ghostwritten, your revision. Which one still
+  sounds like a person — and which person?</p>
+
+  <button class="mark" data-for="try">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More on the honesty line, if you want it</h2>
+
+  <div class="gd"><b>Find your school's actual policy.</b> Ask a teacher what the
+  school's AI rule is, in writing. If there isn't one, that is a conversation
+  worth starting — bring this lesson's disclosure sentence as a proposal.</div>
+  <div class="gd"><b>Stretch.</b> Take one paragraph you already wrote and run it
+  down both paths — ghostwriter ("rewrite this") and coach ("critique this, do
+  not rewrite"). Put the results side by side. Decide which version you could
+  defend out loud, sentence by sentence.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">5 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Which use of AI keeps the work yours?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">It rewrites your draft; you read the result carefully</button>
+    <button class="choice" data-ok="1">It critiques your draft; you rewrite it yourself</button>
+    <button class="choice" data-ok="0">It writes the draft; you change some words so it sounds like you</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. What's the one-question test for whether you crossed the line?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">Did the AI produce more than half the words?</button>
+    <button class="choice" data-ok="1">Could you defend every sentence as yours, out loud, to the teacher?</button>
+    <button class="choice" data-ok="0">Did you run it through a detector first?</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From lesson 1 — 'write my college application essay' sits in which bucket, and why?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">Collaborate — it's high-stakes, so you need the help</button>
+    <button class="choice" data-ok="0">Delegate — essays are what AI is best at</button>
+    <button class="choice" data-ok="1">Never — it's the one document that exists to carry your actual voice</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">6 · Build</div>
+  <h2>The revision file</h2>
+  <div class="buildtask">
+
+
+  <p>Turn in four pieces: your original paragraph, the AI's critique, your revision,
+  and the one-sentence disclosure you'd attach if you handed this in.</p>
+  <p><b>Turn-in:</b> the file. The revision must contain no AI-written sentences —
+  that's the whole point.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">7 · Done</div>
+  <h2 id="doneHead">Finish week 3</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint in a month. Turn in all four builds and you are on the list for the closing lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete lesson 4</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-learn-2.html">&larr; Week 2</a> <a href="lesson-learn-4.html">Week 4 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program, built with Chicago First &middot; Leveraging AI in Your Own Education, week 3 of 4 &middot; complete the sprint, join the lecture.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-learn-3';
+  const SEGS=['watch','listen','read','try','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'✓ Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='✓ Lesson 4 complete — undo';
+      document.getElementById('doneHead').textContent='Lesson 4 complete';
+      document.getElementById('doneMsg').textContent='Nice work. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete lesson 4';
+      document.getElementById('doneHead').textContent='Finish week 3';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+
+/* ---- Lesson 4 figure ---- */
+(function(){
+  const $=id=>document.getElementById(id);
+  const OUT=[
+   '<p style="font-size:13px;color:var(--ink2);font-weight:700;margin:0 0 4px">GHOSTWRITER PATH:</p>'+
+   '<div class="convo"><p class="resp" style="margin:8px 0">“Lake Michigan is fundamental to Chicago\'s very existence. The city flourished as a hub of maritime commerce, and today the lake continues to provide essential services: drinking water, recreation, and climate moderation. Its importance is often overlooked.”</p></div>'+
+   '<p style="font-size:14.5px;margin:8px 0"><b>What your teacher sees:</b> clean, correct — and the word “basicly” is gone along with everything else that sounded like you. Thirty essays this week will read exactly like this. If asked to explain “climate moderation,” could you?</p>',
+   '<p style="font-size:13px;color:var(--ink2);font-weight:700;margin:0 0 4px">COACH PATH:</p>'+
+   '<div class="convo"><p class="resp" style="margin:8px 0">“Three weak points: 1) ‘basicly’ — spelling, and it hedges; commit to the claim. 2) ‘brought stuff here’ — name the stuff: lumber, grain, livestock. Specifics carry the sentence. 3) Your last line is your best idea and it\'s hiding — ‘people forget how much they depend on it’ could open the paragraph, not close it.”</p></div>'+
+   '<p style="font-size:14.5px;margin:8px 0"><b>Your revision, after the critique:</b> “People forget how much Chicago depends on Lake Michigan. The city exists because boats could carry lumber and grain here, and it runs today on what the lake still provides: drinking water, beaches, cooling.” — every word yours. The dash habit survived. It just got sharper.</p>'];
+  let seen=[false,false];
+  document.querySelectorAll('.pbtn').forEach(b=>b.addEventListener('click',()=>{
+    const p=+b.dataset.p;seen[p]=true;
+    document.querySelectorAll('.pbtn').forEach((x,j)=>x.className='wbtn pbtn'+(j===p?'':' alt'));
+    $('pout').innerHTML=OUT[p];
+    if(seen[0]&&seen[1])$('pnote').innerHTML='<b>Both paths, side by side:</b> the ghostwriter erased the writer. The coach made the writer better. Same model, same paragraph — the difference was the ask, and lesson 1\'s bucket rule: work with your name on it is a collaboration, never a handoff.';
+  }));
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

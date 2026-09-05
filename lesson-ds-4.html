@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A real analysis, start to finding · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-data.html">Data Science, from zero</a> / Week 4</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Data Science, from zero · Week 4 of 4 · about 2–4 hours</p>
+<h1>A real analysis, start to finding</h1>
+<p class="lede">The capstone week. Question, table, moves, chart, and a finding you can defend — the full loop, on data of your own.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>The loop: question to finding</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-ds-4-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Every analysis is the same loop — and the finding must not outrun the data.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>What separates a finding from a vibe: the receipts, and the sentence that says what the data does not prove.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-ds-4-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>The loop, and the overclaim</h2>
+
+
+  <p>Everything you learned this month is one machine now. Every real analysis —
+  in a newsroom, a lab, a company — runs the same loop:</p>
+  <p><b>1. A question you actually care about.</b> Sharp beats grand: "which weekday
+  does the shop sell the most?" beats "understand the shop".</p>
+  <p><b>2. A table that could answer it.</b> Know what one row is before you touch
+  anything else.</p>
+  <p><b>3. The moves.</b> Filter to the rows that matter, group to fold them,
+  sort to rank them. Count before and after every filter.</p>
+  <p><b>4. A picture.</b> The chart type follows the question — compare, change,
+  or relationship. Axis at zero unless you can defend otherwise. Labels and
+  units, always.</p>
+  <p><b>5. The finding — three sentences.</b> What I measured. What I found. What
+  this does <i>not</i> prove. That third sentence is the professional one. Data
+  from one month does not prove a law of nature; eight cities do not speak for
+  every city; sales going up when it rains does not mean rain causes sales.</p>
+  <p>The failure mode of week 4 is not broken code — it is the <b>overclaim</b>:
+  a true computation dressed as a bigger truth than it earned. "Coastal cities
+  average fewer people" is what your table said. "People prefer living inland"
+  is a theory your table never tested. The gap between those two sentences is
+  where data science either earns trust or loses it. Calibrate yourself:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Supported, or too far?</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Six claims, each with what the
+    data actually showed. Sort them.</p>
+    <div id="claims"></div>
+    <p class="fignote" id="csum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>The capstone notebook</h2>
+  <p>One month of sales from a small (fictional) Tirana shop — 120 rows. The notebook walks the loop once with you, then hands you the wheel: your question, your moves, your chart, your three-sentence finding.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/ds4-capstone.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/ds4-capstone.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Data of your own, if you want it</h2>
+
+  <div class="gd"><b>Kaggle.</b>
+  <a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener">kaggle.com/datasets</a>
+  — tens of thousands of real datasets: football, films, weather, prices.
+  Downloadable as CSV, ready for read_csv.</div>
+  <div class="gd"><b>Google Dataset Search.</b>
+  <a href="https://datasetsearch.research.google.com" target="_blank" rel="noopener">datasetsearch.research.google.com</a>
+  — a search engine that only finds datasets.</div>
+  <div class="gd"><b>Stretch build.</b> Rerun the whole loop on a dataset you chose
+  yourself. Same rules: sharp question, counted filters, honest chart, three
+  sentences. This is exactly the shape of a portfolio piece.</div>
+
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. The table shows ice-cream sales are higher on hot days. Which claim is supported?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">Heat causes people to buy ice cream</button>
+    <button class="choice" data-ok="1">In this data, hotter days had higher sales</button>
+    <button class="choice" data-ok="0">Ice cream sales will be high next summer</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. The third sentence of a finding says:</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">What the analyst personally believes</button>
+    <button class="choice" data-ok="1">What the data does not prove</button>
+    <button class="choice" data-ok="0">Which chart was used</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 3: your capstone bar chart should start its axis at…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">the smallest value in the data</button>
+    <button class="choice" data-ok="1">zero, unless you can defend otherwise</button>
+    <button class="choice" data-ok="0">90</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>The capstone: your analysis</h2>
+  <div class="buildtask">
+
+
+  <p>Run the full loop in the notebook: your question about the shop data (or a
+  dataset you chose), your filters and groups with counts shown, one honest
+  chart, and the three-sentence finding — measured, found, not-proven.</p>
+  <p><b>Turn-in:</b> the notebook itself (File &rarr; Download .ipynb) plus a
+  screenshot of the chart and finding. <b>This turn-in completes the sprint</b> —
+  your teacher confirms all four weeks, and you are on the list for the live
+  lecture with John Santerre.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 4</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 4</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-ds-3.html">&larr; Week 3</a> <a href="sprint-data.html">Back to the sprint &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Data Science, from zero, week 4 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-ds-4';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 4 complete — undo';
+      document.getElementById('doneHead').textContent='Week 4 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 4';
+      document.getElementById('doneHead').textContent='Finish week 4';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const CS=[
+ ["Data: in 120 rows, Saturday has the highest mean sales.","Claim: \u201cSaturday is this shop\u2019s best day this month.\u201d",1,
+  "Supported \u2014 the claim stays inside the month and the shop the table describes."],
+ ["Data: in 120 rows, Saturday has the highest mean sales.","Claim: \u201cAlbanians shop most on Saturdays.\u201d",0,
+  "Too far \u2014 one shop, one month, one country-sized conclusion. The table never tested Albania."],
+ ["Data: coastal rows average 40% higher sales in July.","Claim: \u201cIn this data, July sales were higher at coastal locations.\u201d",1,
+  "Supported \u2014 measured, hedged to the data, no cause claimed."],
+ ["Data: coastal rows average 40% higher sales in July.","Claim: \u201cThe sea makes people spend more.\u201d",0,
+  "Too far \u2014 tourists, holidays, and prices all differ by the coast. The data showed a difference, not a cause."],
+ ["Data: 3 of 120 rows are missing the price column.","Claim: \u201cAverages using price rest on 117 rows, not 120.\u201d",1,
+  "Supported \u2014 and saying so is exactly the receipts habit."],
+ ["Data: sales rose every week for four weeks.","Claim: \u201cSales will keep rising next month.\u201d",0,
+  "Too far \u2014 four points make a trend inside the data, not a promise about the future."]];
+  const wrap=document.getElementById('claims');let done=0,score=0;
+  CS.forEach(c=>{
+    const card=document.createElement('div');card.className='qcard';
+    card.innerHTML='<div class="qq" style="font-size:14px"><span style="color:var(--ink2)">'+c[0]+'</span><br>'+c[1]+'</div>';
+    ['Supported','Too far'].forEach((lbl,j)=>{
+      const b=document.createElement('button');b.className='choice';b.textContent=lbl;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done)return;card.dataset.done=1;
+        const ok=(j===0)===(c[2]===1);if(ok)score++;done++;
+        card.classList.add(ok?'good':'bad');
+        [...card.querySelectorAll('.choice')].forEach(x=>x.disabled=true);
+        const fb=document.createElement('div');fb.className='qfb';
+        fb.innerHTML=(ok?'<b>Called it.</b> ':'<b>Reveal:</b> ')+c[3];
+        card.appendChild(fb);
+        if(done===CS.length)document.getElementById('csum').innerHTML=
+          '<b>'+score+' of '+CS.length+'.</b> The gap between computed and claimed is where trust lives.';
+      });card.appendChild(b);});
+    wrap.appendChild(card);});
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

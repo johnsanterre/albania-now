@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The bigram machine · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-llm.html">Intro to Large Language Models</a> / Week 4</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Intro to Large Language Models · Week 4 of 4 · about 2–4 hours</p>
+<h1>The bigram machine</h1>
+<p class="lede">Counts become probabilities, probabilities become dice, and your table starts writing. Badly — and that badness is the most instructive thing you'll read all week.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>The table starts talking</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-llm-4-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Rolling dice over a counting table produces text that has never existed — and it already looks weirdly English-shaped.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded version can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Normalize, roll, repeat: how a table of counts generates brand-new text.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-llm-4-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>From counts to text</h2>
+
+
+  <p>Your table can predict one next letter. To make it <i>write</i>, you need
+  two small moves.</p>
+  <p><b>Move one: turn counts into probabilities.</b> If, after <b>t</b>, the
+  table saw <b>h</b> 40 times, <b>o</b> 10 times, and space 50 times, divide by
+  the total: h gets 40%, o gets 10%, space gets 50%. Every row of the table
+  becomes a set of betting odds that sums to one hundred percent.</p>
+  <p><b>Move two: roll the dice.</b> Start with a letter. Look up its row. Pick
+  the next letter <i>randomly, weighted by the odds</i> — h wins 40% of such
+  rolls. Now you have a new letter; look up ITS row, roll again. Repeat a
+  hundred times and the machine has written a line of text that has never
+  existed anywhere.</p>
+  <p>The output is gibberish — but look closely at the gibberish. Word lengths
+  look right. Vowels and consonants alternate mostly-plausibly. A q, when one
+  appears, is followed by u. It's wrong the way English is wrong, not the way
+  static is wrong — because everything it knows, it learned from real text.
+  This loop — <b>look up, roll, append, repeat</b> — is exactly the loop the
+  biggest models on earth run. What changes later is only how smart the "look
+  up" step gets.</p>
+
+  <!-- ============ FIGURE 1: The generator ============ -->
+  <div class="fig" id="figgen">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Roll the dice, write a line</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">This machine counted 398
+    characters of plain English. Watch each roll: the current letter's row, the
+    odds, the winner.</p>
+    <div class="figtabs">
+      <button class="wbtn" id="groll">One roll</button>
+      <button class="wbtn" id="gline">Write a line</button>
+      <button class="wbtn alt" id="greset">Clear</button>
+    </div>
+    <p style="font-size:13px;color:var(--ink2);margin:10px 0 4px;font-weight:700">THE CURRENT ROW'S ODDS:</p>
+    <div class="bars" id="godds" style="margin-bottom:8px"></div>
+    <p style="font-size:13px;color:var(--ink2);margin:10px 0 4px;font-weight:700">THE MACHINE'S TEXT SO FAR:</p>
+    <div class="prefix" id="gout" style="font-size:16px;min-height:2.2em;word-break:break-all;white-space:normal"></div>
+    <p class="fignote">Never-before-seen text, from a table and a die. When the
+    output annoys you — and it will — you have discovered exactly why context
+    matters, which is lesson 4.</p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>Build the whole machine</h2>
+  <p>The notebook builds the full 27-symbol bigram model — counts, probabilities, and the generation loop — on a bigger corpus, and you'll generate your first paragraphs of brand-new text.</p>
+  <p style="margin:14px 0 6px">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/tiny2-bigram-machine.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/tiny2-bigram-machine.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with your school Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the ▶ button or <b>Shift+Enter</b>.</li>
+    </ol>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Bigger tiny models, if you want them</h2>
+
+  <div class="gd"><b>The professional version of what you just built.</b> Andrej
+  Karpathy's free <i>"Let's build GPT"</i> lecture on YouTube builds a real
+  transformer from scratch in code. Hard, honest, and the true next rung.</div>
+  <div class="gd"><b>Stretch.</b> Retrain this week's bigram machine on a
+  different corpus — song lyrics, your own essays, a public-domain book in
+  Albanian — and watch the voice change. The corpus IS the voice.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">5 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Why divide each row's counts by the row total?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">To make the table smaller</button>
+    <button class="choice" data-ok="1">To turn counts into betting odds that sum to 100%</button>
+    <button class="choice" data-ok="0">To remove rare letters</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. The generated text has never existed before. Where does its English-ness come from?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">The random number generator prefers English</button>
+    <button class="choice" data-ok="1">Every roll is weighted by patterns counted from real text</button>
+    <button class="choice" data-ok="0">The computer's spell-checker cleans it up</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From lesson 1 — a letter pair the corpus never contained gets which odds in the machine?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">A small default chance</button>
+    <button class="choice" data-ok="1">Zero — the machine can never produce that pair</button>
+    <button class="choice" data-ok="0">Equal odds with everything else</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">6 · Build</div>
+  <h2>Best of the worst</h2>
+  <div class="buildtask">
+
+
+  <p>Generate twenty lines with your machine. Pick the three most English-looking
+  and the single strangest one. For each pick, one sentence: what did the model
+  get right or wrong, and which counts explain it?</p>
+  <p><b>Turn-in:</b> the four lines with your notes, plus the model card
+  updated for version two.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">7 · Done</div>
+  <h2 id="doneHead">Finish week 4</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint in a month. Turn in all four builds and you are on the list for the closing lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete lesson 2</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-llm-3.html">&larr; Week 3</a> <a href="sprint-llm.html">Back to the sprint &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program, built with Chicago First &middot; Intro to Large Language Models, week 4 of 4 &middot; complete the sprint, join the lecture.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-llm-4';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'✓ Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='✓ Lesson 2 complete — undo';
+      document.getElementById('doneHead').textContent='Lesson 2 complete';
+      document.getElementById('doneMsg').textContent='Nice work. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete lesson 2';
+      document.getElementById('doneHead').textContent='Finish week 4';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+
+/* ---- Lesson 2 figure ---- */
+(function(){
+  const $=id=>document.getElementById(id);
+  const CORPUS="the quick student counted every letter in the book and then the counting became a model that could write its own strange sentences about the city and the lake and the long quiet train ride home where the same student read the strange sentences out loud and laughed because the machine had learned the shape of english from nothing but counting what follows what in the text of an ordinary paragraph";
+  const counts={};
+  for(let i=0;i<CORPUS.length-1;i++){
+    const a=CORPUS[i],b=CORPUS[i+1];
+    counts[a]=counts[a]||{};counts[a][b]=(counts[a][b]||0)+1;
+  }
+  let cur='t',out='t';
+  function render(oddsRow){
+    if(oddsRow){
+      const total=Object.values(oddsRow).reduce((s,n)=>s+n,0);
+      const top=Object.entries(oddsRow).sort((x,y)=>y[1]-x[1]).slice(0,5);
+      $('godds').innerHTML=top.map(([b,n])=>{
+        const pc=Math.round(n/total*100);
+        return '<div class="bar"><span class="bw">'+(b===' '?'space':b)+'</span>'+
+          '<span class="btrack"><span class="bfill" style="width:'+pc+'%"></span></span>'+
+          '<span class="bpc">'+pc+'%</span></div>';
+      }).join('');
+    }
+    $('gout').textContent=out.replaceAll(' ','·');
+  }
+  function roll(){
+    const row=counts[cur];
+    if(!row){cur='t';return;}
+    render(row);
+    const total=Object.values(row).reduce((s,n)=>s+n,0);
+    let r=Math.random()*total;
+    for(const [b,n] of Object.entries(row)){
+      r-=n;
+      if(r<=0){cur=b;out+=b;break;}
+    }
+    render(row);
+  }
+  $('groll').addEventListener('click',roll);
+  $('gline').addEventListener('click',()=>{for(let i=0;i<60;i++)roll();});
+  $('greset').addEventListener('click',()=>{cur='t';out='t';render(counts['t']);});
+  render(counts['t']);
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

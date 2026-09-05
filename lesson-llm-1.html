@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What a language model actually is · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-llm.html">Intro to Large Language Models</a> / Week 1</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Intro to Large Language Models · Week 1 of 4 · about 2–4 hours</p>
+<h1>What a language model actually is</h1>
+<p class="lede">One trick, done at colossal scale: predict the next word. This lesson installs
+the mental model everything else in the course hangs on — and three interactive figures let
+you run the trick with your own hands.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>The prediction machine, in five minutes</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-llm-1-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">An animated explainer with narration:
+  watch an answer get built one piece at a time, and the autocomplete-on-steroids idea done honestly.
+  <span style="color:var(--ink2)">(A recorded version can replace it later.)</span></p>
+  <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Video script (for a future recording session)</summary>
+    <p style="font-size:14px;color:var(--ink2);line-height:1.6">OPEN on a phone keyboard, mid-text, autocomplete suggesting the next word.<br>
+You already use a tiny language model every day. This bar. It looks at your last few<br>
+words and guesses the next one. Now imagine that — scaled up a million times.<br>
+CUT to a chat window, type: &quot;Explain why the sky is blue, one sentence at a time.&quot;<br>
+Watch the answer arrive word by word. It&#x27;s not typing for drama. It is literally being<br>
+written one piece at a time — each word predicted from everything before it.<br>
+KEY IDEA on screen: &quot;There is no answer database inside.&quot;<br>
+The model read a huge slice of the internet and practiced one skill billions of times:<br>
+guess what comes next. Ask a question and it writes the most plausible answer into<br>
+existence — an answer that never existed before.<br>
+DEMO: ask the same question twice, get two different answers. A little on-purpose<br>
+randomness picks among good next words. Not moody — designed.<br>
+CLOSE: This one trick explains everything ahead: why it&#x27;s flexible, why it&#x27;s confident,<br>
+and why confident and correct are not the same thing. See you in the lesson.</p>
+  </details>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>The secret at the center of it all — prediction that looks like thinking, and why the mechanism explains both the magic and the mistakes. <span style="color:var(--ink2)">(Generated narration; produced audio comes later.)</span></p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-llm-1-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>No database inside</h2>
+
+  <p>A language model is a next-word predictor. It was trained by reading an enormous
+  amount of text — books, websites, code, conversations — and practicing one skill over
+  and over: <b>given everything so far, guess what comes next.</b> Billions of practice
+  rounds later, that guessing got extremely good.</p>
+  <p>When you send it a message, it does not search a database of saved answers.
+  There is no database. It writes its reply into existence one piece at a time, each
+  piece chosen because it is a plausible continuation of everything before it. The
+  answer to your question <i>did not exist</i> until the moment it was generated.</p>
+
+  <p>Before reading another word about the trick — do the trick. You already have the
+  skill; you've been training on English your whole life.</p>
+
+  <!-- ============ FIGURE 1: Be the model ============ -->
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Be the model</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Five sentences stop mid-thought. Type the
+    single word you'd bet comes next, then reveal what a language model would bet.</p>
+    <p style="font-size:14px;color:var(--ink2);margin:.2em 0 .6em" id="f1round">Round 1 of 5</p>
+    <div class="prefix" id="f1prefix"></div>
+    <div class="guessrow">
+      <input type="text" id="f1guess" maxlength="24" autocomplete="off"
+             aria-label="Your guess for the next word" placeholder="your one-word guess">
+      <button class="wbtn" id="f1reveal">Reveal the model's bets</button>
+    </div>
+    <div class="bars" id="f1bars" hidden></div>
+    <p class="fignote" id="f1note"></p>
+    <div class="guessrow" id="f1nextrow" hidden>
+      <button class="wbtn alt" id="f1next">Next round</button>
+    </div>
+    <p class="fignote" id="f1sum" hidden style="font-weight:600;color:var(--ink)"></p>
+  </div>
+
+  <p>Those percentage bars are the whole machine. At every step the model holds a ranked
+  list like that over <i>every word it knows</i>, reshaped by everything that came before.
+  Notice how the shape changed round to round: sometimes one word takes nearly all the
+  probability, sometimes the bet is spread wide — and being unsure was the <i>correct</i>
+  bet for an open sentence.</p>
+
+  <p>"Given everything so far" is the part people underestimate. Change one earlier word
+  and the entire ranking rearranges:</p>
+
+  <!-- ============ FIGURE 2: Context is everything ============ -->
+  <div class="fig" id="fig2">
+    <div class="figlabel">Interactive · Figure 2</div>
+    <h3>Context is everything</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">One word in the sentence is yours to change.
+    Watch what it does to the prediction for the blank.</p>
+    <div class="prefix" style="display:flex;flex-wrap:wrap;gap:.4em;align-items:center">
+      <span>The</span>
+      <select class="wsel" id="f2who" aria-label="Choose the subject of the sentence"></select>
+      <span>picked up the</span> <span class="blank" style="min-width:90px">&nbsp;</span>
+    </div>
+    <div class="bars" id="f2bars" style="margin-top:14px"></div>
+    <p class="fignote">"phone" is in the running for everyone — everything is always a
+    little bit possible. What the context changes is the <b>ranking</b>.</p>
+  </div>
+
+  <p>This explains three things you'll see constantly:</p>
+  <p><b>Flexibility.</b> Poems, business plans, apologies, code — it's all just text to
+  continue. One trick covers all of it.</p>
+  <p><b>Confidence without guarantee.</b> A false sentence can be perfectly plausible.
+  The machine that writes truths and the machine that writes mistakes are the same
+  machine, running the same trick.</p>
+  <p><b>Different answers to the same question.</b> There's deliberate randomness in how
+  it picks among good next words — it keeps the writing from going stale. Ask twice,
+  get two answers. Neither is "the" answer; both are draws from the same distribution.
+  Figure 3 is that machine, small enough to see through:</p>
+
+  <!-- ============ FIGURE 3: Watch it write ============ -->
+  <div class="fig" id="fig3">
+    <div class="figlabel">Interactive · Figure 3</div>
+    <h3>Watch it write</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">A tiny language model with one opinion:
+    it continues the sentence <i>"The best thing about Chicago is…"</i>. At each step you
+    can see its ranked bets and which one it drew. The dial controls how adventurous the
+    draw is.</p>
+    <div class="dialrow">
+      <span style="font-weight:600">Randomness</span>
+      <input type="range" id="f3temp" min="0" max="100" value="45"
+             aria-label="Randomness of the word draws">
+      <span id="f3tlabel" style="min-width:9em;color:var(--ink2)"></span>
+    </div>
+    <div class="guessrow">
+      <button class="wbtn" id="f3go">Write</button>
+    </div>
+    <div class="tokstream" id="f3out" aria-live="polite"><span style="color:var(--ink2)">The best thing about Chicago is</span></div>
+    <div class="bars" id="f3bars" style="min-height:104px"></div>
+    <p class="fignote" id="f3note">Press Write, then press it again. Same machine, same
+    prompt — watch whether you get the same sentence.</p>
+    <ul class="runlist" id="f3runs"></ul>
+  </div>
+
+  <p>Everything the real thing does, this toy does: ranked bets, a draw, and a sentence
+  that didn't exist until it was written. The real model's vocabulary is ~100,000 pieces
+  instead of a few dozen, and its ranking machinery took months of training — but you have
+  now seen the entire loop.</p>
+  <p>Hold on to this mental model. Every lesson in this course — tokens, training,
+  prompting, hallucination — is a consequence of it.</p>
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="try">
+  <div class="stype">4 · Try it</div>
+  <h2>Catch the real one predicting</h2>
+
+  <p>The figures above were toys with a few dozen words. Now run the same three
+  experiments on the real thing — open the AI chatbot your class uses:</p>
+  <p><b>1. The continuation.</b> Send exactly this: <i>"Continue this sentence in ten
+  different ways: The best thing about Chicago is"</i> — you're watching raw prediction
+  with the mask off. Compare its ten to Figure 3's little set.</p>
+  <p><b>2. The double ask.</b> Ask the same interesting question twice in two separate
+  chats. Compare the answers. Same machine, different draws — Figure 3's dial, hidden
+  from view.</p>
+  <p><b>3. The impossible lookup.</b> Ask: <i>"What did I have for breakfast today?"</i>
+  A good model admits it can't know. Notice what that tells you: it has no access to
+  anything but the text you give it.</p>
+  <button class="mark" data-for="try">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More of the machine, if you want it</h2>
+
+  <div class="gd"><b>Watch the idea again, bigger.</b> Search YouTube for
+  3Blue1Brown's <i>"Large language models explained briefly"</i> — the same
+  next-word machine, beautifully animated, in seven minutes.</div>
+  <div class="gd"><b>A long read that goes all the way down.</b> Stephen Wolfram's
+  essay <i>"What Is ChatGPT Doing … and Why Does It Work?"</i> (free online) walks
+  from next-word betting to the full architecture. Ambitious, readable.</div>
+  <div class="gd"><b>Stretch.</b> Your phone keyboard's suggestion bar is a tiny
+  language model. Start a sentence, accept the middle suggestion ten times, and
+  compare the result with Figure 3's toy. Same trick, different scale.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">5 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. What is the core operation a language model performs?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">Searching a database of stored answers</button>
+    <button class="choice" data-ok="1">Predicting what comes next, one piece at a time</button>
+    <button class="choice" data-ok="0">Looking up matching web pages in real time</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. You ask the same question twice and get two different answers. Why?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="1">The model picks among plausible next words with a little on-purpose randomness</button>
+    <button class="choice" data-ok="0">The second answer corrects an error it noticed in the first</button>
+    <button class="choice" data-ok="0">Someone updated the model between your questions</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. In Figure 1, the model spread its bets wide on "She opened the door and saw a…". What does that spread mean?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">The model is broken — it should always have one answer</button>
+    <button class="choice" data-ok="1">Many continuations really are plausible there, and the model's uncertainty reflects that honestly</button>
+    <button class="choice" data-ok="0">The model ran out of training data for that sentence</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">6 · Build</div>
+  <h2>Explain it to someone at home</h2>
+  <div class="buildtask">
+
+  <p>Write a half-page explanation of what a language model actually does, in your own
+  words, for someone in your family who has never used one. No jargon — if you need the
+  word "token," you've gone too deep (that's next lesson). If it helps, show them
+  Figure 1 and let them play a round.</p>
+  <p>Then actually read it to them, and write down the first question they ask you.</p>
+  <p><b>Turn-in:</b> your explanation plus their question, posted where your teacher
+  collects work. Their question is the interesting part — it's next week's material.</p>
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">7 · Done</div>
+  <h2 id="doneHead">Finish week 1</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint in a month. Turn in all four builds and you are on the list for the closing lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 1</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="sprint-llm.html">&larr; Sprint page</a> <a href="lesson-llm-2.html">Week 2 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program, built with Chicago First &middot; Intro to Large Language Models, week 1 of 4 &middot; complete the sprint, join the lecture.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-llm-1';
+  const SEGS=['watch','listen','read','try','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'✓ Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='✓ Week 1 complete — undo';
+      document.getElementById('doneHead').textContent='Week 1 complete';
+      document.getElementById('doneMsg').textContent='Nice work. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 1';
+      document.getElementById('doneHead').textContent='Finish week 1';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+
+<script>
+/* ============ Interactive figures ============ */
+(function(){
+  const $=id=>document.getElementById(id);
+  function barRow(word,pc,max,cls){
+    return '<div class="bar '+(cls||'')+'"><span class="bw">'+word+'</span>'+
+      '<span class="btrack"><span class="bfill" data-w="'+(pc/max*100).toFixed(1)+'"></span></span>'+
+      '<span class="bpc">'+(pc<1?pc.toFixed(1):Math.round(pc))+'%</span></div>';
+  }
+  function growBars(box){
+    setTimeout(()=>{
+      box.querySelectorAll('.bfill').forEach(f=>{f.style.width=f.dataset.w+'%'})},40);
+  }
+  const clean=w=>(w||'').toLowerCase().replace(/[^a-z']/g,'');
+
+  /* ---- Figure 1: Be the model ---- */
+  const W1=[
+   {pre:"The pizza came out of the",
+    note:"A peaked bet — context makes one word close to certain.",
+    d:[["oven",62],["box",15],["kitchen",12],["freezer",6],["car",3],["sky",0.4]]},
+   {pre:"She opened the door and saw a",
+    note:"A wide-open bet. Many continuations really are live here, and spreading the probability is the honest call.",
+    d:[["man",14],["dog",11],["stranger",9],["huge",8],["light",6],["package",5]]},
+   {pre:"Chicago is famous for its deep-dish",
+    note:"Nearly deterministic. Some phrases have one overwhelming continuation.",
+    d:[["pizza",93],["pizzas",3],["style",2],["crust",1]]},
+   {pre:"The score was tied with ten seconds",
+    note:"Grammar narrows it before meaning does — almost every plausible continuation is a time word.",
+    d:[["left",70],["remaining",17],["to",8],["on",4]]},
+   {pre:"To be or not to",
+    note:"Memorized text. When the training data contains a phrase a million times, prediction looks exactly like recall.",
+    d:[["be",98],["exist",1],["die",0.6]]}
+  ];
+  let r1=0,hits=0;
+  function f1show(){
+    $('f1round').textContent='Round '+(r1+1)+' of 5';
+    $('f1prefix').innerHTML=W1[r1].pre+' <span class="blank">&nbsp;</span>';
+    $('f1guess').value='';$('f1guess').disabled=false;$('f1reveal').disabled=false;
+    $('f1bars').hidden=true;$('f1bars').innerHTML='';
+    $('f1note').textContent='';$('f1nextrow').hidden=true;
+    $('f1guess').focus();
+  }
+  function f1reveal(){
+    const g=clean($('f1guess').value);
+    const d=W1[r1].d,max=d[0][1];
+    let rank=0,html='';
+    d.forEach((x,i)=>{const hit=g&&clean(x[0])===g;if(hit)rank=i+1;
+      html+=barRow(x[0],x[1],max,hit?'hit':'')});
+    $('f1bars').innerHTML=html;$('f1bars').hidden=false;growBars($('f1bars'));
+    let msg;
+    if(!g)msg='(No guess typed — the bars still tell the story.) ';
+    else if(rank===1){hits++;msg='You and the model made the same top bet. '}
+    else if(rank>0){hits++;msg='The model had your word ranked #'+rank+'. '}
+    else msg='Your word isn’t in the model’s top bets — plausible is a crowd, but a ranked one. ';
+    $('f1note').textContent=msg+W1[r1].note;
+    $('f1reveal').disabled=true;$('f1guess').disabled=true;
+    if(r1<4){$('f1nextrow').hidden=false;$('f1next').focus()}
+    else{const s=$('f1sum');s.hidden=false;
+      s.textContent='You matched the model in '+hits+' of 5 rounds. That pull you felt toward the obvious word — that is the entire machine, and you have one built in.'}
+  }
+  $('f1reveal').addEventListener('click',f1reveal);
+  $('f1guess').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('f1reveal').disabled)f1reveal()});
+  $('f1next').addEventListener('click',()=>{r1++;f1show()});
+  f1show();
+
+  /* ---- Figure 2: Context is everything ---- */
+  const W2={
+   chef:[["knife",34],["pan",22],["order",12],["plate",10],["phone",5],["towel",4]],
+   carpenter:[["hammer",38],["saw",21],["nails",14],["board",9],["phone",5],["pencil",4]],
+   toddler:[["toy",29],["crayon",18],["phone",14],["cookie",12],["cat",8],["remote",6]],
+   goalie:[["ball",52],["puck",19],["gloves",9],["bottle",5],["phone",3]],
+   surgeon:[["scalpel",44],["chart",15],["phone",9],["clamp",8],["light",6]]};
+  const sel=$('f2who');
+  Object.keys(W2).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=k;sel.appendChild(o)});
+  function f2render(){
+    const d=W2[sel.value],max=d[0][1];
+    $('f2bars').innerHTML=d.map(x=>barRow(x[0],x[1],max,'')).join('');
+    growBars($('f2bars'));
+  }
+  sel.addEventListener('change',f2render);
+  f2render();
+
+  /* ---- Figure 3: Watch it write ---- */
+  /* The tiny model is authored as full sentences; a word carries its bet the
+     first time it appears at that spot ("word:35"), and shared beginnings merge
+     into one tree. Every line below is one path the machine can take. */
+  const PATHS=[
+   "the:50 lake:35 in:40 summer:65 , when the whole city moves outside .",
+   "the lake in winter:35 , frozen:55 into sculpture .",
+   "the lake in winter , and:45 furious .",
+   "the lake shining:30 like an ocean that:60 ends at a skyline .",
+   "the lake shining like an ocean beside:40 the Loop .",
+   "the lake right:35 there at:55 the end of every street .",
+   "the lake right there beside:45 downtown .",
+   "the food:30 from:55 every corner:60 of the world .",
+   "the food from every neighborhood:40 in the city .",
+   "the food alone:45 , and everyone knows it .",
+   "the skyline:20 at:60 night:70 , seen from the lake .",
+   "the skyline at sunset:30 from the El .",
+   "the skyline rising:40 straight out of the prairie .",
+   "the people:15 who:60 talk:55 to strangers .",
+   "the people who show:45 up for each other .",
+   "the people out:40 on their porches all:60 summer .",
+   "the people out on their porches .:40",
+   "its:30 neighborhoods:40 , each one:55 a small town .",
+   "its neighborhoods , each with:45 its own flag .",
+   "its music:35 spilling:60 out of every open door .",
+   "its music scene:40 , from blues to drill .",
+   "its summers:25 , earned:60 the hard way .",
+   "its summers , all:40 festivals and beaches .",
+   "that:20 everyone:55 has:60 an opinion about it .",
+   "that everyone calls:40 it home ,:60 loudly .",
+   "that everyone calls it home .:40",
+   "that summer:45 always:55 comes back .",
+   "that summer feels:45 like a reward ."
+  ];
+  const TREE=[];
+  PATHS.forEach(line=>{
+    let opts=TREE;
+    line.split(' ').forEach(t=>{
+      const m=t.split(':'),w=m[0],wt=m[1]?+m[1]:null;
+      let node=opts.find(o=>o.w===w);
+      if(!node){node={w:w,wt:wt||100,k:null};opts.push(node)}
+      if(w!=='.'){if(!node.k)node.k=[];opts=node.k}
+      else opts=null;
+    });
+  });
+  const tempIn=$('f3temp');
+  function tlabel(){
+    const v=+tempIn.value;
+    $('f3tlabel').textContent=v===0?'zero — always the top bet':
+      v<35?'low — mostly the top bet':v<70?'medium — usual AI setting':'high — adventurous';
+  }
+  tempIn.addEventListener('input',tlabel);tlabel();
+  function probs(opts){
+    const v=+tempIn.value;
+    if(v===0){return opts.map((o,i)=>i===0?1:0)}
+    const T=Math.max(.25,v/50);
+    const raw=opts.map(o=>Math.pow(o.wt,1/T));
+    const s=raw.reduce((a,b)=>a+b,0);
+    return raw.map(x=>x/s);
+  }
+  function draw(opts,ps){
+    let r=Math.random(),acc=0;
+    for(let i=0;i<opts.length;i++){acc+=ps[i];if(r<=acc)return i}
+    return opts.length-1;
+  }
+  let running=false,runN=0;
+  const sleep=ms=>new Promise(res=>setTimeout(res,ms));
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  async function f3run(){
+    if(running)return;running=true;runN++;
+    const go=$('f3go');go.disabled=true;go.textContent='Writing…';
+    const out=$('f3out'),bars=$('f3bars');
+    out.innerHTML='<span style="color:var(--ink2)">The best thing about Chicago is</span> ';
+    const words=[];let opts=TREE;
+    while(opts){
+      const sorted=[...opts].sort((a,b)=>b.wt-a.wt);
+      const ps=probs(sorted);
+      const pick=draw(sorted,ps);
+      const max=Math.max(...ps)*100||1;
+      bars.innerHTML=sorted.map((o,i)=>barRow(o.w==='.'?'(end)':o.w,ps[i]*100,max,i===pick?'pick':'')).join('');
+      growBars(bars);
+      if(!reduced)await sleep(sorted.length>1?620:260);
+      const chosen=sorted[pick];
+      const span=document.createElement('span');
+      span.className='tok';span.textContent=chosen.w;
+      if(chosen.w===','||chosen.w==='.')span.style.background='transparent';
+      out.appendChild(span);out.appendChild(document.createTextNode(' '));
+      words.push(chosen.w);
+      opts=chosen.k;
+      if(!reduced)await sleep(140);
+    }
+    const sentence='The best thing about Chicago is '+
+      words.join(' ').replace(/ ([,.])/g,'$1');
+    const li=document.createElement('li');
+    li.innerHTML='Run '+runN+' <span style="color:var(--ink2)">(randomness '+tempIn.value+')</span>: <b></b>';
+    li.querySelector('b').textContent=sentence;
+    const list=$('f3runs');list.insertBefore(li,list.firstChild);
+    while(list.children.length>4)list.removeChild(list.lastChild);
+    const prev=[...list.children].slice(1).map(x=>x.querySelector('b').textContent);
+    $('f3note').textContent = prev.length===0?
+      'Now press Write again and compare.':
+      (prev.includes(sentence)?
+        (+tempIn.value===0?'Identical — with zero randomness this machine is a broken record. That’s why real models keep a little.':
+         'Same sentence this time — small models revisit paths. Nudge the dial and go again.'):
+        'A different sentence from the same machine and the same prompt. That’s the deliberate randomness — neither run is “the” answer.');
+    go.disabled=false;go.textContent='Write again';running=false;
+  }
+  $('f3go').addEventListener('click',f3run);
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

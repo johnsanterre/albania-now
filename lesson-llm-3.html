@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>When AI is wrong — hallucination · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-llm.html">Intro to Large Language Models</a> / Week 3</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Intro to Large Language Models · Week 3 of 4 · about 2–4 hours</p>
+<h1>When AI is wrong — hallucination</h1>
+<p class="lede">The machine can invent a book that doesn't exist, with page numbers. Confidence is not evidence — and after today, you verify.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>The book that never existed</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-llm-3-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Planned: ~5 minutes. A live hallucination hunt: fake citations, real checking.
+  <span style="color:var(--ink2)">(Generated slide video with narration; a recorded
+  version can replace it later.)</span></p>
+  <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Video script (for a future recording session)</summary>
+    <p style="font-size:14px;color:var(--ink2);line-height:1.6">OPEN on a tidy AI answer citing a study, an author, a journal, a year.<br>
+Looks airtight. One problem — WE&#x27;RE GOING TO CHECK IT.<br>
+SCREENCAST: search the citation. The journal is real. The author exists. The paper?<br>
+Nowhere. Invented. With page numbers.<br>
+EXPLAIN over the mechanism graphic from lesson 1: the model writes what&#x27;s PLAUSIBLE.<br>
+Usually plausible = true. But when it doesn&#x27;t know, the plausible-sentence machine<br>
+keeps going — a statistic with exactly the shape a statistic should have. Wrong, and<br>
+fluent about it.<br>
+KEY LINE, full screen: &quot;The wrongness has no flavor.&quot; A hallucinated sentence reads<br>
+exactly like the true ones around it. Confidence is not evidence.<br>
+THE RULE, said slowly: if it&#x27;s checkable and it matters, check it. Name → search it.<br>
+Quote → find the original. Number → find the source.<br>
+DEMO the professional&#x27;s move: &quot;give me sources I can verify, and say &#x27;I&#x27;m not sure&#x27;<br>
+where you&#x27;re not.&quot; Better — not a substitute for checking.<br>
+CLOSE: today you set a trap for the machine. Most claims will hold. Odds are, one<br>
+won&#x27;t. Finding it changes how you read AI forever.</p>
+  </details>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Why a plausibility machine tells fluent lies, why the wrongness has no flavor, and the one rule professionals live by. <span style="color:var(--ink2)">(Generated narration; produced audio comes later.)</span></p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-llm-3-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Plausible is not true</h2>
+
+  <p><b>Hallucination</b> is the industry's word for confident invention: the model
+  states something false with the same fluent tone it uses for facts. Fake studies.
+  Misattributed quotes. Dates that are off by years. Court cases that were never
+  filed — lawyers have been sanctioned for citing them.</p>
+  <p>It comes straight from the lesson-1 mechanism. The model writes plausible
+  continuations. Truth and plausibility usually travel together — but when the fact
+  is rare, recent, or just missing from training, the machine doesn't hit an empty
+  cell in a database (there is no database). It keeps producing plausible text,
+  because that's the only thing it does.</p>
+  <p>What makes this dangerous is that <b>the wrongness has no flavor.</b> Human lies
+  have tells. A hallucination reads exactly like the truths around it — same
+  confidence, same polish. You cannot detect it by tone. Ever.</p>
+
+  <p>Prove it to yourself. Every card below is written in the same confident voice:</p>
+
+  <!-- ============ FIGURE 1: Spot the hallucination ============ -->
+  <div class="fig" id="fighal">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Spot the hallucination</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Two rounds. In each, three claims are
+    true and one is invented. Click the invented one.</p>
+    <p style="font-size:14px;color:var(--ink2);font-weight:700;margin:.4em 0" id="haltopic"></p>
+    <div id="halcards"></div>
+    <p class="fignote" id="halnote"></p>
+    <div class="guessrow" id="halnextrow" hidden><button class="wbtn alt" id="halnext">Next round</button></div>
+  </div>
+
+  <p>So the rule, for the rest of your life with these tools: <b>if it's checkable
+  and it matters, check it.</b> Names, quotes, numbers, citations, medical claims,
+  legal claims — a minute of searching before you repeat it. You can also reduce
+  (not eliminate) the risk: ask for verifiable sources, invite "I'm not sure," use
+  tools with live search for recent facts. Reduction is not exemption. Verify.</p>
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="try">
+  <div class="stype">4 · Try it</div>
+  <h2>Set the trap</h2>
+
+  <p>Pick a topic you genuinely know — your sport's records, a game's lore, a band's
+  discography, Chicago history you're solid on.</p>
+  <p><b>1.</b> Ask the AI ten detailed factual questions about it.</p>
+  <p><b>2.</b> Grade every answer against sources or your own verified knowledge.</p>
+  <p><b>3.</b> For anything wrong: ask the AI "are you sure?" and watch what happens —
+  sometimes it corrects, sometimes it doubles down politely. Note which.</p>
+  <p><b>If all ten hold up:</b> good — that's years of engineering against
+  hallucination working, on a topic with plenty of training data. It is not a safety
+  guarantee. Raise the stakes where hallucination still lives: ask for <i>direct
+  quotes with page numbers</i> from a specific book, or five academic citations on a
+  narrow topic, and verify those. The thinner the territory, the sooner the machine
+  starts inventing.</p>
+  <button class="mark" data-for="try">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Sharper defenses, if you want them</h2>
+
+  <div class="gd"><b>The phenomenon has a name.</b> The Wikipedia article
+  <i>"Hallucination (artificial intelligence)"</i> catalogs real incidents —
+  invented court cases, fake citations — and why the mechanism produces them.</div>
+  <div class="gd"><b>Stretch.</b> Apply the verify rule to one real AI answer this
+  week: anything with a number, a name, a date, or a quote gets checked against a
+  source you can open. Log what survived.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">5 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Why does a language model hallucinate?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="1">It writes plausible text; when it lacks the fact, plausible-but-false text comes out the same pipe</button>
+    <button class="choice" data-ok="0">It is trained to guess rather than admit uncertainty, as a deliberate lie</button>
+    <button class="choice" data-ok="0">Errors accumulate the longer a conversation runs</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. Which signal reliably identifies a hallucinated claim?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">A hesitant, less confident tone</button>
+    <button class="choice" data-ok="1">None — hallucinations read exactly like true statements; only checking works</button>
+    <button class="choice" data-ok="0">Unusual precision, like exact page numbers</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From lesson 3 — which claim deserves the MOST suspicion before you check it?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">A general explanation of photosynthesis</button>
+    <button class="choice" data-ok="1">A specific citation on a narrow, thinly-documented topic</button>
+    <button class="choice" data-ok="0">The definition of a common English word</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">6 · Build</div>
+  <h2>The report card</h2>
+  <div class="buildtask">
+
+  <p>Write the report card from your trap: the ten claims, your verdict on each
+  (verified / wrong / couldn't check), sources for at least three verdicts, and —
+  the headline — anything false you caught, quoted exactly.</p>
+  <p>Close with one sentence: what will you now always check before using AI output
+  in real work?</p>
+  <p><b>Turn-in:</b> the report card. Keep it; you'll cite your own evidence in
+  class discussions.</p>
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">7 · Done</div>
+  <h2 id="doneHead">Finish week 3</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint in a month. Turn in all four builds and you are on the list for the closing lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete lesson 6</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-llm-2.html">&larr; Week 2</a> <a href="lesson-llm-4.html">Week 4 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program, built with Chicago First &middot; Intro to Large Language Models, week 3 of 4 &middot; complete the sprint, join the lecture.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-llm-3';
+  const SEGS=['watch','listen','read','try','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'✓ Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='✓ Lesson 6 complete — undo';
+      document.getElementById('doneHead').textContent='Lesson 6 complete';
+      document.getElementById('doneMsg').textContent='Nice work. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete lesson 6';
+      document.getElementById('doneHead').textContent='Finish week 3';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+
+/* ---- Lesson 6 figure ---- */
+(function(){
+  const $=id=>document.getElementById(id);
+  const ROUNDS=[
+   {topic:"Round 1 · The Great Chicago Fire, 1871",
+    claims:[
+     ["It began on October 8, 1871, near the O’Leary family’s barn on the Near West Side.",true,""],
+     ["The Chicago Water Tower survived the fire and still stands on Michigan Avenue.",true,""],
+     ["Firefighters finally stopped the blaze by dynamiting a firebreak along Wacker Drive.",false,
+      "Invented — and it sounded exactly as solid as the others. Wacker Drive didn’t exist until the 1920s; the fire mostly burned until rain and the lake shore stopped it."],
+     ["Roughly 100,000 people — about a third of the city — lost their homes.",true,""]]},
+   {topic:"Round 2 · Deep-dish pizza",
+    claims:[
+     ["Pizzeria Uno in Chicago claims to have invented deep-dish in 1943.",true,""],
+     ["The dish took the gold medal for “best new recipe” at the 1933 Chicago World’s Fair.",false,
+      "Invented. Deep-dish didn’t exist until about 1943 — a decade after that fair closed. Plausible year, plausible city, pure fiction."],
+     ["The crust rises up the side of the pan — closer to a pie than a flatbread.",true,""],
+     ["Locals typically eat it with a knife and fork.",true,""]]}];
+  let r=0,score=0;
+  function show(){
+    const R=ROUNDS[r];
+    $('haltopic').textContent=R.topic;
+    $('halnote').textContent='';$('halnextrow').hidden=true;
+    const wrap=$('halcards');wrap.innerHTML='';
+    R.claims.forEach((c,i)=>{
+      const b=document.createElement('button');
+      b.className='choice';b.textContent=c[0];
+      b.addEventListener('click',()=>{
+        if(wrap.dataset.done)return;wrap.dataset.done=1;
+        [...wrap.children].forEach((x,j)=>{
+          x.classList.add(R.claims[j][1]?'right':'wrong');
+          x.disabled=true;
+          if(!R.claims[j][1])x.textContent='INVENTED: '+R.claims[j][0];
+        });
+        const hit=!c[1];if(hit)score++;
+        const fake=R.claims.find(x=>!x[1]);
+        $('halnote').innerHTML=(hit?'<b>Caught it.</b> ':'<b>It got you — you picked a true one.</b> ')+fake[2]+
+          ' Notice what your ear was doing: nothing. The wrongness has no flavor.';
+        if(r<ROUNDS.length-1)$('halnextrow').hidden=false;
+        else $('halnote').innerHTML+=' <br><b>Score '+score+' of 2.</b> Now set the same trap for the real AI in the Try segment — with a topic you know cold.';
+      });
+      wrap.appendChild(b);
+    });
+    delete wrap.dataset.done;
+  }
+  $('halnext').addEventListener('click',()=>{r++;show()});
+  show();
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

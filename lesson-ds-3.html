@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Charts that tell the truth · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-data.html">Data Science, from zero</a> / Week 3</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Data Science, from zero · Week 3 of 4 · about 2–4 hours</p>
+<h1>Charts that tell the truth</h1>
+<p class="lede">A chart is a claim. This week: the three chart types that cover most of life, and the axis trick that makes honest numbers lie.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>Three charts, one crime</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-ds-3-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Bar compares, line shows change, scatter shows relationship — and the chopped axis lies with true numbers.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Why the same two numbers can look equal or wildly different, depending on one quiet choice about the axis.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-ds-3-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>The claim, the chart, and the chop</h2>
+
+
+  <p>A chart is not decoration. It is a <b>claim about data, made visual</b> — and
+  like any claim it can be honest or dishonest with the exact same numbers. Three
+  chart types cover most of what you will ever need:</p>
+  <p><b>Bar charts compare.</b> Categories side by side — cities, teams, months as
+  separate things. The eye reads the bar's <i>length</i>, which is why the axis
+  trick below works so well on bars.</p>
+  <p><b>Line charts show change.</b> One thing over time. The eye reads the slope —
+  is it rising, falling, bending?</p>
+  <p><b>Scatter plots show relationship.</b> Two facts about the same things, one
+  per axis: each dot a city, across is population, up is number of schools. A
+  cloud that leans is a relationship; a shapeless cloud is none.</p>
+  <p>Now the crime. A bar chart's power comes from a silent promise: <b>the bars
+  start at zero</b>, so twice the length means twice the value. Start the axis at
+  90 instead of 0, and a 96 next to a 100 stops looking like a 4% difference and
+  starts looking like a landslide. Nothing was faked — the numbers are true, the
+  labels are true — and the picture lies. News graphics do this constantly, and
+  after today you will spot it constantly. There are honest reasons to zoom an
+  axis on a <i>line</i> chart (small changes matter in a heartbeat monitor), but a
+  zoomed <i>bar</i> chart is almost always a thumb on the scale.</p>
+  <p>Two more honesty rules. <b>Label everything</b> — a number without units is
+  not information (96 what? lek, people, percent?). And <b>totals versus
+  per-person</b>: Tirana has more of almost everything than Sarand&euml; because
+  it has more people; dividing by population is often the honest comparison.
+  Choosing which one to show <i>is</i> the analysis.</p>
+  <p>Feel the chop with your own hands:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>The chopped axis</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Two shops. Shop A sold 96, Shop B
+    sold 100 — a 4% difference. Drag where the axis starts.</p>
+    <div style="display:flex;align-items:flex-end;gap:40px;height:180px;margin:14px 0 4px;padding-left:8px" id="bars">
+      <div style="text-align:center"><div id="barA" style="width:64px;background:var(--star);border-radius:4px 4px 0 0;transition:height .15s"></div><b>Shop A</b><br><span style="font-size:13px;color:var(--ink2)">96</span></div>
+      <div style="text-align:center"><div id="barB" style="width:64px;background:var(--navy);border-radius:4px 4px 0 0;transition:height .15s"></div><b>Shop B</b><br><span style="font-size:13px;color:var(--ink2)">100</span></div>
+    </div>
+    <label style="font-size:14px">Axis starts at: <b id="axv">0</b>
+      <input type="range" id="ax" min="0" max="95" value="0" style="width:min(300px,60vw);vertical-align:middle"></label>
+    <p class="fignote" id="axsum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>Draw both versions yourself</h2>
+  <p>The notebook uses matplotlib to draw the honest chart and the chopped one from the same numbers, then a line chart and a scatter — four cells, four pictures.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/ds3-charts.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/ds3-charts.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Sharper eyes, if you want them</h2>
+
+  <div class="gd"><b>The matplotlib gallery.</b>
+  <a href="https://matplotlib.org/stable/gallery/" target="_blank" rel="noopener">matplotlib.org/stable/gallery</a>
+  — every chart the library can draw, each with the code that drew it. Steal
+  freely; that is what it is for.</div>
+  <div class="gd"><b>A whole book on this.</b> <i>How Charts Lie</i> by Alberto
+  Cairo — a data-visualization professor cataloguing exactly these tricks in real
+  published graphics. If this lesson was fun, the book is more of it.</div>
+  <div class="gd"><b>Stretch build.</b> This week, find one real chart in the wild
+  — news, social media, an ad — that uses a chopped axis or missing labels.
+  Screenshot it and write two sentences: what it shows, and what it wants you to
+  believe.</div>
+
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. A bar chart of two values, 96 and 100, starts its axis at 90. The picture now says:</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">B is slightly ahead — same as the data</button>
+    <button class="choice" data-ok="1">B dwarfs A — a visual claim the numbers do not make</button>
+    <button class="choice" data-ok="0">Nothing changed</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. You want to show how one city’s population changed over 50 years. Best tool:</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">Bar chart</button>
+    <button class="choice" data-ok="1">Line chart</button>
+    <button class="choice" data-ok="0">Scatter plot</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 2: which pandas move would you reach for to compare average income per region?</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">sort_values</button>
+    <button class="choice" data-ok="1">groupby</button>
+    <button class="choice" data-ok="0">head</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>One honest chart, one liar, one caption</h2>
+  <div class="buildtask">
+
+
+  <p>In the notebook, pick any numbers you like — real or invented — and draw the
+  same comparison twice: once honestly (axis at zero, labels, units) and once as a
+  liar (chopped axis). Under them, write a two-sentence caption naming exactly
+  what the second chart does to the viewer.</p>
+  <p><b>Turn-in:</b> a screenshot of both charts and your caption.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 3</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 3</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-ds-2.html">&larr; Week 2</a> <a href="lesson-ds-4.html">Week 4 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Data Science, from zero, week 3 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-ds-3';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 3 complete — undo';
+      document.getElementById('doneHead').textContent='Week 3 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 3';
+      document.getElementById('doneHead').textContent='Finish week 3';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const A=96,B=100,H=150;
+  const ax=document.getElementById('ax'),axv=document.getElementById('axv'),
+        bA=document.getElementById('barA'),bB=document.getElementById('barB'),
+        sum=document.getElementById('axsum');
+  function upd(){
+    const z=+ax.value;axv.textContent=z;
+    const hA=Math.max(2,(A-z)/(100-z)*H),hB=(B-z)/(100-z)*H;
+    bA.style.height=hA+'px';bB.style.height=hB+'px';
+    const ratio=(B-z)/Math.max(1e-9,(A-z));
+    sum.innerHTML= z===0
+      ? 'Axis at 0: B\u2019s bar is 1.04\u00d7 A\u2019s \u2014 exactly what the data says.'
+      : 'Axis at '+z+': B\u2019s bar is now <b>'+(ratio>50?'\u221e':ratio.toFixed(1))+
+        '\u00d7</b> A\u2019s on screen. Same two numbers. The picture is doing the lying.';
+  }
+  ax.addEventListener('input',upd);upd();
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

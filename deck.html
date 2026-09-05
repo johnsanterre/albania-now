@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Albania Now — Free Focus</title>
+<style>
+  :root{
+    --ground:#FAF8F3; --ink:#1E1A19; --dim:#6B5D5A;
+    --red:#D8291F; --deep:#7E1B14; --black:#1A1414; --pale:#F2D7D5;
+    --card:#FFFFFF; --line:#E6DCD8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-snap-type:y mandatory}
+  body{margin:0;background:var(--ground);color:var(--ink);
+       font:16px/1.55 -apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+  .slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;
+         position:relative;border-bottom:1px solid var(--line)}
+  .band{display:flex;height:10px;flex:none}
+  .band .b1{flex:4;background:var(--red)}
+  .band .b2{flex:1;background:var(--black)}
+  .band .b3{flex:1;background:var(--pale)}
+  .inner{flex:1;display:flex;flex-direction:column;max-width:1000px;width:100%;
+         margin:0 auto;padding:34px 48px 26px}
+  .brand{display:flex;align-items:baseline;gap:14px;font-size:12px;letter-spacing:.14em;
+         text-transform:uppercase;color:var(--dim)}
+  .brand .ff{font-weight:800;color:var(--deep);letter-spacing:.18em}
+  .brand .sep{color:var(--line)}
+  .brand .pg{margin-left:auto;letter-spacing:.06em}
+  h1{font-family:Georgia,'Times New Roman',serif;font-size:52px;line-height:1.12;
+     margin:26px 0 14px;font-weight:700;text-wrap:balance;max-width:16em}
+  h2{font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.15;
+     margin:22px 0 6px;font-weight:700;text-wrap:balance}
+  .kick{color:var(--red);font-size:13px;font-weight:700;letter-spacing:.14em;
+        text-transform:uppercase;margin-top:34px}
+  .lede{font-size:20px;line-height:1.55;max-width:36em;margin:6px 0 0}
+  .welcome{font-size:15px;font-weight:700;letter-spacing:.05em;color:var(--deep);margin-top:8px}
+  .steps{display:flex;gap:12px;margin-top:22px;align-items:stretch;flex-wrap:wrap}
+  .step{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);
+        border-radius:10px;padding:14px 16px}
+  .step .k{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--red);
+           text-transform:uppercase}
+  .step p{margin:6px 0 0;font-size:14px}
+  .cat{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px}
+  .cat th{text-align:left;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+          color:var(--dim);padding:6px 14px 6px 0;border-bottom:2px solid var(--red)}
+  .cat td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .cat .t{font-weight:700;color:var(--deep)}
+  .cat .n{color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .spk{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);
+       border-radius:0 10px 10px 0;padding:15px 20px;margin:12px 0;max-width:56em}
+  .spk .who{font-weight:800;font-size:17px;color:var(--deep)}
+  .spk .role{font-size:13.5px;color:var(--dim);margin-bottom:4px}
+  .spk p{margin:.2em 0 0;font-size:14.5px}
+  .fact{margin:9px 0;max-width:40em}
+  .fact b{color:var(--deep)}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;margin-top:14px}
+  .foot{margin-top:auto;padding-top:22px;display:flex;gap:14px;align-items:baseline;
+        font-size:12.5px;color:var(--dim);border-top:1px solid var(--line)}
+  .foot .ffm{font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--deep)}
+  .foot .r{margin-left:auto}
+  @media (max-width:760px){
+    h1{font-size:36px} h2{font-size:27px}
+    .inner{padding:24px 22px 20px}
+    .cols{grid-template-columns:1fr}
+    .steps{flex-direction:column}
+  }
+  @media print{
+    html{scroll-snap-type:none}
+    .slide{min-height:0;height:100vh;page-break-after:always;border-bottom:0}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1 · TITLE ============ -->
+<section class="slide">
+  <div class="band"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+  <div class="inner">
+    <div class="brand"><span class="ff">Free Focus</span><span class="sep">|</span>
+      <span>Albania Now</span><span class="pg">1 / 5</span></div>
+    <div class="kick">Optional learning sprints for high-school students across Albania</div>
+    <h1>Finish the month. Meet the scientist.</h1>
+    <p class="lede">Albania Now connects Albanian youth directly with working
+    professors and researchers. A sprint is four weeks of real material on one
+    topic, outside the normal curriculum, completely optional — and every student
+    who completes the work joins a live closing lecture by the sprint's scientist.</p>
+    <div class="welcome">Mir&euml; se vini &middot; Welcome &middot; all material
+    and lectures delivered in English</div>
+    <div class="foot">
+      <span class="ffm">Free Focus</span>
+      <span>a nonprofit providing technology services to nonprofits &middot;
+      built with Chicago First</span>
+      <span class="r">2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · THE MODEL ============ -->
+<section class="slide">
+  <div class="band"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+  <div class="inner">
+    <div class="brand"><span class="ff">Free Focus</span><span class="sep">|</span>
+      <span>Albania Now</span><span class="pg">2 / 5</span></div>
+    <h2>One topic. Four weeks. One lecture.</h2>
+    <div class="steps">
+      <div class="step"><div class="k">1 · Pick a sprint</div>
+        <p>Free, optional, outside coursework. A school just points students at
+        the site — no accounts, no licenses, nothing to install.</p></div>
+      <div class="step"><div class="k">2 · One lesson a week</div>
+        <p>Two to four hours: video lectures, an audio brief, interactive
+        reading, a Colab notebook, optional go-deeper material, a check, and a
+        build turned in to a teacher.</p></div>
+      <div class="step"><div class="k">3 · Four builds in</div>
+        <p>A teacher at the school confirms the turn-ins. That is the whole
+        infrastructure.</p></div>
+      <div class="step"><div class="k">4 · The lecture</div>
+        <p>Everyone who completed joins a live video lecture with the sprint's
+        scientist — and can ask them anything. Recorded and posted afterward.</p></div>
+    </div>
+    <p class="fact" style="margin-top:22px"><b>Between lessons:</b> each sprint has a
+    Discord channel — students, teachers, and mentors in one room.</p>
+    <p class="fact"><b>Milestones are physical:</b> finish a sprint, and Albania Now
+    mails the sticker for it. Collect the set.</p>
+    <p class="fact"><b>The lecture is the point.</b> The material builds the skill;
+    the lecture connects the student to a person who uses it for a living.</p>
+    <div class="foot"><span class="ffm">Free Focus</span>
+      <span>Albania Now</span><span class="r">The model</span></div>
+  </div>
+</section>
+
+<!-- ============ 3 · THE CATALOG ============ -->
+<section class="slide">
+  <div class="band"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+  <div class="inner">
+    <div class="brand"><span class="ff">Free Focus</span><span class="sep">|</span>
+      <span>Albania Now</span><span class="pg">3 / 5</span></div>
+    <h2>Five sprints, ready now</h2>
+    <table class="cat">
+      <tr><th></th><th>Sprint</th><th>What the student leaves with</th><th>Closing lecture</th></tr>
+      <tr><td class="n">01</td><td class="t">Data Science, from zero</td>
+          <td>Real Python in the browser, tables, honest charts, an analysis of
+          their own</td><td>Dr. John Santerre<br><span class="n">UC Berkeley</span></td></tr>
+      <tr><td class="n">02</td><td class="t">Planetary Exploration</td>
+          <td>Reading worlds from light, missions and instruments, Titan, a
+          planet found in data</td><td>Dr. Conor Nixon<br><span class="n">NASA Goddard</span></td></tr>
+      <tr><td class="n">03</td><td class="t">Intro to Large Language Models</td>
+          <td>The next-word machine, tokens and training, hallucination — and a
+          tiny language model they build</td><td>Dr. John Santerre<br><span class="n">UC Berkeley</span></td></tr>
+      <tr><td class="n">04</td><td class="t">AI Image Analysis on Other Planets</td>
+          <td>A crater detector built from scratch, a learning classifier, the
+          honest detection report</td><td>Dr. Conor Nixon<br><span class="n">NASA Goddard</span></td></tr>
+      <tr><td class="n">05</td><td class="t">Leveraging AI in Your Own Education</td>
+          <td>Study technique with AI, honest writing, a documented week and a
+          personal playbook</td><td>Dr. Nedelina Teneva<br><span class="n">ML researcher</span></td></tr>
+    </table>
+    <p class="fact" style="margin-top:14px">Every lesson: video + audio + interactive
+    reading + notebook + go-deeper + check + build. The material extends
+    <b>Chicago First</b>, a ten-course AI curriculum built for Chicago high-school
+    students. The catalog grows sprint by sprint.</p>
+    <div class="foot"><span class="ffm">Free Focus</span>
+      <span>Albania Now</span><span class="r">The catalog</span></div>
+  </div>
+</section>
+
+<!-- ============ 4 · THE SPEAKERS ============ -->
+<section class="slide">
+  <div class="band"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+  <div class="inner">
+    <div class="brand"><span class="ff">Free Focus</span><span class="sep">|</span>
+      <span>Albania Now</span><span class="pg">4 / 5</span></div>
+    <h2>The people at the end of the month</h2>
+    <div class="spk">
+      <div class="who">Dr. John Santerre</div>
+      <div class="role">Machine-learning faculty, UC Berkeley and SMU &middot;
+      PhD in computer science, University of Chicago</div>
+      <p>Teaches machine learning to graduate students; a photojournalist before
+      academia. Sprints 01 and 03.</p>
+    </div>
+    <div class="spk">
+      <div class="who">Dr. Conor Nixon</div>
+      <div class="role">Associate Laboratory Chief, Planetary Systems Laboratory,
+      NASA Goddard Space Flight Center</div>
+      <p>Deputy Principal Investigator on the Cassini infrared spectrometer; a
+      leading scientist on Titan; 200+ scientific papers; his research includes
+      machine learning for planetary image analysis. Sprints 02 and 04.</p>
+    </div>
+    <div class="spk">
+      <div class="who">Dr. Nedelina Teneva</div>
+      <div class="role">Machine-learning research scientist &middot; PhD in
+      computer science, University of Chicago</div>
+      <p>Research published at ICML and AISTATS; formerly ML manager at Amazon
+      on Alexa; ten-plus years teaching at UChicago, SMU, and UC Berkeley.
+      Sprint 05.</p>
+    </div>
+    <p class="fact" style="margin-top:14px"><b>The promise to students:</b> complete
+    the work, and the person on the video call is real, senior, and there to
+    answer your questions.</p>
+    <div class="foot"><span class="ffm">Free Focus</span>
+      <span>Albania Now</span><span class="r">The speakers</span></div>
+  </div>
+</section>
+
+<!-- ============ 5 · WHAT IT TAKES ============ -->
+<section class="slide">
+  <div class="band"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+  <div class="inner">
+    <div class="brand"><span class="ff">Free Focus</span><span class="sep">|</span>
+      <span>Albania Now</span><span class="pg">5 / 5</span></div>
+    <h2>What it runs on, and what we ask</h2>
+    <div class="cols">
+      <div>
+        <p class="fact"><b>Free stack.</b> Plain web pages plus Google Colab's
+        free tier. No platform, no licenses, no student accounts on the site.
+        Student tracking comes later, deliberately — the pilot stays light.</p>
+        <p class="fact"><b>English-first.</b> Albanian students meet English
+        early; the welcome is bilingual, the material is English. Translation
+        follows what the pilot proves.</p>
+        <p class="fact"><b>Honest state.</b> The material is complete and new —
+        the pilot classroom is part of the plan, and what it breaks gets fixed
+        before scale.</p>
+      </div>
+      <div>
+        <p class="fact"><b>A school provides:</b> one teacher willing to collect
+        weekly turn-ins and confirm completions, students, and the school's
+        decision on Google accounts.</p>
+        <p class="fact"><b>Free Focus provides:</b> the site and updates, the
+        sprints, the speakers and lectures, the Discord, the stickers, and
+        onboarding for each school.</p>
+        <p class="fact"><b>The path:</b> pilot schools → grow the catalog and
+        the speaker roster → translate what earns it → open to every school in
+        Albania.</p>
+      </div>
+    </div>
+    <div class="foot">
+      <span class="ffm">Free Focus</span>
+      <span>john.santerre.ai@gmail.com</span>
+      <span class="r">Albania Now &middot; built with Chicago First &middot; 2026</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

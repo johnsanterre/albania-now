@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How we know, without going · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-space.html">Planetary Exploration</a> / Week 1</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">Planetary Exploration · Week 1 of 4 · about 2–4 hours</p>
+<h1>How we know, without going</h1>
+<p class="lede">Nobody has been to Titan, yet we know what its air is made of. This week: how light carries fingerprints, and how to read them.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>Light is the messenger</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-space-1-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Spread light into a rainbow and the dark lines name the gases it passed through.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>How a telescope on Earth can smell the air of a world a billion kilometers away.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-space-1-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Fingerprints in the rainbow</h2>
+
+
+  <p>Every fact in this sprint rests on one trick, so we start there. Pass light
+  through a prism and it spreads into a rainbow — a <b>spectrum</b>, from violet
+  to red and beyond into infrared light your eye cannot see. Now the trick: when
+  light passes through a gas, the gas steals specific colors. <b>Each kind of
+  molecule steals its own exact set</b> — methane takes one pattern of slices,
+  water vapor another, carbon dioxide a third. The stolen colors show up as dark
+  lines in the spectrum, and the pattern of lines is as distinctive as a
+  fingerprint.</p>
+  <p>So the recipe for reading a distant world's air is: catch its light, spread
+  it into a spectrum, and match the dark-line fingerprints against gases we
+  measure in laboratories here on Earth. No travel required. This is
+  <b>spectroscopy</b>, and it is how astronomers knew Titan's atmosphere held
+  methane in 1944 — from a telescope on Earth, decades before any spacecraft went
+  to look. It is how the James Webb Space Telescope reads the air of planets
+  around <i>other stars</i> today.</p>
+  <p>Much of the action is in the <b>infrared</b> — heat-light. Molecules like
+  methane absorb strongly there, which is why planetary spacecraft carry infrared
+  spectrometers. The instrument Dr. Nixon works on, Cassini's CIRS, was exactly
+  this: an infrared spectrometer that read temperatures and chemistry through
+  Titan's haze for thirteen years.</p>
+  <p>One more idea: light takes time. From the Sun to Earth, about 8 minutes;
+  from Saturn to Earth, over an hour. Every telescope is a time machine looking
+  at a slightly earlier universe — and every command sent to a spacecraft at
+  Saturn takes that same hour-plus to arrive, which will matter next week.</p>
+  <p>Now read three fingerprints yourself:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Match the fingerprint</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Three mystery worlds, their
+    spectra below — dark lines where a gas stole light. The reference cards show
+    each gas's pattern. Name the gas in each world's air.</p>
+    <div id="refs" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px"></div>
+    <div id="worlds"></div>
+    <p class="fignote" id="ssum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>Plot a spectrum, find the thief</h2>
+  <p>The notebook builds a simple spectrum with code — brightness across wavelength — drops a gas’s absorption dips into it, and has you locate them by eye and then by code (where is the minimum?).</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/space1-spectra.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/space1-spectra.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Farther down the light, if you want it</h2>
+
+  <div class="gd"><b>NASA's solar system portal.</b>
+  <a href="https://science.nasa.gov/solar-system/" target="_blank" rel="noopener">science.nasa.gov/solar-system</a>
+  — every planet and major moon, with the current state of knowledge.</div>
+  <div class="gd"><b>The Webb telescope.</b>
+  <a href="https://webbtelescope.org" target="_blank" rel="noopener">webbtelescope.org</a>
+  — the observatory doing this lesson's trick on worlds around other stars. In
+  2022 it read carbon dioxide in the air of exoplanet WASP-39 b, hundreds of
+  light-years away — same fingerprint method you just used.</div>
+  <div class="gd"><b>Stretch.</b> Look up which gases Webb has reported in an
+  exoplanet atmosphere so far. For each: is it a gas you met in this lesson?</div>
+
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. How did astronomers know Titan’s air held methane before any spacecraft went?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">A probe returned an air sample</button>
+    <button class="choice" data-ok="1">Methane’s fingerprint appeared in Titan’s spectrum from Earth-based telescopes</button>
+    <button class="choice" data-ok="0">They guessed from its orange color</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. Why do planetary spacecraft carry infrared spectrometers?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">Infrared travels faster than visible light</button>
+    <button class="choice" data-ok="1">Molecules like methane absorb strongly in the infrared — the fingerprints are there</button>
+    <button class="choice" data-ok="0">Cameras don’t work in space</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. Light from Saturn takes over an hour to reach Earth. So a telescope pointed at Saturn sees…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="1">Saturn as it was over an hour ago</button>
+    <button class="choice" data-ok="0">Saturn exactly as it is now</button>
+    <button class="choice" data-ok="0">nothing — it’s too far</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>Explain the trick to a younger student</h2>
+  <div class="buildtask">
+
+
+  <p>Write five to eight sentences, in your own words, explaining to a younger
+  student how we can know what a faraway world's air is made of without going
+  there. It must include: what a spectrum is, what the dark lines are, and one
+  real example from this lesson. No copying — the test is whether it sounds like
+  you.</p>
+  <p><b>Turn-in:</b> the paragraph, to your teacher.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 1</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 1</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="sprint-space.html">&larr; Sprint page</a> <a href="lesson-space-2.html">Week 2 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; Planetary Exploration, week 1 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-space-1';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 1 complete — undo';
+      document.getElementById('doneHead').textContent='Week 1 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 1';
+      document.getElementById('doneHead').textContent='Finish week 1';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const GAS={methane:[2,5,9],water:[1,4,10],co2:[3,7,11]};
+  const NAME={methane:'Methane',water:'Water vapor',co2:'Carbon dioxide'};
+  function strip(lines,w){
+    const seg=[];for(let i=0;i<13;i++){
+      const dark=lines.includes(i);
+      seg.push('<span style="display:inline-block;width:'+(w||16)+'px;height:26px;background:'+
+        (dark?'#1A1414':'linear-gradient(90deg,hsl('+(260-i*20)+',75%,55%),hsl('+(260-(i+1)*20)+',75%,55%))')+'"></span>')}
+    return '<span style="font-size:0;border:1px solid var(--hair);border-radius:4px;overflow:hidden;display:inline-block">'+seg.join('')+'</span>';
+  }
+  const refs=document.getElementById('refs');
+  Object.keys(GAS).forEach(g=>{
+    const d=document.createElement('div');
+    d.innerHTML='<div style="font-size:13px;font-weight:700">'+NAME[g]+'</div>'+strip(GAS[g],12);
+    refs.appendChild(d);});
+  const WORLDS=[['World A',GAS.methane,'methane','Methane \u2014 the same three slices are missing. This is Titan\u2019s story.'],
+                ['World B',GAS.co2,'co2','Carbon dioxide \u2014 the pattern matches slice for slice. Venus and Mars are CO2 worlds.'],
+                ['World C',GAS.water,'water','Water vapor \u2014 the fingerprint every astronomer hopes to find.']];
+  const wrap=document.getElementById('worlds');let done=0,score=0;
+  WORLDS.forEach(w=>{
+    const card=document.createElement('div');card.className='qcard';
+    card.innerHTML='<div class="qq" style="font-size:14px"><b>'+w[0]+'</b><br>'+strip(w[1])+'</div>';
+    Object.keys(GAS).forEach(g=>{
+      const b=document.createElement('button');b.className='choice';b.textContent=NAME[g];
+      b.addEventListener('click',()=>{
+        if(card.dataset.done)return;card.dataset.done=1;
+        const ok=g===w[2];if(ok)score++;done++;
+        card.classList.add(ok?'good':'bad');
+        [...card.querySelectorAll('.choice')].forEach(x=>{x.disabled=true;
+          if(x.textContent===NAME[w[2]])x.classList.add('right');
+          else if(x===b&&!ok)x.classList.add('wrong');});
+        const fb=document.createElement('div');fb.className='qfb';
+        fb.innerHTML=(ok?'<b>Matched.</b> ':'<b>Reveal:</b> ')+w[3];
+        card.appendChild(fb);
+        if(done===WORLDS.length)document.getElementById('ssum').innerHTML=
+          '<b>'+score+' of '+WORLDS.length+'.</b> You just did spectroscopy \u2014 the founding trick of planetary science.';
+      });card.appendChild(b);});
+    wrap.appendChild(card);});
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

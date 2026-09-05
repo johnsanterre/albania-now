@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>An image is numbers · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-images.html">AI Image Analysis on Other Planets</a> / Week 1</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">AI Image Analysis on Other Planets · Week 1 of 4 · about 2–4 hours</p>
+<h1>An image is numbers</h1>
+<p class="lede">Every spacecraft photo is a grid of brightness numbers. This week you look at one the way a machine does — and learn why that unlocks everything else.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>What the camera actually sends home</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-img-1-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Not a picture — a grid of numbers, radioed one by one across the solar system.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Why a machine can find craters at all: because an image is arithmetic, and shadows are small numbers.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-img-1-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>The grid under the picture</h2>
+
+
+  <p>When an orbiter photographs a moon, no picture travels home. What crosses
+  the solar system is a <b>grid of numbers</b> — for a simple grayscale camera,
+  one number per pixel, usually 0 to 255: how much light hit that spot. 0 is
+  black, 255 is white, everything else is gray. Your screen turns the grid back
+  into a picture; the machine never needs to. To a computer, an image
+  <i>is</i> the grid.</p>
+  <p>That is not a limitation — it is the whole opportunity. Because if an image
+  is numbers, then questions about the image become <b>arithmetic</b>. Where is
+  it dark? <i>Which numbers are small?</i> Where is the crater rim catching
+  sunlight? <i>Which numbers jump from small to large in one step?</i> How big
+  is that dark patch? <i>Count the small numbers that touch each other.</i></p>
+  <p>Craters are the perfect first target because the Sun does the labeling for
+  you: a crater is a bowl, so one side of the bowl falls into <b>shadow</b> and
+  the opposite rim glows. Dark next to bright, in a rounded pair — that
+  signature is visible in the numbers long before any AI gets involved.
+  Planetary scientists counted craters by hand for decades (crater counts are
+  how surfaces are dated: more craters, older ground). The machines you will
+  build this month do the same counting, faster, on more images than any human
+  career could hold.</p>
+  <p>One habit from photography that transfers exactly: <b>look at the
+  histogram</b> — the tally of how many pixels hold each brightness. A surface
+  image has a big hump of ordinary ground; shadows hang off the dark end. The
+  valley between them is where next week's threshold will go. You will draw
+  this histogram yourself in the notebook.</p>
+  <p>First, read a real grid:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>Sixteen by sixteen</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">A tiny crater image. Hover or
+    tap any pixel to read its number; toggle to see what the machine sees.</p>
+    <div id="ctl" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"></div>
+    <div id="gridwrap" style="display:inline-block;font-size:0;border:1px solid var(--hair)"></div>
+    <p class="fignote" id="gsum">Hover a pixel.</p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>Make the grid, see the picture</h2>
+  <p>The notebook builds a synthetic crater image out of pure numpy — a bright plain, a shadowed bowl, a sunlit rim — then shows the grid, the picture, and the histogram with its telltale valley.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/img1-pixels.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/img1-pixels.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More pixels, if you want them</h2>
+
+  <div class="gd"><b>NASA's image library.</b>
+  <a href="https://images.nasa.gov" target="_blank" rel="noopener">images.nasa.gov</a>
+  — the agency's public archive. Search "Titan surface" or "lunar crater" and
+  look at the images as data: where are the shadows, where is the rim light?</div>
+  <div class="gd"><b>Fly over the real terrain.</b>
+  <a href="https://trek.nasa.gov" target="_blank" rel="noopener">trek.nasa.gov</a>
+  — NASA's Moon Trek and Mars Trek let you pan actual orbital imagery of the
+  surfaces these techniques run on.</div>
+  <div class="gd"><b>Stretch.</b> Take any photo with your phone, convert it to
+  black and white, and find the darkest region by eye. Then predict: what would
+  its histogram look like? (Next week's notebook can check you.)</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. What does a spacecraft actually transmit when it "sends a photo"?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">A compressed picture file that only screens can read</button>
+    <button class="choice" data-ok="1">A grid of brightness numbers, one per pixel</button>
+    <button class="choice" data-ok="0">A drawing made by the onboard AI</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. Why are craters easy for arithmetic to find?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">They are always the same size</button>
+    <button class="choice" data-ok="1">The Sun labels them: a shadowed bowl next to a sunlit rim</button>
+    <button class="choice" data-ok="0">They only appear in the center of images</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. More craters on a surface generally means…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="1">the surface is older — it has collected impacts longer</button>
+    <button class="choice" data-ok="0">the surface is younger</button>
+    <button class="choice" data-ok="0">nothing — crater counts carry no information</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>Read a grid by hand, once</h2>
+  <div class="buildtask">
+
+
+  <p>In the notebook, the final cell prints a raw 8&times;8 block of numbers cut
+  from the crater image — no picture. Your build: mark up (on paper or in a text
+  cell) where the shadow is, where the rim is, and one sentence on how you knew.
+  Then reveal the rendered block and check yourself.</p>
+  <p><b>Turn-in:</b> your marked-up block and the sentence, with the reveal.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 1</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 1</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="sprint-images.html">&larr; Sprint page</a> <a href="lesson-img-2.html">Week 2 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; AI Image Analysis on Other Planets, week 1 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-img-1';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 1 complete — undo';
+      document.getElementById('doneHead').textContent='Week 1 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 1';
+      document.getElementById('doneHead').textContent='Finish week 1';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const N=16,IMG=[];
+  for(let y=0;y<N;y++){const row=[];
+    for(let x=0;x<N;x++){
+      let v=185+((x*7+y*13)%23)-11;
+      const dx=x-8,dy=y-8,r=Math.sqrt(dx*dx+dy*dy);
+      if(r<5){v=(dx<-1)?45+((x+y)%18):((dx>2)?235:120);}
+      if(r>=5&&r<6.2&&dx>1)v=245;
+      row.push(Math.max(0,Math.min(255,Math.round(v))));}
+    IMG.push(row);}
+  let mode='pic';
+  const wrap=document.getElementById('gridwrap'),sum=document.getElementById('gsum'),
+        ctl=document.getElementById('ctl');
+  function render(){
+    wrap.innerHTML='';
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+      const v=IMG[y][x],c=document.createElement('span');
+      c.style.cssText='display:inline-block;width:20px;height:20px;cursor:crosshair;';
+      if(mode==='pic')c.style.background='rgb('+v+','+v+','+v+')';
+      else c.style.background=(v<100)?'#D8291F':'#FCFBF8';
+      if(x===N-1)c.style.marginRight='0';
+      c.addEventListener('mouseenter',()=>{
+        sum.innerHTML='pixel ('+x+', '+y+') = <b>'+v+'</b>'+
+          (v<100?' — small number: shadow':v>220?' — big number: sunlit rim':' — ordinary ground');});
+      c.addEventListener('click',()=>c.dispatchEvent(new Event('mouseenter')));
+      wrap.appendChild(c);
+      if(x===N-1)wrap.appendChild(document.createElement('br'));}
+  }
+  [['The picture','pic'],['What the machine sees (numbers < 100)','thr']].forEach(([lbl,m])=>{
+    const b=document.createElement('button');b.className='choice';b.textContent=lbl;
+    b.addEventListener('click',()=>{mode=m;render();
+      [...ctl.children].forEach(x=>x.classList.remove('right'));b.classList.add('right');
+      if(m==='thr')sum.innerHTML='Every pixel below 100, painted red: the shadow half of the bowl, isolated by one comparison.';});
+    ctl.appendChild(b);});
+  ctl.children[0].classList.add('right');render();
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

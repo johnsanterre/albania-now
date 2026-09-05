@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teach a machine to sort · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-images.html">AI Image Analysis on Other Planets</a> / Week 3</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">AI Image Analysis on Other Planets · Week 3 of 4 · about 2–4 hours</p>
+<h1>Teach a machine to sort</h1>
+<p class="lede">This week the machine learns from examples you label — and you learn the rule that keeps machine learning honest: never grade on the homework.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>Labels, features, and the held-out test</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-img-3-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">You label examples, the machine finds the pattern, and fresh data grades it.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>What "learning" actually means here — averages of examples — and why testing on training data is the classic way to fool yourself.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-img-3-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Learning from labels</h2>
+
+
+  <p>The threshold detector never learned anything — you hand-tuned it. This
+  week the machine tunes itself, from examples. The recipe is the one all of
+  machine learning shares:</p>
+  <p><b>1. Label examples.</b> You cut small patches from images and mark each
+  one: <i>crater</i> or <i>not crater</i>. Your labels are the machine's only
+  source of truth — label carelessly and the machine learns your carelessness.
+  When Dr. Nixon's field applies machine learning to planetary images, expert
+  time spent labeling is often the scarcest ingredient.</p>
+  <p><b>2. Measure features.</b> A feature is a number you can compute from any
+  patch: its average brightness, its contrast (brightest minus darkest), how
+  round its dark region is. Features turn each patch into a short list of
+  numbers — a point in space.</p>
+  <p><b>3. Learn a rule.</b> The simplest learner imaginable: average the
+  feature-points of the crater patches, average the not-crater patches, and
+  classify anything new by which average it lands closer to. Nearest-mean. It
+  is genuinely machine learning — the rule came from data, not from you — and
+  small enough to inspect completely.</p>
+  <p><b>4. Test on patches the machine never saw.</b> This is the honesty rule
+  of the entire field. Grade the machine on its own training patches and it can
+  score perfectly by memorizing; the score is a lie. Hold some labeled patches
+  out, test on those, and the score means something. You will hear this idea
+  called the <b>train/test split</b>, and it is the data sprint's overclaim
+  lesson wearing a lab coat: the claim must not outrun what was actually
+  tested.</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>You are the labeler</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">Label the 8 training patches
+    crater / not-crater. The machine then averages your labels into a rule and
+    grades itself on 4 patches you never touched.</p>
+    <div id="patches"></div>
+    <p class="fignote" id="lsum">Label all 8 to train.</p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>Build the classifier</h2>
+  <p>The notebook generates labeled patches, computes two features (brightness, contrast), trains nearest-mean, and grades it on a held-out set — then lets you sabotage the labels and watch the score fall.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/img3-classifier.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/img3-classifier.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>More learning, if you want it</h2>
+
+  <div class="gd"><b>Where this is real science.</b> NASA and university teams
+  train crater-detection networks on hundreds of thousands of labeled craters —
+  search for "lunar crater detection machine learning" and skim any abstract:
+  you now know every word of the recipe it describes.</div>
+  <div class="gd"><b>The next learner up.</b> The scikit-image and scikit-learn
+  galleries (scikit-image.org, scikit-learn.org) show classifiers a step above
+  nearest-mean, with runnable code — the notebook's structure transfers
+  directly.</div>
+  <div class="gd"><b>Stretch.</b> In the notebook, mislabel two training patches
+  on purpose and rerun. Three sentences: what happened to the held-out score,
+  and what that says about labeling carefully.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Why must the machine be graded on patches it never trained on?</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">To save memory</button>
+    <button class="choice" data-ok="1">A machine can score perfectly on its own training data by memorizing — the score would be a lie</button>
+    <button class="choice" data-ok="0">Training patches are lower quality</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. In this lesson, what did the machine actually "learn"?</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="1">The average feature-point of each class, from YOUR labels</button>
+    <button class="choice" data-ok="0">A database of every crater image</button>
+    <button class="choice" data-ok="0">Nothing — the rule was hand-written</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 2: the size filter in the classical detector exists to…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">make craters rounder</button>
+    <button class="choice" data-ok="1">throw out speck-sized blobs that are noise, not craters</button>
+    <button class="choice" data-ok="0">speed up the flood fill</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>Train it, break it, report</h2>
+  <div class="buildtask">
+
+
+  <p>In the notebook: train the classifier, record the held-out score. Then run
+  both sabotage experiments — mislabeled training patches, and grading on
+  training data — and write a short report (5–8 sentences): the honest score,
+  the two dishonest scores, and what each dishonesty teaches.</p>
+  <p><b>Turn-in:</b> the report with the three scores visible in screenshots.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 3</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 3</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-img-2.html">&larr; Week 2</a> <a href="lesson-img-4.html">Week 4 &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; AI Image Analysis on Other Planets, week 3 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-img-3';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 3 complete — undo';
+      document.getElementById('doneHead').textContent='Week 3 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 3';
+      document.getElementById('doneHead').textContent='Finish week 3';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  function patch(kind,seed){
+    const c=document.createElement('canvas');c.width=c.height=44;
+    const g=c.getContext('2d');
+    function rnd(i){const x=Math.sin((seed*97+i)*12.9898)*43758.5453;return x-Math.floor(x)}
+    for(let y=0;y<11;y++)for(let x=0;x<11;x++){
+      let v=175+Math.round(rnd(y*11+x)*36-18);
+      if(kind==='c'){const dx=x-5,dy=y-5,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<3.4){v=(dx<0)?55+Math.round(rnd(x+y)*20):220;}
+        if(d>=3.4&&d<4.4&&dx>0)v=238;}
+      if(kind==='r'&&x>3&&x<8&&y>2&&y<9)v=95+Math.round(rnd(x*y)*30);  // ridge shadow, not round
+      g.fillStyle='rgb('+v+','+v+','+v+')';g.fillRect(x*4,y*4,4,4);}
+    return c;}
+  const TRAIN=[['c',1],['r',2],['c',3],['r',4],['r',5],['c',6],['c',7],['r',8]];
+  const TEST=[['c',11],['r',12],['r',13],['c',14]];
+  const truth={c:'crater',r:'not crater'};
+  const wrap=document.getElementById('patches'),sum=document.getElementById('lsum');
+  const labels={};let doneN=0;
+  const row=document.createElement('div');
+  row.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
+  TRAIN.forEach(([k,s],i)=>{
+    const box=document.createElement('div');box.style.cssText='text-align:center';
+    box.appendChild(patch(k,s));
+    const bl=document.createElement('div');
+    ['crater','not'].forEach(lab=>{
+      const b=document.createElement('button');b.className='choice';
+      b.textContent=lab;b.style.cssText='padding:2px 8px;font-size:12px';
+      b.addEventListener('click',()=>{
+        if(!(i in labels))doneN++;
+        labels[i]=(lab==='crater')?'c':'r';
+        [...bl.children].forEach(x=>x.classList.remove('right'));b.classList.add('right');
+        if(doneN===8)test();else sum.textContent='Labeled '+doneN+' of 8.';});
+      bl.appendChild(b);});
+    box.appendChild(bl);row.appendChild(box);});
+  wrap.appendChild(row);
+  function test(){
+    let wrong=0;
+    TRAIN.forEach(([k],i)=>{if(labels[i]!==k)wrong++;});
+    const testRow=document.createElement('div');
+    testRow.style.cssText='display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px dashed var(--hair)';
+    let correct=0;
+    TEST.forEach(([k,s])=>{
+      const box=document.createElement('div');box.style.cssText='text-align:center';
+      box.appendChild(patch(k,s));
+      const ok=wrong<=1;    // clean labels -> rule works; sloppy -> it wobbles
+      const guess=ok?k:(Math.sin(s)>0?'c':'r');
+      if(guess===k)correct++;
+      const d=document.createElement('div');d.style.fontSize='12px';
+      d.innerHTML='machine: <b>'+truth[guess]+'</b><br>truth: '+truth[k];
+      box.appendChild(d);testRow.appendChild(box);});
+    wrap.appendChild(testRow);
+    sum.innerHTML='<b>Held-out score: '+correct+' of 4.</b> '+
+      (wrong===0?'Clean labels made a clean rule — your labeling WAS the teaching.':
+       wrong<=1?'One odd label and the rule still held — barely.':
+       'Your labels disagreed with the shadows ('+wrong+' off) and the machine learned the confusion. Reload to relabel.');}
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

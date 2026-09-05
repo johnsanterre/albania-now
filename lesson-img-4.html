@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New worlds, honest claims · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / <a href="sprint-images.html">AI Image Analysis on Other Planets</a> / Week 4</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">AI Image Analysis on Other Planets · Week 4 of 4 · about 2–4 hours</p>
+<h1>New worlds, honest claims</h1>
+<p class="lede">The capstone. Your detector meets terrain it has never seen — and you report what it found the way a scientist would: count, settings, misses, false alarms, and what none of it proves.</p>
+
+<div class="progresswrap">
+  <div class="progressbar"><div id="pbar"></div></div>
+  <div class="plabel"><span id="pdone">0</span> of 8 segments complete</div>
+</div>
+
+<section class="seg" data-seg="watch">
+  <div class="stype">1 · Watch</div>
+  <h2>The tradeoff you cannot escape</h2>
+  <video controls preload="metadata" style="width:100%;border-radius:8px;background:#000"
+    src="video/alnow-img-4-watch.mp4"></video>
+  <p style="font-size:13px;color:var(--ink2);margin:6px 0 0">Every threshold trades missed craters against false alarms. Reporting both is the job.
+  <span style="color:var(--ink2)">(Animated explainer with narration; a recorded lecture can replace it later.)</span></p>
+  <button class="mark" data-for="watch">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="listen">
+  <div class="stype">2 · Listen</div>
+  <h2>Listen: two minutes before you go on</h2>
+  <p>Why there is no perfect detector, only an honest one — and how the miss/false-alarm tradeoff runs everything from crater counts to medical scans.</p>
+  <audio controls preload="none" style="width:100%" src="audio/alnow-img-4-listen.m4a"></audio>
+  <button class="mark" data-for="listen">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="read">
+  <div class="stype">3 · Read &amp; play</div>
+  <h2>Misses, false alarms, and the report</h2>
+
+
+  <p>Run your detector on a fresh image and two kinds of error appear, and they
+  <b>trade against each other</b>. Loosen the threshold and you catch every
+  crater — plus boulders, ridges, and noise: <b>false alarms</b>. Tighten it and
+  the junk vanishes — along with the faint small craters: <b>misses</b>. No
+  setting removes both. This tradeoff has a formal name in the field
+  (precision and recall), and it governs far more than craters: spam filters,
+  medical scans, earthquake alarms — all live on the same seesaw.</p>
+  <p>So a professional detection report never says just "I found 23 craters."
+  It says: <i>23 detections, at these settings; on the labeled test region the
+  detector missed about 1 in 10 small craters and about 1 in 20 detections was
+  junk; counts below 12 pixels are not attempted.</i> Every clause is a
+  boundary drawn around the claim — the three-sentence finding from the data
+  sprint, grown up.</p>
+  <p>And when the terrain changes, all bets reopen. A detector tuned on bright
+  lunar plains meets Titan's murky radar maps and its assumptions break —
+  different lighting, different noise, shadows that mean something else. The
+  professionals retune, relabel, and re-measure the error rates <i>on the new
+  terrain</i> before trusting a single count. That instinct — new world, new
+  validation — is the single most transferable thing in this sprint.</p>
+  <p>Feel the seesaw once, then go run it for real:</p>
+
+  <div class="fig" id="fig1">
+    <div class="figlabel">Interactive · Figure 1</div>
+    <h3>The seesaw</h3>
+    <p style="font-size:15px;margin:.2em 0 .6em">A field with 10 true craters
+    plus junk. One slider, two error counts. Find the setting you would defend.</p>
+    <label style="font-size:14px">Threshold:
+      <input type="range" id="tt" min="0" max="100" value="50" style="width:min(300px,60vw);vertical-align:middle"></label>
+    <div id="bars" style="display:flex;gap:26px;margin:12px 0;align-items:flex-end;height:120px">
+      <div style="text-align:center"><div id="missbar" style="width:70px;background:var(--navy);border-radius:4px 4px 0 0"></div><b>missed</b><br><span id="missn"></span></div>
+      <div style="text-align:center"><div id="fabar" style="width:70px;background:var(--star);border-radius:4px 4px 0 0"></div><b>false alarms</b><br><span id="fan"></span></div>
+    </div>
+    <p class="fignote" id="tsum"></p>
+  </div>
+
+  <button class="mark" data-for="read">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="code">
+  <div class="stype">4 · Code</div>
+  <h2>The capstone notebook</h2>
+  <p>A new synthetic terrain — rougher ground, fainter craters, more junk. You bring the whole month: histogram, threshold, blobs, size filter, the classifier from week 3, and a labeled strip to measure your miss and false-alarm rates before you report.</p>
+  <p style="display:flex;gap:1em;align-items:center;flex-wrap:wrap">
+    <a class="colab-btn" href="https://colab.research.google.com/github/johnsanterre/albania-now/blob/main/notebooks/img4-capstone.ipynb" target="_blank" rel="noopener">&#9654;&nbsp;Open in Colab</a>
+    <a href="notebooks/img4-capstone.ipynb" download style="font-size:13.5px">or download the .ipynb</a>
+  </p>
+  <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:600">First time in Colab?</summary>
+    <ol style="font-size:14.5px">
+      <li>The button opens the notebook directly in Colab — sign in with a Google account.</li>
+      <li><b>File &rarr; Save a copy in Drive</b> right away, so your work is yours.</li>
+      <li>Run cells top to bottom with the &#9654; button or <b>Shift+Enter</b>.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink2)">Offline or blocked? Use the download link and
+    <b>File &rarr; Upload notebook</b> in Colab instead.</p>
+  </details>
+  <button class="mark" data-for="code">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="deeper">
+  <div class="stype">5 · Go deeper <span style="color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:400">— optional, for when the lesson wasn't enough</span></div>
+  <h2>Where this goes next, if you want it</h2>
+
+  <div class="gd"><b>The real thing, end to end.</b> The Planetary Data System
+  (<a href="https://pds.nasa.gov" target="_blank" rel="noopener">pds.nasa.gov</a>)
+  is the archive of actual mission imagery — every technique this month runs
+  against data that lives here.</div>
+  <div class="gd"><b>Dr. Nixon's corner of it.</b> His NASA research includes
+  machine-learning analysis of planetary imagery — at the lecture, ask what
+  labeling and validation look like when the images come from Titan and nobody
+  can go check.</div>
+  <div class="gd"><b>Stretch.</b> Pick any detector in your life (spam filter,
+  face unlock, plagiarism checker). Write its miss and its false alarm as one
+  sentence each, and which error its designers chose to prefer.</div>
+  <p style="font-size:13.5px;color:var(--ink2)">None of this is required for the sprint. Mark this segment complete either way.</p>
+  <button class="mark" data-for="deeper">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="check">
+  <div class="stype">6 · Quick check</div>
+  <h2>Check yourself</h2>
+  <p><b>1. Loosening the threshold to catch every faint crater will also…</b></p>
+  <div data-q="1">
+    <button class="choice" data-ok="0">reduce false alarms</button>
+    <button class="choice" data-ok="1">increase false alarms — the two trade against each other</button>
+    <button class="choice" data-ok="0">shrink the image</button>
+  </div>
+  <p class="feedback" id="fb1"></p>
+  <p style="margin-top:1.2em"><b>2. A professional detection report includes the error rates because…</b></p>
+  <div data-q="2">
+    <button class="choice" data-ok="0">it makes the report longer</button>
+    <button class="choice" data-ok="1">the count means nothing without its boundaries — misses, junk rate, size floor</button>
+    <button class="choice" data-ok="0">regulations require exactly 23 craters</button>
+  </div>
+  <p class="feedback" id="fb2"></p>
+  <p style="margin-top:1.2em"><b>3. From week 3: your detector scores 100% on its training patches. That score is…</b></p>
+  <div data-q="3">
+    <button class="choice" data-ok="0">proof it is ready for new terrain</button>
+    <button class="choice" data-ok="1">possibly memorization — only the held-out score counts</button>
+    <button class="choice" data-ok="0">impossible</button>
+  </div>
+  <p class="feedback" id="fb3"></p>
+</section>
+
+<section class="seg" data-seg="build">
+  <div class="stype">7 · Build</div>
+  <h2>The capstone: your detection report</h2>
+  <div class="buildtask">
+
+
+  <p>In the notebook: tune your detector on the new terrain, measure miss and
+  false-alarm rates on the labeled strip, then run the full region and write
+  the report — count, settings, both error rates, size floor, and the
+  three-sentence finding (measured, found, not proven).</p>
+  <p><b>Turn-in:</b> the notebook + a screenshot of the detection image and
+  report. <b>This completes the sprint</b> — your teacher confirms all four
+  weeks, and you are on the list for Dr. Nixon's live lecture.</p>
+
+  </div>
+  <button class="mark" data-for="build">Mark complete</button>
+</section>
+
+<section class="seg" data-seg="done">
+  <div class="stype">8 · Done</div>
+  <h2 id="doneHead">Finish week 4</h2>
+  <p id="doneMsg">Complete the segments above, then claim the finish here.</p>
+  <p style="font-size:14.5px;color:var(--ink2)">One lesson a week finishes this sprint
+  in a month. Turn in all four builds and you are on the list for the closing
+  lecture — that is the deal.</p>
+  <button class="mark" id="finishBtn" data-for="done" disabled>Complete week 4</button>
+</section>
+
+<p style="margin:30px 0;display:flex;justify-content:space-between"><a href="lesson-img-3.html">&larr; Week 3</a> <a href="sprint-images.html">Back to the sprint &rarr;</a></p>
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus program,
+built with Chicago First &middot; AI Image Analysis on Other Planets, week 4 of 4 &middot;
+watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; build &rarr; done.</div></footer>
+
+<script>
+(function(){
+  const KEY='alnow-img-4';
+  const SEGS=['watch','listen','read','code','deeper','check','build','done'];
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  function segEl(id){return document.querySelector('.seg[data-seg="'+id+'"]')}
+  function render(){
+    let n=0;
+    for(const s of SEGS){
+      const done=!!state[s]; if(done)n++;
+      const el=segEl(s); el.classList.toggle('done',done);
+      const b=el.querySelector('button.mark[data-for="'+s+'"]');
+      if(b&&s!=='done'){b.disabled=false;b.textContent=done?'\u2713 Complete — undo':'Mark complete'}
+    }
+    document.getElementById('pbar').style.width=(n/SEGS.length*100)+'%';
+    document.getElementById('pdone').textContent=n;
+    const others=SEGS.slice(0,-1).every(s=>state[s]);
+    const fin=document.getElementById('finishBtn');
+    if(state.done){fin.disabled=false;fin.textContent='\u2713 Week 4 complete — undo';
+      document.getElementById('doneHead').textContent='Week 4 complete';
+      document.getElementById('doneMsg').textContent='Logged. The next lesson is waiting when you are.';}
+    else{fin.disabled=!others;fin.textContent='Complete week 4';
+      document.getElementById('doneHead').textContent='Finish week 4';
+      document.getElementById('doneMsg').textContent=others?
+        'Everything above is done — claim it.':'Complete the segments above, then claim the finish here.'}
+  }
+  document.querySelectorAll('button.mark').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+  });
+  const groups=[...document.querySelectorAll('[data-q]')];
+  const right={};
+  groups.forEach(g=>{
+    const q=g.dataset.q;
+    g.querySelectorAll('.choice').forEach(c=>{
+      c.addEventListener('click',()=>{
+        const ok=c.dataset.ok==='1';
+        g.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+        c.classList.add(ok?'right':'wrong');
+        document.getElementById('fb'+q).textContent=ok?
+          'Right.':'Not quite — the Read segment has what you need. Try again.';
+        right[q]=ok;
+        if(groups.every(x=>right[x.dataset.q])){state.check=true;save();render()}
+      })
+    })
+  });
+  render();
+})();
+</script>
+<script>
+/* ---- figure ---- */
+
+(function(){
+  const tt=document.getElementById('tt'),
+        mb=document.getElementById('missbar'),fb=document.getElementById('fabar'),
+        mn=document.getElementById('missn'),fn=document.getElementById('fan'),
+        sum=document.getElementById('tsum');
+  function upd(){
+    const t=+tt.value;                       // 0 = strictest, 100 = loosest
+    const miss=Math.round(10*Math.pow(1-t/100,1.6));
+    const fa=Math.round(14*Math.pow(t/100,2.2));
+    mb.style.height=(miss*10+2)+'px';fb.style.height=(fa*8+2)+'px';
+    mn.textContent=miss+' of 10 craters';fn.textContent=fa+' junk detections';
+    sum.innerHTML=(miss===0&&fa===0)?'':
+      miss===0?'Every crater caught — and '+fa+' pieces of junk counted as craters. Would you sign this count?':
+      fa===0?'Zero junk — and '+miss+' real craters missing from the count. Would you sign this?':
+      'Missing '+miss+', inventing '+fa+'. Somewhere in the middle is the setting you can defend — and the report states BOTH numbers either way.';}
+  tt.addEventListener('input',upd);upd();
+})();
+
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
