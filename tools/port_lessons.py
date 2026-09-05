@@ -122,6 +122,8 @@ def port(src, key, n, sprint, page, media):
                '<p class="kicker">%s · Week %d of 4 · about 2–4 hours</p>' % (sprint, n),
                h, count=1)
     h = h.replace('of 7 segments', 'of 8 segments')
+    h = h.replace('<h2>Listen: two minutes before you go on</h2>',
+                  '<h2>Before you read</h2>')
     h = h.replace("'try','check'", "'try','deeper','check'")
     h = h.replace("'code','check'", "'code','deeper','check'")
     h2, body = GD[(key, n)]

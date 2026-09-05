@@ -12,7 +12,7 @@ os.makedirs(f"{SITE}/audio", exist_ok=True)
 
 T = {}
 
-T["ds-1"] = ("Two minutes before you read. When you press play in Colab, your code "
+T["ds-1"] = ("When you press play in Colab, your code "
  "does not run on your laptop. It travels to a computer in a Google data center, "
  "runs there, and only the result comes back. That is why nothing you do this "
  "month can break anything — the worst case is red text. And red text is not a "
@@ -23,7 +23,7 @@ T["ds-1"] = ("Two minutes before you read. When you press play in Colab, your co
  "getting mixed up. When it happens to you this week — and it will — you are not "
  "behind. You are exactly on schedule.")
 
-T["ds-2"] = ("Two minutes before you read. Almost every dataset you will ever "
+T["ds-2"] = ("Almost every dataset you will ever "
  "meet is a table: one row per thing, one column per fact. And three moves answer "
  "almost every question anyone asks of a table. Filter keeps the rows that pass a "
  "test. Sort reorders them. Group folds many rows into a few summary rows — and "
@@ -35,7 +35,7 @@ T["ds-2"] = ("Two minutes before you read. Almost every dataset you will ever "
  "dangerous ones. Eight Albanian cities are waiting in the figure. Push the "
  "moves around by hand before you type them.")
 
-T["ds-3"] = ("Two minutes before you read. A chart is a claim about data, made "
+T["ds-3"] = ("A chart is a claim about data, made "
  "visual — and it can lie while every number on it is true. The trick to know is "
  "the chopped axis. Bars keep a silent promise: they start at zero, so twice the "
  "length means twice the value. Start the axis at ninety instead, and ninety-six "
@@ -47,7 +47,7 @@ T["ds-3"] = ("Two minutes before you read. A chart is a claim about data, made "
  "big places have more of everything, and choosing which to show is the actual "
  "analysis. Drag the slider in the figure until the lie is yours.")
 
-T["ds-4"] = ("Two minutes before you read — capstone week. Every real analysis "
+T["ds-4"] = ("Capstone week. Every real analysis "
  "is the same loop. A sharp question. A table that could answer it, where you "
  "know what one row is. The moves — filter, group, sort — with counts checked. "
  "An honest picture. And then the finding, in exactly three sentences: what I "
@@ -59,7 +59,7 @@ T["ds-4"] = ("Two minutes before you read — capstone week. Every real analysis
  "figure will calibrate you on six of them. Finish this week and you are on the "
  "lecture list.")
 
-T["space-1"] = ("Two minutes before you read. Nobody has dipped a cup into "
+T["space-1"] = ("Nobody has dipped a cup into "
  "Titan's lakes, and yet we know what its air is made of. The trick is that "
  "light carries fingerprints. Spread starlight into a spectrum and you find dark "
  "lines — colors stolen by whatever gas the light passed through. Each molecule "
@@ -72,7 +72,7 @@ T["space-1"] = ("Two minutes before you read. Nobody has dipped a cup into "
  "Titan's chemistry through its haze for thirteen years. In the figure, three "
  "worlds are waiting. Read their fingerprints.")
 
-T["space-2"] = ("Two minutes before you read. Once a world looks interesting, "
+T["space-2"] = ("Once a world looks interesting, "
  "there is a ladder of ways to visit. Fly past once, cameras blazing. Stay and "
  "orbit for years. Land. Or hardest of all, bring a piece home. Each rung costs "
  "more and reveals more, and the right rung depends entirely on the question — "
@@ -85,7 +85,7 @@ T["space-2"] = ("Two minutes before you read. Once a world looks interesting, "
  "an hour ago. Distant spacecraft are trusted, not steered. Design a mission in "
  "the figure and feel the trade.")
 
-T["space-3"] = ("Two minutes before you read. Titan is the only moon in the "
+T["space-3"] = ("Titan is the only moon in the "
  "solar system with real air — mostly nitrogen, like ours, and half again as "
  "thick at the surface. But it is minus one hundred seventy-nine Celsius, and "
  "that cold rearranges everything. Water is not weather there; water is rock, "
@@ -99,7 +99,7 @@ T["space-3"] = ("Two minutes before you read. Titan is the only moon in the "
  "the two worlds side by side in the figure. Next week, you find a planet "
  "yourself.")
 
-T["space-4"] = ("Two minutes before you read — capstone week. Thousands of "
+T["space-4"] = ("Capstone week. Thousands of "
  "planets around other stars were found without a single picture of them. Here "
  "is how. Record a star's brightness, hour after hour, and plot it. If a "
  "planet's orbit carries it across the star's face, it blocks a sliver of light "

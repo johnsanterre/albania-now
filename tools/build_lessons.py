@@ -50,7 +50,7 @@ TPL = '''<!DOCTYPE html>
 
 <section class="seg" data-seg="listen">
   <div class="stype">Listen</div>
-  <h2>Listen: two minutes before you go on</h2>
+  <h2>Before you read</h2>
   <p>@@LISTEN_LINE@@</p>
   <audio controls preload="none" style="width:100%" src="audio/alnow-@@KEY@@-@@N@@-listen.m4a"></audio>
   <button class="mark" data-for="listen">Mark complete</button>

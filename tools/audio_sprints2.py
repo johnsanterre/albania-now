@@ -11,7 +11,7 @@ os.makedirs(WORK, exist_ok=True)
 
 T = {}
 
-T["img-1"] = ("Two minutes before you read. When an orbiter photographs a moon, "
+T["img-1"] = ("When an orbiter photographs a moon, "
  "no picture crosses the solar system. What travels home is a grid of numbers — "
  "one per pixel, zero for black, two fifty-five for white. Your screen rebuilds "
  "the picture; the machine never needs to. And that is the opportunity: if an "
@@ -23,7 +23,7 @@ T["img-1"] = ("Two minutes before you read. When an orbiter photographs a moon, 
  "craters, older ground. This month you build the machines that do the "
  "counting. It starts with reading one grid, by hand, today.")
 
-T["img-2"] = ("Two minutes before you read. One comparison — is this pixel "
+T["img-2"] = ("One comparison — is this pixel "
  "darker than the cutoff — turns an image into a map of yes and no. That is a "
  "threshold, and it is step one of the classical detector. Step two is the "
  "paint bucket: shadow pixels that touch each other belong to the same crater, "
@@ -35,7 +35,7 @@ T["img-2"] = ("Two minutes before you read. One comparison — is this pixel "
  "Drag the slider in the figure and watch six true craters and a field of junk "
  "fight over your count.")
 
-T["img-3"] = ("Two minutes before you read. This week the machine stops being "
+T["img-3"] = ("This week the machine stops being "
  "hand-tuned and starts learning — from examples you label. The recipe is all "
  "of machine learning in miniature. Label patches: crater, not crater. Measure "
  "features — numbers computable from any patch, like how round its dark region "
@@ -47,7 +47,7 @@ T["img-3"] = ("Two minutes before you read. This week the machine stops being "
  "only truth. Label carelessly and it learns your carelessness — in real "
  "planetary science, expert labeling time is the scarce ingredient.")
 
-T["img-4"] = ("Two minutes before you read — capstone week. Run your detector "
+T["img-4"] = ("Capstone week. Run your detector "
  "on new terrain and two errors appear, and they trade against each other. "
  "Loosen the threshold: every crater caught, plus boulders and noise counted "
  "as craters — false alarms. Tighten it: the junk vanishes, and the faint "
