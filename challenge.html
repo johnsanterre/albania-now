@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trace Race · Albania Now</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .tr-code{background:#1E2530;color:#E8EDF5;border-radius:10px;padding:16px 20px;
+    font:15px/1.7 ui-monospace,Menlo,monospace;white-space:pre;overflow-x:auto;max-width:56ch}
+  .tr-opts{display:flex;flex-direction:column;gap:8px;max-width:56ch;margin:16px 0}
+  .tr-opts .choice{font-family:ui-monospace,Menlo,monospace;text-align:left;font-size:15px}
+  .tr-grid{font-size:24px;letter-spacing:3px}
+  .tr-share{background:var(--star);color:#FFF;border:0;border-radius:8px;
+    padding:10px 18px;font-size:15px;font-weight:700;cursor:pointer}
+  .tr-meta{font-size:13.5px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html"><svg class="wingmark" width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><polygon points="13,2 1,10 6,10 10,14 13,9 16,14 20,10 25,10 13,2" fill="#1A1414"/><polygon points="13,9 11,17 13,14 15,17 13,9" fill="#1A1414"/></svg>Albania Now</a>
+  <span class="crumb"><a href="index.html">Sprints</a> / Trace Race</span>
+</div></header>
+
+<div class="wrap">
+<p class="kicker">The weekly challenge · new every Monday · same puzzle for everyone</p>
+<h1>Trace Race <span id="tr-num" style="color:var(--star)"></span></h1>
+<p class="lede">Read the program. Trace it in your head — or with a finger.
+What does it print? Three guesses. No timer, no streak, just the trace.</p>
+
+<div class="seg" style="max-width:none">
+  <div class="tr-code" id="tr-code"></div>
+  <div class="tr-opts" id="tr-opts"></div>
+  <p class="tr-grid" id="tr-grid"></p>
+  <p id="tr-verdict" style="max-width:56ch"></p>
+  <p id="tr-sharebar" hidden>
+    <button class="tr-share" id="tr-share">Share your grid</button>
+    <span class="tr-meta" id="tr-copied"></span>
+  </p>
+  <p class="tr-meta" id="tr-note">Puzzle changes every Monday. Everyone in
+  Albania gets this same one — compare grids, not answers.</p>
+</div>
+
+<div class="flatnote" style="margin-top:24px"><b>This was five minutes of
+week 1.</b> Tracing code is the core skill of the
+<a href="sprint-reading.html">Learning to Read Python</a> sprint — four weeks,
+and at the end, a live lecture with a working engineer. Free, optional,
+yours.</div>
+
+</div>
+
+<footer class="site"><div class="wrap">Albania Now &middot; a Free Focus
+program, built with Chicago First &middot; Trace Race &middot; new every
+Monday.</div></footer>
+
+<script>
+(function(){
+  // Weekly bank. Seed = ISO week, so the whole country sees one puzzle.
+  const BANK=[
+   {code:'x = 2\nx = x + x\nx = x * 3\nprint(x)',
+    opts:['6','12','8','x * 3','an error'],a:1,
+    why:'2 doubles to 4, then triples to 12. Every line stores over the last.'},
+   {code:'a = 5\nb = a\na = 1\nprint(a + b)',
+    opts:['2','10','6','1','an error'],a:2,
+    why:'b took a snapshot of 5. Reassigning a does not reach back. 1 + 5 = 6.'},
+   {code:'emri = "Zog"\nprint("emri" * 2)',
+    opts:['ZogZog','emri emri','emriemri','Zog Zog','an error'],a:2,
+    why:'Quotes mean the literal text — the variable is never looked up. emriemri.'},
+   {code:'total = 0\nfor n in [4, 1, 7]:\n    total = total + n\nprint(total)',
+    opts:['12','7','417','3','an error'],a:0,
+    why:'An accumulator: 0+4, +1, +7. The loop builds 12.'},
+   {code:'x = "3"\nprint(x * 3)',
+    opts:['9','33','333','3 3 3','an error'],a:2,
+    why:'"3" in quotes is text, and multiplying text repeats it: 333.'},
+   {code:'mosha = 15\nif mosha >= 16:\n    mosha = mosha + 1\nprint(mosha)',
+    opts:['16','15','17','True','an error'],a:1,
+    why:'The test is false, the fork has no else — the program walks through unchanged.'},
+   {code:'x = 10\ny = x - 4\nx = y\nprint(x + y)',
+    opts:['16','12','20','6','an error'],a:1,
+    why:'y becomes 6, then x becomes 6. 6 + 6 = 12. Trace every store.'},
+   {code:'numri = 0\nfor fjale in ["po", "jo", "po"]:\n    if fjale == "po":\n        numri = numri + 1\nprint(numri)',
+    opts:['3','1','2','popo','an error'],a:2,
+    why:'A filtering accumulator: only the two "po" items count. 2.'},
+   {code:'print("7" + "3")',
+    opts:['10','73','7 3','21','an error'],a:1,
+    why:'Two texts glue end to end: 73. Numbers would have added.'},
+   {code:'a = 1\nfor i in [1, 2, 3]:\n    a = a + a\nprint(a)',
+    opts:['6','3','8','4','an error'],a:2,
+    why:'Doubles each pass, three passes: 1→2→4→8. The loop variable is never used — legal, and worth noticing.'},
+   {code:'fjalia = ""\nfor f in ["sa", "bukur"]:\n    fjalia = f + fjalia\nprint(fjalia)',
+    opts:['sabukur','bukursa','sa bukur','bukur sa','an error'],a:1,
+    why:'Each pass puts the NEW word in front: "sa", then "bukur"+"sa" = bukursa. Order of the glue matters.'},
+   {code:'x = 9\nprint(x // 2 + x % 2)',
+    opts:['5','4.5','9','4','an error'],a:0,
+    why:'Floor 4 plus remainder 1 = 5. The two operators split 9 between them.'},
+   {code:'y = 4\ny = y - 1\ny = y - 1\nprint("y" * y)',
+    opts:['yy','yyyy','y2','yyy','an error'],a:0,
+    why:'4→3→2. Multiplying the TEXT "y" by 2 gives yy. If you said 2, you traced right and read the quotes wrong.'},
+   {code:'a = 2\nb = 3\na, b = b, a\nprint(a, b)',
+    opts:['2 3','3 2','5 5','b a','an error'],a:1,
+    why:'Python swaps in one line — both right sides are read BEFORE either store. 3 2.'}];
+
+  function isoWeek(d){
+    const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+    const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day);
+    const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));
+    return [t.getUTCFullYear(), Math.ceil((((t-y0)/864e5)+1)/7)];
+  }
+  const [yr,wk]=isoWeek(new Date());
+  const num=(yr-2026)*52+wk;               // running challenge number
+  const P=BANK[(num-1+BANK.length*10)%BANK.length];
+
+  const KEY='alnow-trace-'+yr+'-'+wk;
+  let st={g:[],done:false};
+  try{st=JSON.parse(localStorage.getItem(KEY))||st}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  function gc(ev){if(window.goatcounter&&window.goatcounter.count)
+    window.goatcounter.count({path:'trace-race/'+ev,event:true});}
+
+  document.getElementById('tr-num').textContent='#'+num;
+  document.getElementById('tr-code').textContent=P.code;
+  const opts=document.getElementById('tr-opts'),grid=document.getElementById('tr-grid'),
+        verdict=document.getElementById('tr-verdict'),bar=document.getElementById('tr-sharebar');
+
+  function gridStr(){return st.g.map(x=>x?'\u{1F7E9}':'\u{1F7E5}').join('');}
+  function render(){
+    grid.textContent=gridStr();
+    const over=st.done||st.g.length>=3;
+    [...opts.children].forEach((b,j)=>{
+      b.disabled=over;
+      if(st.done&&j===P.a)b.classList.add('right');
+    });
+    if(st.done){
+      verdict.innerHTML='<b>Traced it'+(st.g.length===1?' — first try.':' in '+st.g.length+'.')+'</b> '+P.why;
+      bar.hidden=false;
+    }else if(st.g.length>=3){
+      [...opts.children][P.a].classList.add('right');
+      verdict.innerHTML='<b>The machine says:</b> '+P.opts[P.a]+'. '+P.why+
+        ' Next puzzle Monday — and the sprint below teaches exactly this.';
+      bar.hidden=false;
+    }else if(st.g.length){
+      verdict.textContent='Not that — trace again, line by line. '+(3-st.g.length)+' left.';
+    }
+  }
+  P.opts.forEach((o,j)=>{
+    const b=document.createElement('button');b.className='choice';b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(st.done||st.g.length>=3)return;
+      const ok=j===P.a;
+      st.g.push(ok);if(ok)st.done=true;save();
+      if(!st.g.filter(x=>!x).length&&ok&&st.g.length===1)gc('solve-1');
+      else if(ok)gc('solve-'+st.g.length);
+      else if(st.g.length>=3)gc('fail');
+      b.classList.add(ok?'right':'wrong');
+      render();
+    });
+    opts.appendChild(b);
+  });
+  if(!st.g.length)gc('play');
+  render();
+
+  document.getElementById('tr-share').addEventListener('click',()=>{
+    const txt='Trace Race #'+num+' '+gridStr()+'\n'+
+      'Can you read Python? https://santerre.ai/albania-now/challenge.html?s=tr';
+    gc('share');
+    if(navigator.share){navigator.share({text:txt}).catch(()=>{});}
+    else{
+      navigator.clipboard&&navigator.clipboard.writeText(txt);
+      document.getElementById('tr-copied').textContent='copied — paste it anywhere';
+    }
+  });
+})();
+</script>
+<script data-goatcounter="https://johnsanterre.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
