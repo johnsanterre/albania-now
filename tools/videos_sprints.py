@@ -2,37 +2,105 @@
 """Albania Now — watch-segment videos for both sprints (vidlib slides+narration).
 Run: /Users/john/Dropbox/_/tts/venv/bin/python videos_sprints.py [slug]"""
 import sys
-from vidlib import s_title, s_bullets, s_chart, build_all
+from vidlib import s_title, s_bullets, s_chart, s_code, s_notebook, build_all, GREEN
 
 DS = {}
 SP = {}
 
+# ds-1 main video: 8 scenes, ~5 minutes (the 5-minute standard, John 2026-09-04)
 DS["alnow-ds-1"] = [
  (s_title("Week 1 · Data Science", "Code in your browser",
           "Real Python. A Google computer. Nothing to install."),
   "Welcome to week one of the data science sprint. This week you write real "
-  "Python — in your browser, with nothing to install. The tool is called Colab: "
-  "a notebook made of cells, and every code cell has a play button."),
- (s_bullets("The five facts", "What happens when you press play", [
+  "Python — in your browser, with nothing to install and nothing to pay for. "
+  "The tool is called Colab. It looks like a document, but it is a notebook "
+  "made of cells, and every code cell has a play button on its left edge. "
+  "By the end of this lesson you will have run real code, stored values in "
+  "variables, caused three errors on purpose, and read every one of their "
+  "reports like a professional."),
+ (s_notebook("The mechanics", "Your first cell", [
+   (['print("Hello from Tirana")'], [("Hello from Tirana", "ok")]),
+   (['2026 - 2010'], [("16", "ok")]),
+  ], note="The last line of a cell shows its value."),
+  "Here is the whole mechanic. Click a code cell, press the play button — or "
+  "hold shift and press enter. The code runs, and the result appears right "
+  "underneath, about a second later. Print shows whatever you hand it. And "
+  "arithmetic just works: the last line of a cell displays its own value, no "
+  "print required. That is genuinely all there is to operating a notebook — "
+  "everything else this month is about what you write inside the cells."),
+ (s_bullets("Where it runs", "The facts that set you free", [
    "Your code runs in a Google data center",
    "Only the result travels back to you",
    "Nothing you do can break your computer",
-   "Red text is a report, not a judgment",
+   "Experimenting is free — always",
    "Cells run in the order YOU run them"]),
-  "Five facts carry the whole week. Your code runs far away, in a data center. "
-  "Only the result comes back. So nothing you do can break your machine — "
-  "experiment freely. Red error text is a report that names what stopped the "
-  "code, often with a suggested fix. And cells run in the order you run them, "
-  "not the order they sit on the page — restart and run all is the cure."),
+  "Now the fact that changes how brave you can be. When you press play, the "
+  "code does not run on your laptop or your phone. It travels to a computer "
+  "in a Google data center, runs there, and only the result comes back. Which "
+  "means nothing you type can break your machine. Nothing. The worst case is "
+  "red text, and red text is information. So experiment freely — that is not "
+  "a nice idea, it is the actual economics of the notebook. One catch to "
+  "remember: cells run in the order you run them, not the order they sit on "
+  "the page. When a notebook acts haunted, the cure is restart and run all."),
+ (s_code("Errors", "Read the report",
+   ['print(vitet)'],
+   console=[("NameError: name 'vitet' is not defined", (216, 90, 80)),
+            ("Did you mean: 'vitet'? No — it was never created", (150, 158, 170))],
+   note="The report names the problem. Often it names the fix.", err_line=0),
+  "Let's cause an error on purpose, because reading errors is the single "
+  "biggest difference between beginners who thrive and beginners who quit. "
+  "We ask Python to print vitet — a name that was never created. The report "
+  "says: name error, the name vitet is not defined. Read it slowly. It tells "
+  "you what stopped the code, which line it happened on, and, when you "
+  "misspell something it knows, it even guesses the fix for you. An error is "
+  "a report from a very literal assistant — never a judgment, never damage."),
+ (s_notebook("Variables", "The notebook's memory", [
+   (['x = 4', 'x = x + 3', 'print(x)'], [("7", "ok")]),
+  ], note="= means STORE. The last store wins."),
+  "Variables are the notebook's memory, and one small program shows all the "
+  "rules. X equals four stores four under the name x. The next line looks "
+  "like impossible math — x equals x plus three — but the equals sign does "
+  "not mean equals. It means store: take what x holds, add three, store the "
+  "result back. So print shows seven. A variable holds exactly one value: "
+  "whatever was stored most recently, in the order the cells actually ran. "
+  "That is rule one and rule two of everything you will do with data."),
+ (s_code("Quotes", "Name, or text?",
+   ['emri = "Ana"', 'print(emri)', 'print("emri")'],
+   console=[("Ana", GREEN), ("emri", GREEN)],
+   note='Quotes mean: this text, literally.'),
+  "Rule three is about quotes, and it trips everyone exactly once. Emri "
+  "equals Ana, in quotes — the text Ana is stored under the name emri. Print "
+  "emri, without quotes, looks the name up and shows Ana. But print quote "
+  "emri quote shows the word emri itself — because quotes mean: this is the "
+  "text, literally, do not look anything up. Once you see that distinction, "
+  "half the confusing behavior of programming becomes obvious."),
+ (s_notebook("Text vs numbers", "The bridge", [
+   (['print("age: " + 16)'],
+    [("TypeError: can only concatenate str (not \"int\") to str", "err")]),
+   (['print("age: " + str(16))'], [("age: 16", "ok")]),
+  ], note="str() turns a number into text. int() goes the other way."),
+  "Last idea, and it is the source of half of all beginner errors. Seven "
+  "without quotes is a number you can do math on. Seven in quotes is text. "
+  "The plus sign adds two numbers or glues two texts — but refuses to mix "
+  "them. Watch: text plus the number sixteen — type error, can only "
+  "concatenate str to str. The report names both sides of the collision. "
+  "The bridge is str: it turns the number into text, and now the glue works. "
+  "When you meet this error this week — and you will — you are not behind. "
+  "You are exactly on schedule."),
  (s_bullets("This week", "Your job", [
-   "Read three error reports in the figure",
-   "Run the notebook: print, variables, one error",
-   "Build: make the computer work 500 times",
-   "Turn in the screenshot"], closing=True),
-  "Your job this week: read three error reports in the figure, run the notebook "
-  "top to bottom, then the build — make the computer print something five "
-  "hundred times, understand every word of how, and turn in the screenshot. "
-  "Let's go."),
+   "Play the three figures in the reading",
+   "Ten practice predictions — reveal after committing",
+   "The notebook: make every CHECK say PASSED",
+   "Build: scale, mad-lib, error safari",
+   "Turn in all three parts"], closing=True),
+  "Your job this week, in order. Read and play the three figures — error "
+  "reports, program tracing, and the number-text-error sort. Then ten "
+  "practice predictions: commit to each answer before revealing, because the "
+  "struggle is the mechanism. Then the notebook — run every teaching cell, "
+  "fill every your-turn cell, and make every check cell say passed. Then the "
+  "three-part build: make the computer work five hundred times, weave your "
+  "own mad-lib from variables, and run your own error safari. Two solid "
+  "hours, honestly spent. Press play."),
 ]
 
 DS["alnow-ds-2"] = [
