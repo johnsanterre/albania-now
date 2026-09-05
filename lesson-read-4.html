@@ -149,7 +149,7 @@
   numbers and reasons — there are at least three findings to make), and the one
   change you’d make first. Then make that change and show it running.</p>
   <p><b>Turn-in:</b> the review + before/after screenshots. <b>This completes
-  the sprint</b> — your teacher confirms all four weeks, and you are on the
+  the sprint</b> — Albania Now confirms all four weeks, and you are on the
   lecture list.</p>
 
   </div>
@@ -209,7 +209,10 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
   }
   document.querySelectorAll('button.mark').forEach(b=>{
     b.addEventListener('click',()=>{
-      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
   });
   const groups=[...document.querySelectorAll('[data-q]')];
   const right={};

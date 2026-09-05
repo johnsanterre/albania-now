@@ -162,7 +162,7 @@
   there. It must include: what a spectrum is, what the dark lines are, and one
   real example from this lesson. No copying — the test is whether it sounds like
   you.</p>
-  <p><b>Turn-in:</b> the paragraph, to your teacher.</p>
+  <p><b>Turn-in:</b> the paragraph — the <a href="join.html">join page</a> explains where builds land.</p>
 
   </div>
   <button class="mark" data-for="build">Mark complete</button>
@@ -221,7 +221,10 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
   }
   document.querySelectorAll('button.mark').forEach(b=>{
     b.addEventListener('click',()=>{
-      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
   });
   const groups=[...document.querySelectorAll('[data-q]')];
   const right={};

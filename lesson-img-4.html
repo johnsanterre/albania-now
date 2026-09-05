@@ -220,7 +220,10 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
   }
   document.querySelectorAll('button.mark').forEach(b=>{
     b.addEventListener('click',()=>{
-      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
   });
   const groups=[...document.querySelectorAll('[data-q]')];
   const right={};

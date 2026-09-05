@@ -155,7 +155,7 @@
   chart, and the three-sentence finding — measured, found, not-proven.</p>
   <p><b>Turn-in:</b> the notebook itself (File &rarr; Download .ipynb) plus a
   screenshot of the chart and finding. <b>This turn-in completes the sprint</b> —
-  your teacher confirms all four weeks, and you are on the list for the live
+  Albania Now confirms all four weeks, and you are on the list for the live
   lecture with John Santerre.</p>
 
   </div>
@@ -215,7 +215,10 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
   }
   document.querySelectorAll('button.mark').forEach(b=>{
     b.addEventListener('click',()=>{
-      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
   });
   const groups=[...document.querySelectorAll('[data-q]')];
   const right={};

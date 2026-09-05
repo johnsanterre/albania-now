@@ -62,24 +62,24 @@ Spec: **20 hours per sprint-month** = ~300 min (5h) per weekly lesson; band 240�
 
 | wk | total | flag | watch | listen | read+figs | practice | notebook | check | build | words | figs | ex | quiz | nb t/s/c | vids |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **51m** | UNDER | 0 | 0 | 4 | 0 | 30 | 2 | 15 | 254 | 1 | 0 | 3 | 21/0/10 | 1 |
-| 2 | **48m** | UNDER | 0 | 0 | 4 | 0 | 27 | 2 | 15 | 258 | 1 | 0 | 3 | 19/0/8 | 1 |
-| 3 | **35m** | UNDER | 0 | 0 | 4 | 0 | 14 | 2 | 15 | 253 | 1 | 0 | 3 | 6/1/3 | 1 |
-| 4 | **29m** | UNDER | 0 | 0 | 4 | 0 | 8 | 2 | 15 | 243 | 1 | 0 | 3 | 6/0/2 | 1 |
+| 1 | **56m** | UNDER | 3 | 1 | 4 | 0 | 30 | 2 | 15 | 254 | 1 | 0 | 3 | 21/0/10 | 1 |
+| 2 | **52m** | UNDER | 3 | 1 | 4 | 0 | 27 | 2 | 15 | 258 | 1 | 0 | 3 | 19/0/8 | 1 |
+| 3 | **39m** | UNDER | 3 | 1 | 4 | 0 | 14 | 2 | 15 | 253 | 1 | 0 | 3 | 6/1/3 | 1 |
+| 4 | **34m** | UNDER | 3 | 1 | 4 | 0 | 8 | 2 | 15 | 243 | 1 | 0 | 3 | 6/0/2 | 1 |
 
-**Sprint total: 163m of 1200m target (14%)**
+**Sprint total: 181m of 1200m target (15%)**
 
 ## Learning to Learn from External Resources (`sources`)
 
 | wk | total | flag | watch | listen | read+figs | practice | notebook | check | build | words | figs | ex | quiz | nb t/s/c | vids |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **21m** | UNDER | 0 | 0 | 4 | 0 | 0 | 2 | 15 | 275 | 1 | 0 | 3 | 0/0/0 | 1 |
-| 2 | **21m** | UNDER | 0 | 0 | 4 | 0 | 0 | 2 | 15 | 274 | 1 | 0 | 3 | 0/0/0 | 1 |
-| 3 | **21m** | UNDER | 0 | 0 | 4 | 0 | 0 | 2 | 15 | 292 | 1 | 0 | 3 | 0/0/0 | 1 |
-| 4 | **21m** | UNDER | 0 | 0 | 4 | 0 | 0 | 2 | 15 | 262 | 1 | 0 | 3 | 0/0/0 | 1 |
+| 1 | **26m** | UNDER | 3 | 1 | 4 | 0 | 0 | 2 | 15 | 275 | 1 | 0 | 3 | 0/0/0 | 1 |
+| 2 | **26m** | UNDER | 3 | 1 | 4 | 0 | 0 | 2 | 15 | 274 | 1 | 0 | 3 | 0/0/0 | 1 |
+| 3 | **26m** | UNDER | 3 | 1 | 4 | 0 | 0 | 2 | 15 | 292 | 1 | 0 | 3 | 0/0/0 | 1 |
+| 4 | **26m** | UNDER | 3 | 1 | 4 | 0 | 0 | 2 | 15 | 262 | 1 | 0 | 3 | 0/0/0 | 1 |
 
-**Sprint total: 85m of 1200m target (7%)**
+**Sprint total: 103m of 1200m target (9%)**
 
-**Catalog: 28 lessons measured · median 30m · min 21m · max 186m**
+**Catalog: 28 lessons measured · median 31m · min 23m · max 186m**
 
 Legend: flag UNDER < 180m · thin < 240m · ok · OVER > 360m. nb t/s/c = notebook teaching / scaffold (your-turn) / check cells.

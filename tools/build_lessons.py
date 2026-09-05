@@ -161,7 +161,10 @@ watch &rarr; listen &rarr; read &rarr; code &rarr; deeper &rarr; check &rarr; bu
   }
   document.querySelectorAll('button.mark').forEach(b=>{
     b.addEventListener('click',()=>{
-      const sg=b.dataset.for;state[sg]=!state[sg];save();render();})
+      const sg=b.dataset.for;state[sg]=!state[sg];save();render();
+      if(sg==='done'&&state.done&&!state._counted){state._counted=true;save();
+        if(window.goatcounter&&window.goatcounter.count){
+          window.goatcounter.count({path:'complete/'+KEY,event:true});}}})
   });
   const groups=[...document.querySelectorAll('[data-q]')];
   const right={};
@@ -551,7 +554,7 @@ print(emri, x)</pre>
   a NameError, a TypeError, and a SyntaxError. For each, write one sentence
   reading the report — what stopped the code and where.</p>
   <p><b>Turn-in:</b> screenshots of all three parts (part C includes your three
-  one-sentence readings), to your teacher.</p>
+  one-sentence readings) — the <a href="join.html">join page</a> explains where builds land.</p>
 ''',
  fig_js='''
 (function(){
@@ -1023,7 +1026,7 @@ LESSONS.append(dict(sprint=DS, n=4, nb='ds4-capstone',
   chart, and the three-sentence finding — measured, found, not-proven.</p>
   <p><b>Turn-in:</b> the notebook itself (File &rarr; Download .ipynb) plus a
   screenshot of the chart and finding. <b>This turn-in completes the sprint</b> —
-  your teacher confirms all four weeks, and you are on the list for the live
+  Albania Now confirms all four weeks, and you are on the list for the live
   lecture with John Santerre.</p>
 ''',
  fig_js='''
@@ -1148,7 +1151,7 @@ LESSONS.append(dict(sprint=SP, n=1, nb='space1-spectra',
   there. It must include: what a spectrum is, what the dark lines are, and one
   real example from this lesson. No copying — the test is whether it sounds like
   you.</p>
-  <p><b>Turn-in:</b> the paragraph, to your teacher.</p>
+  <p><b>Turn-in:</b> the paragraph — the <a href="join.html">join page</a> explains where builds land.</p>
 ''',
  fig_js='''
 (function(){
@@ -1282,7 +1285,7 @@ LESSONS.append(dict(sprint=SP, n=2, nb='space2-missions',
   (flyby, orbiter, lander, sample return), the two instruments you would carry
   and what each answers, and the one risk that worries you most. One page,
   any format.</p>
-  <p><b>Turn-in:</b> the mission card, to your teacher.</p>
+  <p><b>Turn-in:</b> the mission card — the <a href="join.html">join page</a> explains where builds land.</p>
 ''',
  fig_js='''
 (function(){
@@ -1401,7 +1404,7 @@ LESSONS.append(dict(sprint=SP, n=3, nb='space3-titan',
   fiction: <b>every claim must trace to a number or fact from this lesson</b>
   (the pressure, the temperature, the gravity from the notebook, what the rain
   is, what the ground is). Voice is yours; facts are Titan's.</p>
-  <p><b>Turn-in:</b> the postcard, to your teacher.</p>
+  <p><b>Turn-in:</b> the postcard — the <a href="join.html">join page</a> explains where builds land.</p>
 ''',
  fig_js='''
 (function(){
@@ -1517,8 +1520,7 @@ LESSONS.append(dict(sprint=SP, n=4, nb='space4-transit',
   three-sentence finding — what you measured, what you found, what it does not
   prove.</p>
   <p><b>Turn-in:</b> the notebook (File &rarr; Download .ipynb) plus a screenshot
-  of your plot and finding. <b>This turn-in completes the sprint</b> — your
-  teacher confirms all four weeks, and you are on the list for the live lecture
+  of your plot and finding. <b>This turn-in completes the sprint</b> — Albania Now confirms all four weeks, and you are on the list for the live lecture
   with Dr. Nixon.</p>
 ''',
  fig_js='''

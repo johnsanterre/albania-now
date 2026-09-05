@@ -409,7 +409,7 @@ LESSONS.append(dict(sprint=RD, n=4, nb='read4-traceback-review',
   numbers and reasons — there are at least three findings to make), and the one
   change you’d make first. Then make that change and show it running.</p>
   <p><b>Turn-in:</b> the review + before/after screenshots. <b>This completes
-  the sprint</b> — your teacher confirms all four weeks, and you are on the
+  the sprint</b> — Albania Now confirms all four weeks, and you are on the
   lecture list.</p>
 ''',
  fig_js='''
@@ -873,7 +873,7 @@ LESSONS.append(dict(sprint=SRC, n=4,
   goal was, whether you hit the visible finish, the two-line note in your own
   words, and one adjustment the real day taught you to make to the plan.</p>
   <p><b>Turn-in:</b> plan + day-one log. <b>This completes the sprint</b> —
-  your teacher confirms all four weeks, and you are on the lecture list.</p>
+  Albania Now confirms all four weeks, and you are on the lecture list.</p>
 ''',
  fig_js='''
 (function(){
