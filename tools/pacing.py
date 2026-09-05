@@ -34,6 +34,8 @@ SPRINTS = [
     ('Intro to Large Language Models', 'llm'),
     ('AI Image Analysis on Other Planets', 'img'),
     ('Leveraging AI in Your Own Education', 'learn'),
+    ('Learning to Read Python', 'read'),
+    ('Learning to Learn from External Resources', 'sources'),
 ]
 
 
