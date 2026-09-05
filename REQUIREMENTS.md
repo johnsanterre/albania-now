@@ -47,6 +47,21 @@ not a taste.)
 
 ## 2. Product principles
 
+**The organizing frame — one destination, many doors (John, 2026-09-05).**
+The destination is always the same: a student's effort earning a real
+scientist's attention. The doors are shaped differently because students
+are:
+
+| Door | Shape | Who walks through it |
+|---|---|---|
+| Sprints | class-shaped | students who want a path and a finish line |
+| Challenges & playables | game-shaped | students who'd never enroll but will play |
+| The lecture & ceremonies | event-shaped | students moved by occasions and access |
+| Discord & crews | community-shaped | students who come because a friend is here |
+
+Every door funnels toward the same destination; no door is a dead end.
+Features get judged by which door they widen.
+
 - **P1 — No volunteer graders.** Completion is verified by the platform
   (automatic) plus Free Focus's own people for capstones. Schools distribute
   and encourage; they do not administer. (John, 2026-09-05.)
@@ -276,8 +291,23 @@ access, ever.
   `enrollments`, `progress_events`, `submissions` (build uploads + review
   state), `certificates`, `invites` — plus, for the growth layer: `crews`,
   `referrals`, `challenge_results`, `share_events`.
-- **Cost envelope:** pilot ≈ $0/mo (free tiers); 10k students ≈ low tens of
-  $/mo. The expensive resource stays speaker time, not compute.
+- **Compute budget (2026-09-05; assumes material creation is free — LLMs +
+  volunteers + John).** Ranges, not promises; the LLM line dominates and is
+  a policy choice:
+  - Static hosting (GitHub Pages) + domain: **$0** (owned).
+  - App plane (Firebase/equivalent): pilot ≤1k students **$0–10/mo**;
+    ~10k active **$25–100/mo**; national saturation **$200–500/mo**.
+  - LLM usage — the swing line. If LLM feedback is rationed to capstones
+    only (recommended): pilot **$10–50/mo**, 10k active **$100–300/mo**.
+    If every build gets LLM feedback: multiply by ~5–10. Class-key
+    lessons (course-5 style) ride teacher/cohort keys and stay small.
+  - Lecture streaming: **$0–15/mo** (YouTube Live / Zoom tier).
+  - Email/notifications: **$0** early, **$10–30/mo** at scale.
+  - **Bottom line: pilot ≈ $0–75/mo; 10k active ≈ $150–450/mo; national
+    scale ≈ $500–2,000/mo worst case.** Stickers are physical, not compute
+    (~$0.50–1 per sticker plus batch shipping to schools), budgeted
+    separately. The scarce resources remain speaker hours and moderation —
+    which is where volunteers and LLMs are aimed, not where money is.
 
 ## 7. Phases
 
